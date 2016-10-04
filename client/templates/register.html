@@ -1,0 +1,26 @@
+<ion-view title="Register">
+  <ion-content class="login">
+    <div class="list">
+	  	<form name="Form" validation-schema schema="Register" ng-submit="signup.signupUser(Form, data)">
+	  		<label class="item item-input">
+	      	<input name="firstname" ng-model="data.profile.firstname" type="text" placeholder="First Name" >
+	      </label>
+	      <label class="item item-input">
+	      	<input name="lastname" ng-model="data.profile.lastname" type="text" placeholder="Last Name">
+	      </label>
+	      <label class="item item-input">
+	      	<input name="email" ng-model="data.email" type="text" placeholder="Email">
+	      </label>
+	      <label class="item item-input">
+	      	<input name="password" ng-model="data.password" type="password" placeholder="Password">
+	      </label>
+	      <label class="item item-input">
+	      	<input name="zip_code" ng-model="data.profile.zip_code" type="number" placeholder="Zip code" required-error-message="This field is required!" validator="required, isstring=6">
+	      </label>  
+	      <div class="padding">
+	        <button class="button button-block button-positive">Sign up</button>
+	      </div>
+	    </form>
+    </div>  
+  </ion-content>
+</ion-view>

@@ -1,0 +1,35 @@
+<ion-view view-title="signIn">
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="bar bar-header bar-light head_bar">
+      <div class="back_arrrow">
+        <span class="sp2"><a href="welcome"><i class="icon ion-ios-arrow-thin-left"></i></a></span>
+      </div>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="full_back">
+      <div class="content2">
+        <div class="logo">
+          <img src="./logo1.png" alt=""/>
+        </div>
+        <h2 class="head">the dish</h2>
+        <form name="loginForm" validation-schema schema="Register" ng-submit="login.userLogin(loginForm, data)">
+          <div class="input_field">
+            <input name="email" ng-model="data.email" type="text" placeholder="EMAIL ID" >
+          </div>
+          <div class="input_field">
+            <input name="password" type="password" ng-model="data.password" placeholder="PASSWORD">
+          </div>
+          <h2 class="forgt_pss">Forgot Password?</h2>
+          <button class="button button-block button-light log_btn">
+            LOGIN
+          </button>
+        </form>
+        <span class="sp_or">or</span>
+        <a class="social_fb" ng-click="login.loginWithFacebook()">
+          <span class="sp1"><i class="icon ion-social-facebook"></i></span><span class="login_social">Login with facebook</span>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
