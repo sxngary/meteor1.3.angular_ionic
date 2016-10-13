@@ -89,6 +89,7 @@ class RoutesConfig extends Config {
         controller: 'LoginCtrl as login',
         resolve: {
           currentUser($q) {
+            $( "input[name='email'], input[name='password'] " ).next().empty();
             if (Meteor.userId()) {
               return $q.reject('CANT_ACCESS');
             } else {
@@ -103,6 +104,22 @@ class RoutesConfig extends Config {
         controller: 'SignupCtrl as signup',
         resolve: {
           currentUser($q) {
+            $( "input[name='firstname'], input[name='lastname'], input[name='email'], input[name='password'], input[name='zip_code']" ).next().empty();
+            if (Meteor.userId()) {
+              return $q.reject('CANT_ACCESS');
+            } else {
+              return $q.resolve();
+            }
+          }
+        }
+      })
+      .state('forgot_password', {
+        url: '/forgot_password',
+        templateUrl: 'client/templates/forgot.html',
+        controller: 'ForgotCtrl as forgot',
+        resolve: {
+          currentUser($q) {
+            $( "input[name='email']" ).next().empty();
             if (Meteor.userId()) {
               return $q.reject('CANT_ACCESS');
             } else {
@@ -138,8 +155,7 @@ class RoutesRunner extends Runner {
   this.$ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-
-    /*if (window.cordova && window.cordova.plugins.Keyboard) {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
 
@@ -147,7 +163,7 @@ class RoutesRunner extends Runner {
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-    }*/
+    }
   });
 
   }

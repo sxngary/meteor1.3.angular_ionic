@@ -6,6 +6,7 @@ import 'angular-moment';
 import 'angular-sanitize';
 import 'angular-ui-router';
 import 'ionic-scripts';
+import 'ng-cordova';
 import 'angular-validation/dist/angular-validation';
 import 'angular-validation/dist/angular-validation-rule';
 import './angular-validation-schema.min';
@@ -17,6 +18,7 @@ import { Meteor } from 'meteor/meteor';
 import HomeCtrl from '../controllers/welcome.controller';
 import SignupCtrl from '../controllers/signup.controller';
 import LoginCtrl from '../controllers/login.controller';
+import ForgotCtrl from '../controllers/forgot.controller';
 import SuggestionCtrl from '../controllers/suggestion.controller';
 import SearchCtrl from '../controllers/search.controller';
 import ReviewCtrl from '../controllers/review.controller';
@@ -34,7 +36,8 @@ app = Angular.module(App, [
   'ionic',
   'validation', 
   'validation.rule',
-  'validation.schema'
+  'validation.schema',
+  'ngCordova'
 ]);
 
 //Load modules
@@ -42,6 +45,7 @@ new Loader(App)
   .load(SuggestionCtrl)
   .load(HomeCtrl)
   .load(LoginCtrl)
+  .load(ForgotCtrl)
   .load(SignupCtrl)
   .load(SearchCtrl)
   .load(ReviewCtrl)

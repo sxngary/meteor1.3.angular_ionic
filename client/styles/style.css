@@ -1,19 +1,20 @@
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{font-family: 'Roboto'!important;}
 img{max-width:100%;width:100%;}
 .img1{height:100%;width:100%;background-image:url(./image1.jpg);background-size:cover;}
 .img2{height:100%;width:100%;background-image:url(./img2.jpg);background-size:cover;}
 .img3{height:100%;width:100%;background-image:url(./img3.jpg);background-size:cover;}
-.content1 p{color:#fff;font-size:20px;}
+.content1 p{color:#fff;font-size:15px;}
 .content1 {
-  bottom: 125px;
+  bottom: 150px;
   position: absolute;
   text-align: center;
   width: 100%;
 }
 .btm_btn {
-  bottom: 20px;
+  bottom: 25px;
   position: absolute;
   text-align: center;
-  width: 100%;
+  width: 100%;padding:0px 10px;
 }
 .btm_btn a {
   color: #ffffff;
@@ -30,14 +31,14 @@ img{max-width:100%;width:100%;}
 .create > span {
   background: #e23814 none repeat scroll 0 0;
   border-radius: 20px;
-  padding: 10px;
+  padding: 15px 10px;letter-spacing:1px;
 }
 .login > span {
   background: #e23814 none repeat scroll 0 0;
   border-radius: 20px;
-  padding: 10px 50px;
+  padding: 15px 55px;letter-spacing:1px;
 }
-.slider-pager{bottom:80px !important;}
+.slider-pager{bottom:100px !important;}
 .background-bg,.background-bg .slider{height:100%;}
 .slider-pager .icon:before {
   content:'';
@@ -51,38 +52,102 @@ img{max-width:100%;width:100%;}
 }
 .slider-pager .slider-pager-page.active .icon::before{background:#fff;}
 .full_back{background-color:#e23814;height:100%;}
-.content1{padding:0px 30px;}
-.content2{padding:40px;}
+.content1{padding:0px 60px;}
+.content2{padding:30px 60px;}
 .logo img {height: 110px;width: 110px;}
-.logo {text-align: center;padding-top:70px;}
-.head {text-align: center;font-size:50px;color:#fff;font-weight:bold;padding-bottom:50px;}
+.logo {text-align: center;}
+.head {text-align: center;font-size:50px;color:#fff;font-weight:bold;}
 .input_field {border-bottom: 1px solid #ee8872;margin-bottom: 10px; padding-bottom: 4px;}
 .input_field input{background:transparent;}
-.forgt_pss {color: #941c03;font-size: 15px;text-align: right;margin-top:0px;}
+.forgt_pss {color: #941c03;font-size: 15px;text-align: right;margin-top:0px;margin-bottom:25px;}
 .login-btn {background: #ffffff none repeat scroll 0 0;border-radius: 26px;padding: 15px 80px;font-size:22px;display:block;text-align:center;margin-top:30px;}
 .login-btn a{color:#e23814;cursor:pointer;}
-.sp_or {color: #ee8872;display: block;font-size: 22px;padding: 25px 0;text-align: center;}
+.sp_or {color: #ee8872;display: block;font-size: 22px;padding: 10px 0 20px;text-align: center;}
 .social_fb .sp1{ background: #3b5998 none repeat scroll 0 0; border-radius: 50%;color: #ffffff;display: inline-block;font-size: 30px;height: 40px;text-align: center;
  width: 40px;padding-top:5px;}
 .login_social {color: #ffffff;font-size: 15px;padding-left: 15px;text-transform: uppercase;display:table-cell;vertical-align:middle;}
 .social_fb{text-align:center;display:table;}
-.content1 h2 {font-size: 30px;color:#fff;}
+.content1 h2 {font-size: 22px;color:#fff;}
 .sp2 .icon{font-size:40px;}
 .sp2 a{color:#fff;cursor:pointer;}
-.back_arrrow{padding-bottom:60px;}
-.input_field > input::-moz-placeholder{color:#fff;}
-.content3{padding:20px;}
-.content3 h2 {color: #ffffff;font-size: 22px; text-align: center;}
+.back_arrrow{width:100%;}
+.input_field > input{width:100%;}
+.content3{padding:40px 20px;}
+.content3 h2,.suggest h2 {color: #ffffff;font-size: 22px; text-align: center;}
 .pad_b0{padding-bottom:0px;}
-.head_bar{background-color:#e23814 !important;border-bottom:none;padding:0px 23px;}
-.log_btn {
-  border-radius: 30px;
-  color: #e23814 !important;
-  font-weight: 500;
+.head_bar{background-color:#e23814 !important;border-bottom:none;padding:0px 23px;border:none !important;}
+.log_btn {border-radius: 30px;color: #e23814 !important;font-weight: 500;}
+.txt_input input{width:100%;padding:10px;}
+.register_input label{color:#fff;font-size:17px;}
+.reg_btn{background:#fff ;color:#e23814;padding:0px 40px;}
+.reg_dv button.activated{background:#fff;}
+.reg_dv button:hover{color:#e23814;}
+.reg_dv {text-align: center;}
+.scroll-content{background-color:#e23814;}
+.list_item input,.content2 input {border-bottom: 1px solid #ee8872;}
+.register_input span {display: block; width: 100%;}
+.item-floating-label .input-label.has-input{color:#fff;}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fff !important;
 }
+::-moz-placeholder { /* Firefox 19+ */
+  color: #fff !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #fff !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #fff !important;
+}
+.div1 {border: 1px solid #cecece;}
+.suggest .div1 span {color: #ffffff;display: block;text-align: center;}
+.suggest_foot {padding: 0;}
+.suggest_foot .tabs-positive .tabs{background:#e23814;border-color:#e23814;}
+.suggest_foot .tabs-positive .tabs a:hover{background:#fff;color:#e23814;}
+.suggest_foot .tabs a span {font-size: 17px;}
+.suggest_foot .tabs a{line-height:40px !important;}
+.pro_con span {color: #ffffff;display: block;text-align: center;font-size:17px;}
+.pro_con {padding: 20px 0;}
+.pad_8{padding:8px;}
+.profile_h2 { padding-left: 8px;text-align: left !important;}
+.brdr_rad5{border-radius:5px;}
+.back_arrrow .sp2{float:left;padding-top:10px;}
+.back_arrrow h2 {color: #ffffff;font-size: 25px;margin: 0 auto;padding-top: 5px;text-align: center;}
+.search_tb {background: rgba(0, 0, 0, 0) none repeat scroll 0 0;border: medium none;padding:0px;}
+.action_btn{text-align:right;}
+.slider-pager .slider-pager-page{margin:0px;}
+.back_arrrow a{text-decoration:none;}
+.forgt_pss a {
+  color: #941c03;
+  display: block;
+  font-size: 15px;
+  margin-top: 0;
+  text-align: right;
+  text-decoration: none;
+}
+.content2 label.sign_lbl{padding-left:0px;}
 /*---------media-------*/
 @media(max-width:360px)
 {
-  .create{padding-left:5px;}
-  .login{padding-right:5px;}
+  .create{padding-left:5px;font-size:14px;}
+  .login{padding-right:5px;font-size:14px;}
+  .forgt_pss {
+    margin-bottom: 18px;
+    margin-top: 0;
+  }
+}
+@media(max-width:320px){
+.pro_con span{font-size:13px;}
+.content1 h2{font-size:20px;}
+.content1 p{font-size:13px;}
+.create > span { padding: 10px;font-size:11px;}
+.login > span { padding: 10px 50px;font-size:11px;}
+.head{font-size:42px;}
+.logo img{height:75px;width:75px;}
+.log_btn {line-height:33px;min-height:33px;font-size:12px;}
+.sp_or { padding: 14px 0 20px;font-size:16px;}
+.login_social{font-size:11px;}
+.social_fb .sp1 {font-size: 30px; height: 35px;text-align: center;width: 35px;}
+.sp1 i.icon {font-size: 20px;}
+.slider-pager{bottom:110px !important;}
 }

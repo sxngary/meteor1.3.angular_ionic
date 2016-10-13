@@ -1,8 +1,8 @@
-<ion-view view-title="signIn">
+<ion-view view-title="Login">
   <ion-header-bar align-title="left" class="bar-positive">
     <div class="bar bar-header bar-light head_bar">
       <div class="back_arrrow">
-        <span class="sp2"><a href="welcome"><i class="icon ion-ios-arrow-thin-left"></i></a></span>
+        <span class="sp2"><a ui-sref="welcome"><!--<i class="icon ion-ios-arrow-thin-left ion-android-arrow-back"></i>--><img src="./arrrow_left.png"/></a></span>
       </div>
     </div>
   </ion-header-bar>
@@ -14,20 +14,25 @@
         </div>
         <h2 class="head">the dish</h2>
         <form name="loginForm" validation-schema schema="Register" ng-submit="login.userLogin(loginForm, data)">
-          <div class="input_field">
-            <input name="email" ng-model="data.email" type="text" placeholder="EMAIL ID" >
+          <div class="input_form register_input">
+            <label class="item-input item-floating-label">
+              <span class="input-label">Email</span>
+              <input name="email" ng-model="data.email" type="text" placeholder="Email">
+            </label>
+            <label class="item-input item-floating-label">
+              <span class="input-label">Password</span>
+              <input name="password" ng-model="data.password" type="password" placeholder="Password">
+            </label>
+            <!-- <h2 class="forgt_pss"><a href="forgot_password"> Forgot Password?</a></h2> -->
+            <h2 class="forgt_pss"><a href="forgot_password">FORGOT PASSWORD?</a></h2>
+            <button class="button button-block button-light log_btn">
+              LOGIN
+            </button>
           </div>
-          <div class="input_field">
-            <input name="password" type="password" ng-model="data.password" placeholder="PASSWORD">
-          </div>
-          <h2 class="forgt_pss">Forgot Password?</h2>
-          <button class="button button-block button-light log_btn">
-            LOGIN
-          </button>
         </form>
         <span class="sp_or">or</span>
         <a class="social_fb" ng-click="login.loginWithFacebook()">
-          <span class="sp1"><i class="icon ion-social-facebook"></i></span><span class="login_social">Login with facebook</span>
+          <span class=""><!--<i class="icon ion-social-facebook ion-social-facebook"></i>--><img src="./fb.png"/></span><span class="login_social">Login with facebook</span>
         </a>
       </div>
     </div>

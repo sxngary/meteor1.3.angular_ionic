@@ -1,0 +1,27 @@
+<ion-view view-title="Forgot Password">
+  <div class="bar bar-header bar-light head_bar">
+    <div class="back_arrrow">
+      <span class="sp2"><a ui-sref="login"><i class="icon ion-ios-arrow-thin-left ion-android-arrow-back"></i></a></span>
+          <h2>Forgot Password</h2> 
+    </div>
+  </div>
+  <ion-content>
+    <div class="full_back">
+      <div class="content3">
+        <form name="forgotForm" validation-schema schema="Register" ng-submit="forgot.forgotPassword(forgotForm, data)">
+          <div class="input_form register_input">
+            <div class="list list_item">
+              <label class="item-input item-floating-label">
+                <span class="input-label">Email</span>
+                <input name="email" ng-model="forgot.email" type="text" placeholder="Email">
+              </label>
+            </div>
+            <button class="button button-block button-light log_btn">
+              Send Email
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

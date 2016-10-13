@@ -1,26 +1,43 @@
-<ion-view title="Register">
-  <ion-content class="login">
-    <div class="list">
-	  	<form name="Form" validation-schema schema="Register" ng-submit="signup.signupUser(Form, data)">
-	  		<label class="item item-input">
-	      	<input name="firstname" ng-model="data.profile.firstname" type="text" placeholder="First Name" >
-	      </label>
-	      <label class="item item-input">
-	      	<input name="lastname" ng-model="data.profile.lastname" type="text" placeholder="Last Name">
-	      </label>
-	      <label class="item item-input">
-	      	<input name="email" ng-model="data.email" type="text" placeholder="Email">
-	      </label>
-	      <label class="item item-input">
-	      	<input name="password" ng-model="data.password" type="password" placeholder="Password">
-	      </label>
-	      <label class="item item-input">
-	      	<input name="zip_code" ng-model="data.profile.zip_code" type="number" placeholder="Zip code" required-error-message="This field is required!" validator="required, isstring=6">
-	      </label>  
-	      <div class="padding">
-	        <button class="button button-block button-positive">Sign up</button>
-	      </div>
-	    </form>
-    </div>  
-  </ion-content>
+<ion-view view-title="Register">
+	<div class="bar bar-header bar-light head_bar">
+		<div class="back_arrrow">
+			<span class="sp2"><a ui-sref="welcome"><!--<i class="icon ion-ios-arrow-thin-left ion-android-arrow-back"></i>--><img src="./arrrow_left.png"/></a></span>
+	       	<h2>Register</h2> 
+		</div>
+	</div>
+	<ion-content>
+		<div class="full_back">
+			<div class="content3">
+				<form name="Form" validation-schema schema="Register" ng-submit="signup.signupUser(Form, data)">
+					<div class="input_form register_input">
+						<div class="list list_item">
+							<label class="item-input item-floating-label">
+								<span class="input-label">First Name</span>
+								<input name="firstname" ng-model="data.profile.firstname" type="text" placeholder="First Name" >
+							</label>
+							<label class="item-input item-floating-label">
+								<span class="input-label">Last Name</span>
+								<input name="lastname" ng-model="data.profile.lastname" type="text" placeholder="Last Name">
+							</label>
+							<label class="item-input item-floating-label">
+								<span class="input-label">Email</span>
+								<input name="email" ng-model="data.email" type="text" placeholder="Email">
+							</label>
+							<label class="item-input item-floating-label">
+								<span class="input-label">Password</span>
+								<input name="password" ng-model="data.password" type="password" placeholder="Password">
+							</label>
+							<label class="item-input item-floating-label">
+								<span class="input-label">Zip Code</span>
+								<input name="zip_code" ng-model="data.profile.zip_code" type="number" placeholder="Zip code" required-error-message="This field is required!" validator="required, isstring=6">
+							</label>
+						</div>
+						<div class="reg_dv">
+							<button class="button reg_btn">Register</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</ion-content>
 </ion-view>

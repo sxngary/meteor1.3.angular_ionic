@@ -22,7 +22,6 @@ export default class HomeCtrl extends Controller {
 	}
 
 	next(){
-		console.log("index");
 		this.$ionicSlideBoxDelegate.next();
 	}
 

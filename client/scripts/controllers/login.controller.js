@@ -8,7 +8,6 @@ export default class LoginCtrl extends Controller {
   }
 
   userLogin(form, data) {
-    this.data = data;
     _this = this;
       _this.$validation.validate(form)
       .success(function(){
@@ -31,7 +30,7 @@ export default class LoginCtrl extends Controller {
         if (err) {
           if (err) return _this.handleError(err);
         }else {
-          _this.$state.go('login');
+          _this.$state.go('tab.suggestion');
         }
     });
   }
@@ -44,7 +43,6 @@ export default class LoginCtrl extends Controller {
         okType: 'button-positive button-clear'
       });
   }
-
 }
 
 LoginCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$log', '$validation'];
