@@ -21,16 +21,12 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
-      .state('tab.suggestion', {
+      .state('suggestion', {
         url: '/suggestion',
-        views: {
-          'tab-suggestions': {
-            templateUrl: 'client/templates/suggestion.html',
-            controller: 'SuggestionCtrl as suggestion',
-            resolve: {
-              user: this.isAuthorized
-            }
-          }
+        templateUrl: 'client/templates/suggestion.html',
+        controller: 'SuggestionCtrl as suggestion',
+        resolve: {
+          user: this.isAuthorized
         }
       })
       .state('tab.search', {
@@ -42,13 +38,12 @@ class RoutesConfig extends Config {
           }
         }
       })
-      .state('tab.review', {
+      .state('review', {
         url: '/review',
-        views: {
-          'tab-review': {
-            templateUrl: 'client/templates/review.html',
-            controller: 'ReviewCtrl as review',
-          }
+        templateUrl: 'client/templates/review.html',
+        controller: 'ReviewCtrl as review',
+        resolve: {
+          user: this.isAuthorized
         }
       })
       .state('tab.feed', {
@@ -89,6 +84,7 @@ class RoutesConfig extends Config {
         controller: 'LoginCtrl as login',
         resolve: {
           currentUser($q) {
+            $( "input[name='email'], input[name='password'] " ).next().empty();
             if (Meteor.userId()) {
               return $q.reject('CANT_ACCESS');
             } else {
@@ -103,6 +99,22 @@ class RoutesConfig extends Config {
         controller: 'SignupCtrl as signup',
         resolve: {
           currentUser($q) {
+            $( "input[name='firstname'], input[name='lastname'], input[name='email'], input[name='password'], input[name='zip_code']" ).next().empty();
+            if (Meteor.userId()) {
+              return $q.reject('CANT_ACCESS');
+            } else {
+              return $q.resolve();
+            }
+          }
+        }
+      })
+      .state('forgot_password', {
+        url: '/forgot_password',
+        templateUrl: 'client/templates/forgot.html',
+        controller: 'ForgotCtrl as forgot',
+        resolve: {
+          currentUser($q) {
+            $( "input[name='email']" ).next().empty();
             if (Meteor.userId()) {
               return $q.reject('CANT_ACCESS');
             } else {
@@ -113,7 +125,7 @@ class RoutesConfig extends Config {
       });
 
     this.$locationProvider.html5Mode({enabled: true,requireBase: false});
-    this.$urlRouterProvider.otherwise('/tab/suggestion');
+    this.$urlRouterProvider.otherwise('/suggestion');
   }
 
   isAuthorized($auth) {
@@ -131,15 +143,14 @@ class RoutesRunner extends Runner {
       if (err === 'AUTH_REQUIRED') {
         this.$state.go('welcome');
       }else if(err === 'CANT_ACCESS'){
-        this.$state.go('tab.suggestion');
+        this.$state.go('suggestion');
       }
     });
 
   this.$ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-
-    /*if (window.cordova && window.cordova.plugins.Keyboard) {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
 
@@ -147,7 +158,7 @@ class RoutesRunner extends Runner {
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-    }*/
+    }
   });
 
   }

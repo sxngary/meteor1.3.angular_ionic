@@ -1,5 +1,18 @@
 <ion-view title="Profile">
   <ion-content>
     <!-- content display here -->
+    <a ng-click="profile.openGallery();">Gallery</a>
+    <br><br>
+    <a ng-click="profile.clickPicture();">Click Picture</a>
+    <br><br>
+    <a ng-click="profile.clickPhoto();">clickPhoto</a>
+    <br><br>
+    <a ng-click="profile.switchCamera();">switchCamera</a>
+    <!-- <div ng-if="profile.image">
+    	<img src="{{profile.image}}"/>
+  	</div>
+  	<img src="/img2.jpg"/> -->
+    <p><img id="previewPicture" width="200"/></p>
+    <p><img id="originalPicture" width="200"/></p>
   </ion-content>
 </ion-view>

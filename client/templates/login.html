@@ -1,35 +1,40 @@
-<ion-view view-title="signIn">
+<ion-view view-title="Login">
   <ion-header-bar align-title="left" class="bar-positive">
     <div class="bar bar-header bar-light head_bar">
       <div class="back_arrrow">
-        <span class="sp2"><a href="welcome"><i class="icon ion-ios-arrow-thin-left"></i></a></span>
+        <span class="sp2"><a ui-sref="welcome"><i class="ion-chevron-left"></i></a></span>
       </div>
     </div>
   </ion-header-bar>
-  <ion-content>
-    <div class="full_back">
-      <div class="content2">
-        <div class="logo">
-          <img src="./logo1.png" alt=""/>
-        </div>
-        <h2 class="head">the dish</h2>
-        <form name="loginForm" validation-schema schema="Register" ng-submit="login.userLogin(loginForm, data)">
-          <div class="input_field">
-            <input name="email" ng-model="data.email" type="text" placeholder="EMAIL ID" >
-          </div>
-          <div class="input_field">
-            <input name="password" type="password" ng-model="data.password" placeholder="PASSWORD">
-          </div>
-          <h2 class="forgt_pss">Forgot Password?</h2>
-          <button class="button button-block button-light log_btn">
-            LOGIN
-          </button>
-        </form>
-        <span class="sp_or">or</span>
-        <a class="social_fb" ng-click="login.loginWithFacebook()">
-          <span class="sp1"><i class="icon ion-social-facebook"></i></span><span class="login_social">Login with facebook</span>
-        </a>
+  <ion-content class="orange-bg">
+  <div class="full_back">
+    <div class="content2">
+      <div class="logo">
+        <img src="./logo1.png" alt=""/>
       </div>
+      <form name="loginForm" validation-schema schema="Register" ng-submit="login.userLogin(loginForm, data)">
+        <label class="item-input item-floating-label sign_lbl">
+          <span class="icon-wrap">
+            <span class="icon-top"><img src="./mail.png" alt="" /></span>
+            <input name="email" ng-model="data.email" type="text" placeholder="EMAIL">
+          </span>
+        </label>
+        <label class="item-input item-floating-label sign_lbl">
+          <span class="icon-wrap">
+            <span class="icon-top key"><img src="./key.png" alt="" /></span>
+            <input name="password" ng-model="data.password" type="password" placeholder="PASSWORD" required-error-message="This field is required!" validator="required">
+          </span>
+        </label>
+        <h2 class="forgt_pss"><a href="javascript:void(0);">FORGOT PASSWORD?</a></h2>
+        <button class="button button-block button-light log_btn">
+          LOGIN
+        </button>
+      </form>
+      <span class="sp_or">or</span>
+      <div class="social_fb">
+        <span class=""><!--<i class="icon ion-social-facebook ion-social-facebook"></i>--><img src="./fb.png"/></span><span class="login_social">Login with facebook</span>
+      </div>  
     </div>
-  </ion-content>
+  </div>
+</ion-content>
 </ion-view>

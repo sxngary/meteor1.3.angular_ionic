@@ -16,6 +16,7 @@
     "angular-validation": "^1.4.2",
     "ionic-scripts": "0.0.1",
     "meteor-node-stubs": "~0.2.0",
-    "moment": "^2.15.1"
+    "moment": "^2.15.1",
+    "ng-cordova": "^0.1.27-alpha"
   }
 }

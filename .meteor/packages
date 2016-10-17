@@ -21,8 +21,10 @@ angular-templates
 fourseven:scss
 check
 reywood:publish-composite
-okland:camera-ui
 accounts-base
 accounts-password
 accounts-facebook
 service-configuration
+mdg:camera
+session
+fortawesome:fontawesome

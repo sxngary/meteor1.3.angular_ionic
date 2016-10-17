@@ -31,6 +31,7 @@ email@1.0.10
 es5-shim@4.5.8
 facebook@1.2.4
 fastclick@1.0.9
+fortawesome:fontawesome@4.6.3
 fourseven:scss@3.4.1
 geojson-utils@1.0.6
 hot-code-push@1.0.2
@@ -44,7 +45,7 @@ less@2.5.6
 livedata@1.0.16
 localstorage@1.0.7
 logging@1.0.10
-mdg:camera@1.1.5
+mdg:camera@1.4.1
 meteor@1.1.12
 meteor-base@1.0.2
 minifier-css@1.1.9
@@ -61,7 +62,6 @@ npm-mongo@1.4.41
 oauth@1.1.8
 oauth2@1.1.7
 observe-sequence@1.0.9
-okland:camera-ui@0.0.2
 ordered-dict@1.0.5
 promise@0.6.5
 random@1.0.7

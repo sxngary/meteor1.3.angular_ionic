@@ -8,14 +8,13 @@ export default class LoginCtrl extends Controller {
   }
 
   userLogin(form, data) {
-    this.data = data;
     _this = this;
       _this.$validation.validate(form)
       .success(function(){
         Meteor.loginWithPassword(data.email, data.password, (err) => {
           if (err) return _this.handleError(err);
           _this.$validation.reset(form);
-          _this.$state.go('tab.suggestion');
+          _this.$state.go('suggestion');
         });
       })
       .error(function(err){
@@ -31,7 +30,7 @@ export default class LoginCtrl extends Controller {
         if (err) {
           if (err) return _this.handleError(err);
         }else {
-          _this.$state.go('login');
+          _this.$state.go('suggestion');
         }
     });
   }
@@ -44,7 +43,6 @@ export default class LoginCtrl extends Controller {
         okType: 'button-positive button-clear'
       });
   }
-
 }
 
 LoginCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$log', '$validation'];

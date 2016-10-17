@@ -15,11 +15,47 @@ export default class SignupCtrl extends Controller {
             })
             .setDefaultMsg({
                 isstring: {
-                    error: 'This is not what we wanted!',
+                    error: 'Enter atleast 3 digits and not greater than 6 digits!',
+                    success: ''
+                }
+            });
+
+        //Add custom validation function for password.
+        this.$validation
+            .setExpression({
+                isvalidate: function (value, scope, element, attrs, param) {
+                	if(value){
+                		var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+						var nv =  re.test(value);
+                		if(nv){
+                			return true;
+                		}
+                	}
+                }
+            })
+            .setDefaultMsg({
+                isvalidate: {
+                    error: "At least 1 digit, 1 lowercase, 1 uppercase and min length 6",
+                    success: ''
+                }
+            });
+
+
+        //Add custom validation function for confirm password.
+        this.$validation
+            .setExpression({
+                isconfirm: function (value, scope, element, attrs, param) {
+                	if(value) return (value === scope.data.password);
+                }
+            })
+            .setDefaultMsg({
+                isconfirm: {
+                    error: "Passwords don't match",
                     success: ''
                 }
             });
 	}
+    
   	signupUser(form, data) {
   		_this = this;
   		_this.$validation.validate(form)
@@ -28,7 +64,7 @@ export default class SignupCtrl extends Controller {
 		    	if (err) return _this.handleError(err);
 
 		    	_this.$validation.reset(form);
-		    	_this.$state.go('tab.suggestion');
+		    	_this.$state.go('suggestion');
 		  	});
 	    })
 	    .error(function(err){
