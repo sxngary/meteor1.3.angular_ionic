@@ -14,7 +14,7 @@ export default class LoginCtrl extends Controller {
         Meteor.loginWithPassword(data.email, data.password, (err) => {
           if (err) return _this.handleError(err);
           _this.$validation.reset(form);
-          _this.$state.go('tab.suggestion');
+          _this.$state.go('suggestion');
         });
       })
       .error(function(err){
@@ -30,7 +30,7 @@ export default class LoginCtrl extends Controller {
         if (err) {
           if (err) return _this.handleError(err);
         }else {
-          _this.$state.go('tab.suggestion');
+          _this.$state.go('suggestion');
         }
     });
   }

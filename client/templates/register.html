@@ -1,43 +1,65 @@
-<ion-view view-title="Register">
-	<div class="bar bar-header bar-light head_bar">
-		<div class="back_arrrow">
-			<span class="sp2"><a ui-sref="welcome"><!--<i class="icon ion-ios-arrow-thin-left ion-android-arrow-back"></i>--><img src="./arrrow_left.png"/></a></span>
-	       	<h2>Register</h2> 
-		</div>
+<ion-view view-title="register">
+  <div class="bar bar-header bar-light head_bar">
+    <div class="back_arrrow">
+    	<span class="sp2"><a ui-sref="welcome"><i class="ion-chevron-left"></i></a></span>
+      <h2>Register</h2> 
+    </div>
 	</div>
-	<ion-content>
-		<div class="full_back">
-			<div class="content3">
-				<form name="Form" validation-schema schema="Register" ng-submit="signup.signupUser(Form, data)">
-					<div class="input_form register_input">
-						<div class="list list_item">
-							<label class="item-input item-floating-label">
-								<span class="input-label">First Name</span>
-								<input name="firstname" ng-model="data.profile.firstname" type="text" placeholder="First Name" >
-							</label>
-							<label class="item-input item-floating-label">
-								<span class="input-label">Last Name</span>
-								<input name="lastname" ng-model="data.profile.lastname" type="text" placeholder="Last Name">
-							</label>
-							<label class="item-input item-floating-label">
-								<span class="input-label">Email</span>
-								<input name="email" ng-model="data.email" type="text" placeholder="Email">
-							</label>
-							<label class="item-input item-floating-label">
-								<span class="input-label">Password</span>
-								<input name="password" ng-model="data.password" type="password" placeholder="Password">
-							</label>
-							<label class="item-input item-floating-label">
-								<span class="input-label">Zip Code</span>
-								<input name="zip_code" ng-model="data.profile.zip_code" type="number" placeholder="Zip code" required-error-message="This field is required!" validator="required, isstring=6">
-							</label>
-						</div>
-						<div class="reg_dv">
-							<button class="button reg_btn">Register</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</ion-content>
+  <ion-content class="orange-bg">
+    <div class="full_back">
+      <div class="content3">
+        <form name="Form" validation-schema schema="Register" ng-submit="signup.signupUser(Form, data)">
+          <div class="input_form register_input register-form">
+            <div class="list list_item">
+              <label class="item-input item-floating-label">
+              	<span class="icon-wrap">
+        			    <span class="icon-top user"><img src="./user.png" alt="" /></span>
+                	<input name="firstname" ng-model="data.profile.firstname" type="text" placeholder="FIRST NAME" >
+               	</span>
+              </label>
+              <label class="item-input item-floating-label">
+              	<span class="icon-wrap">
+          			  <span class="icon-top user"><img src="./user.png" alt="" /></span>
+                  <input name="lastname" ng-model="data.profile.lastname" type="text" placeholder="LAST NAME">
+               	</span>
+              </label>
+              <label class="item-input item-floating-label">
+              	<span class="icon-wrap">
+        			    <span class="icon-top"><img src="./mail.png" alt="" /></span>
+                	<input name="email" ng-model="data.email" type="text" placeholder="EMAIL">
+               	</span>
+              </label>
+              <label class="item-input item-floating-label">
+               	<span class="icon-wrap">
+          			  <span class="icon-top key"><img src="./key.png" alt="" /></span>
+                  <input name="password" ng-model="data.password" type="password" placeholder="PASSWORD" required-error-message="This field is required!" validator="required, isvalidate">
+                </span>
+              </label>
+              <label class="item-input item-floating-label">
+               	<span class="icon-wrap">
+          			  <span class="icon-top key"><img src="./key.png" alt="" /></span>
+                  <input name="confirmpassword" ng-model="data.confirmpassword" type="password" placeholder="CONFIRM PASSWORD" required-error-message="This field is required!" validator="required, isconfirm">
+               	</span>
+              </label>
+              <label class="item-input item-floating-label">
+                <span class="icon-wrap">
+          			  <span class="icon-top zip"><img src="./zip.png" alt="" /></span>
+                  <input name="zip_code" ng-model="data.profile.zip_code" type="number" placeholder="ZIP CODE" required-error-message="This field is required!" validator="required, isstring=6">
+               	</span>
+              </label>
+            </div>
+      		  <div class="reg_dv">
+              <button class="button button-block button-light log_btn">
+                Register
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>
+
+
+
+

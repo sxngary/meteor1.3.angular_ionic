@@ -21,16 +21,12 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
-      .state('tab.suggestion', {
+      .state('suggestion', {
         url: '/suggestion',
-        views: {
-          'tab-suggestions': {
-            templateUrl: 'client/templates/suggestion.html',
-            controller: 'SuggestionCtrl as suggestion',
-            resolve: {
-              user: this.isAuthorized
-            }
-          }
+        templateUrl: 'client/templates/suggestion.html',
+        controller: 'SuggestionCtrl as suggestion',
+        resolve: {
+          user: this.isAuthorized
         }
       })
       .state('tab.search', {
@@ -42,13 +38,12 @@ class RoutesConfig extends Config {
           }
         }
       })
-      .state('tab.review', {
+      .state('review', {
         url: '/review',
-        views: {
-          'tab-review': {
-            templateUrl: 'client/templates/review.html',
-            controller: 'ReviewCtrl as review',
-          }
+        templateUrl: 'client/templates/review.html',
+        controller: 'ReviewCtrl as review',
+        resolve: {
+          user: this.isAuthorized
         }
       })
       .state('tab.feed', {
@@ -130,7 +125,7 @@ class RoutesConfig extends Config {
       });
 
     this.$locationProvider.html5Mode({enabled: true,requireBase: false});
-    this.$urlRouterProvider.otherwise('/tab/suggestion');
+    this.$urlRouterProvider.otherwise('/suggestion');
   }
 
   isAuthorized($auth) {
@@ -148,7 +143,7 @@ class RoutesRunner extends Runner {
       if (err === 'AUTH_REQUIRED') {
         this.$state.go('welcome');
       }else if(err === 'CANT_ACCESS'){
-        this.$state.go('tab.suggestion');
+        this.$state.go('suggestion');
       }
     });
 

@@ -83,15 +83,6 @@ new Loader(App)
             'error':'This field is required!'
           }
         }
-      },
-      password: {
-        'validations': 'required',
-        'validate-on': 'keyup',
-        'messages':{
-          'required': {
-            'error':'This field is required!'
-          }
-        }
       }
     };
     validationSchemaProvider.set("Register", Register);
