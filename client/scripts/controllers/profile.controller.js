@@ -14,7 +14,6 @@ export default class ProfileCtrl extends Controller {
 	   				return Session.get('clickedImage');
 	   		}
 	    });
-
   	}
 
 	openGallery(e){

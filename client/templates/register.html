@@ -1,13 +1,22 @@
 <ion-view view-title="register">
   <div class="bar bar-header bar-light head_bar">
     <div class="back_arrrow">
-    	<span class="sp2"><a ui-sref="welcome"><i class="ion-chevron-left"></i></a></span>
+    	<span class="sp2"><a ui-sref="welcome"> <img src="./arrrow_left.png" /></a></span>
       <h2>Register</h2> 
     </div>
 	</div>
   <ion-content class="orange-bg">
     <div class="full_back">
       <div class="content3">
+        
+        <div class="row" ng-if="signup.registerErr">
+          <div class="col">
+            <div class="fill-content">
+              <p>{{signup.registerErr}}</p>
+            </div>
+          </div>
+        </div>
+
         <form name="Form" validation-schema schema="Register" ng-submit="signup.signupUser(Form, data)">
           <div class="input_form register_input register-form">
             <div class="list list_item">

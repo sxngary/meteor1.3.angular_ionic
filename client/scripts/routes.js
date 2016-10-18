@@ -85,6 +85,7 @@ class RoutesConfig extends Config {
         resolve: {
           currentUser($q) {
             $( "input[name='email'], input[name='password'] " ).next().empty();
+            Session.set('loginErr', '');
             if (Meteor.userId()) {
               return $q.reject('CANT_ACCESS');
             } else {
@@ -99,7 +100,8 @@ class RoutesConfig extends Config {
         controller: 'SignupCtrl as signup',
         resolve: {
           currentUser($q) {
-            $( "input[name='firstname'], input[name='lastname'], input[name='email'], input[name='password'], input[name='zip_code']" ).next().empty();
+            $( "input[name='firstname'], input[name='lastname'], input[name='email'], input[name='password'], input[name='confirmpassword'], input[name='zip_code']" ).next().empty();
+            Session.set('registerErr', '');
             if (Meteor.userId()) {
               return $q.reject('CANT_ACCESS');
             } else {
