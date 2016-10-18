@@ -1,10 +1,10 @@
 <ion-view view-title="Suggestions">
 	<ion-header-bar align-title="left" class="bar-positive">
 		<div class="bar bar-header bar-light head_bar">
-        	 <div class="back_arrrow">
-        		<span class="sp2"><a ui-sref="login"><i class="ion-chevron-left"></i></a></span>	
-               	<h2>Suggested for you</h2>
-        	 </div>
+      <div class="back_arrrow">
+        <!-- <span class="sp2"><a ui-sref="login"><i class="ion-chevron-left"></i></a></span> -->	
+        <h2>Suggested for you</h2>
+      </div>
 		</div>
 	</ion-header-bar>
 	<ion-content>
@@ -188,28 +188,38 @@
 			</div>
    		</div>
 	</ion-content>
-    <ion-footer-bar align-title="left" class="bar-assertive suggest_foot">
-      	<div class="tabs tabs-icon-top">
-          	<a class="tab-item">
-	            <img src="/tab1.png" alt="" class="inactive" style="display:none" />
-	            <img src="/tab1-hover.png" alt="" class="active" />
-          	</a>
-          	<a class="tab-item">
-	            <img src="/tab2.png" alt="" class="inactive"/>
-	            <img src="/tab2-hover.png" alt="" class="active" style="display:none" />
-          	</a>
-	        <a class="tab-item" ui-sref="review">
-	            <img src="/tab3.png" alt="" class="inactive"/>
-	            <img src="/tab3-hover.png" alt="" class="active" style="display:none" />
-	        </a>
-         	<a class="tab-item">
-            	<img src="/tab4.png" alt="" class="inactive" />
-            	<img src="/tab4-hover.png" alt="" class="active" style="display:none" />
-          	</a>
-          	<a class="tab-item">
-            	<img src="/tab5.png" alt="" class="inactive" />
-            	<img src="/tab5-hover.png" alt=""  class="active" style="display:none" />
-          	</a>
+  <ion-footer-bar align-title="left" class="bar-assertive suggest_foot">
+    <div class="tabs tabs-icon-top">
+        <div class="tab-item">
+          <a href="#">
+              <img src="/tab1.png" alt="" class="inactive" style="display:none">
+              <img src="/tab1-hover.png" alt="" class="active"/>
+          </a>
         </div>
-    </ion-footer-bar>
+        <div class="tab-item">
+            <a href="#" id="icon-wrap">
+              <img src="/tab2.png" alt="" class="inactive"/>
+              <img src="/tab2-hover.png" alt=""  class="active" style="display:none">
+            </a>
+        </div>
+        <div class="tab-item">
+            <a  href="review" class="active" id="icon-wrap">
+              <img src="/tab3.png" alt="" class="inactive"/>
+              <img src="/tab3-hover.png" alt="" class="active" style="display:none">
+            </a>
+        </div>
+        <div class="tab-item">
+            <a  href="#" id="icon-wrap">
+              <img src="/tab4.png" alt="" class="inactive" />
+              <img src="/tab4-hover.png" alt="" class="active" style="display:none">
+            </a>
+        </div>
+        <div class="tab-item">
+            <a href="#" id="icon-wrap">
+              <img src="/tab5.png" alt="" class="inactive" />
+              <img src="/tab5-hover.png" alt=""  class="active" style="display:none">
+            </a>
+        </div>
+      </div>
+  </ion-footer-bar>
 </ion-view>

@@ -4,21 +4,27 @@ import { Controller } from 'angular-ecmascript/module-helpers';
 export default class LoginCtrl extends Controller {
   constructor() {
     super(...arguments);
-    
+
+    this.helpers({
+      loginErr(){
+        if(Session.get('loginErr'))
+          return Session.get('loginErr');
+      }
+    });
   }
 
-  userLogin(form, data) {
+  userLogin(form) {
     _this = this;
       _this.$validation.validate(form)
       .success(function(){
-        Meteor.loginWithPassword(data.email, data.password, (err) => {
+        Meteor.loginWithPassword(_this.data.email, _this.data.password, (err) => {
           if (err) return _this.handleError(err);
           _this.$validation.reset(form);
           _this.$state.go('suggestion');
         });
       })
       .error(function(err){
-          console.log("validation " + err);
+          //console.log("validation " + err);
       });
   }
 
@@ -36,13 +42,14 @@ export default class LoginCtrl extends Controller {
   }
 
   handleError(err) {
-      //this.$log.error('Login error ', err);
+    Session.set('loginErr', err.reason || 'Login failed');
+    //this.$log.error('Login error ', err);
 
-      this.$ionicPopup.alert({
-        title: err.reason || 'Login failed',
-        okType: 'button-positive button-clear'
-      });
+    // this.$ionicPopup.alert({
+    //   title: err.reason || 'Login failed',
+    //   okType: 'button-positive button-clear'
+    // });
   }
 }
 
-LoginCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$log', '$validation'];
+LoginCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$log', '$validation', '$scope'];

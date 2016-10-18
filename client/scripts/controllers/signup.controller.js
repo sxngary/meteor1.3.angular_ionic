@@ -54,7 +54,15 @@ export default class SignupCtrl extends Controller {
                     success: ''
                 }
             });
-	}
+	       
+        this.helpers({
+            registerErr(){
+                if(Session.get('registerErr'))
+                  return Session.get('registerErr');
+            }
+        });
+
+    }
     
   	signupUser(form, data) {
   		_this = this;
@@ -68,17 +76,12 @@ export default class SignupCtrl extends Controller {
 		  	});
 	    })
 	    .error(function(err){
-	      	console.log("validation " + err);
+	      	//console.log("validation " + err);
 	    });
   	}
 
 	handleError(err) {
-	    //this.$log.error('Login error ', err);
-
-	    this.$ionicPopup.alert({
-	      title: err.reason || 'Registration failed',
-	      okType: 'button-positive button-clear'
-	    });
+        Session.set('registerErr', err.reason || 'Registration failed');
 	}
 }
 
