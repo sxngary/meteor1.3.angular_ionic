@@ -29,13 +29,12 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
-      .state('tab.search', {
+      .state('search', {
         url: '/search',
-        views: {
-          'tab-search': {
-            templateUrl: 'client/templates/search.html',
-            controller: 'SearchCtrl as search',
-          }
+        templateUrl: 'client/templates/search.html',
+        controller: 'SearchCtrl as search',
+        resolve: {
+          user: this.isAuthorized
         }
       })
       .state('review', {
@@ -46,22 +45,20 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
-      .state('tab.feed', {
+      .state('feed', {
         url: '/feed',
-        views: {
-          'tab-feed': {
-            templateUrl: 'client/templates/feed.html',
-            controller: 'FeedCtrl as feed',
-          }
+        templateUrl: 'client/templates/feed.html',
+        controller: 'FeedCtrl as feed',
+        resolve: {
+          user: this.isAuthorized
         }
       })
-      .state('tab.profile', {
+      .state('profile', {
         url: '/profile',
-        views: {
-          'tab-profile': {
-            templateUrl: 'client/templates/profile.html',
-            controller: 'ProfileCtrl as profile',
-          }
+        templateUrl: 'client/templates/profile.html',
+        controller: 'ProfileCtrl as profile',
+        resolve: {
+          user: this.isAuthorized
         }
       })
       .state('welcome', {
