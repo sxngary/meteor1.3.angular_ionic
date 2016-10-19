@@ -162,7 +162,9 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .tabs{height:90px}
 .no-padding{padding:0}
 .search-input{border-right:1px solid #d2d0d0}
-.search-input input::-moz-placeholder{color:#c9c8c8;text-transform:capitalize;font-size:18px;font-weight:400}
+.search-input input::-moz-placeholder{color:#8d8d8d;text-transform:capitalize;font-size:18px;font-weight:400;opacity:1}
+.search-input input::-webkit-input-placeholder{color:#8d8d8d;text-transform:capitalize;font-size:18px;font-weight:400;opacity:1}
+.search-input input::-ms-input-placeholder{color:#8d8d8d;text-transform:capitalize;font-size:18px;font-weight:400;opacity:1}
 .search-icon{width:auto;position:absolute;top:16px}
 .search-input input{padding:0 0 0 30px}
 .search-select{ border:none;height: 100%; width: 100%;color:#8d8d8d;font-size:18px;font-weight:400}
@@ -177,10 +179,26 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .user-name span{font-size:16px;color:#777170!important;font-weight:300}
 .user-name > span{width:75%;float:left}
 .user-name > .user-img{width:25%;float:left;margin-top:-5px}
-.post-date {color: #bbb7b6;font-size: 15px;}
+.post-date {color: #bbb7b6;font-size: 15px;margin:0}
 .feed > .row{margin-bottom:10px}
 .fill-content{padding:15px 0;border-radius:5px;background-color:#EDEDED;text-align:center;width:100%}
 .fill-content p{margin:0;color:#545454}
+.resturant-detail .mobi-50{width:50%;float:left;padding:5px}
+.resturant-detail h3{color:#e23814;font-size:27px;margin-bottom:-5px;font-weight:500}
+.resturant-detail p{margin-left:30px;color:#777170;font-size:16px;margin-bottom:0}
+.resturant-detail h3 span{margin-right:18px}
+.resturant-detail h3 span i{color:#777170}
+.resturant-rate .ion-ios-star{color:#ffda44;font-size:22px}
+.resturant-rate .ion-ios-star-outline{color:#bdbdbd;font-size:22px}
+.user-image{float:left;width:30%}
+.user-detail {float:left;width:23%;text-align:center;margin-top:15px}
+.user-detail h3{color:#777170;font-weight:300;font-size:33px}
+.user-detail p{color:#9c9998;font-weight:500;font-size:18px}
+.setting-icon{float:right;margin-top:-2px}
+.user-name h5{color:#777170;font-size:22px;margin:0;font-weight:500}
+.user-del p{color:#9c9998;font-size:18px}
+.your-post{margin:0;color:#777170;font-size:18px;text-transform:uppercase}
+.search-bg{background-color:#f9f9f9}
 .validation-invalid {
   color: #3a0900;
   font-size: 14px;
@@ -191,6 +209,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
   }
 @media(max-width:460px){
   .logo {height: 125px;width:165px}
+  .resturant-detail h3{font-size:22px}
 }
 @media(max-width:420px){
     .rating-value span i{font-size:14px}
@@ -201,6 +220,12 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
     .user-rate > span, .user-rate > .user-name{float:left;width:100%}
     .user-name > span{float:right}
     .user-name {margin-top:5px}
+    .resturant-detail .row{display:block}
+    .resturant-detail .mobi-50{width:100%;}
+    .resturant-rate.text-right{text-align:left}
+    .back_arrrow h2{font-size:20px}
+    .user-detail h3{font-size:24px}
+    .user-detail p{font-size:14px}
   }
 @media(max-width:360px)
 {
@@ -211,6 +236,9 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
   .resturant-name{font-size:12px}
   .back_arrrow h2{font-size:18px}
   .logo{margin:0 auto}
+  .user-name h5{font-size:18px}
+  .user-del p{font-size:14px}
+  .login > span{padding:15px 45px}
 }
 @media(max-width:320px){
 .pro_con span{font-size:13px;}
