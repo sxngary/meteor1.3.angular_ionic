@@ -1,8 +1,27 @@
+<!-- <ion-view title="Profile">
+  <ion-content> -->
+    <!-- content display here -->
+    <!-- <a ng-click="profile.openGallery();">Gallery</a>
+    <br><br>
+    <a ng-click="profile.clickPicture();">Click Picture</a>
+    <br><br>
+    <a ng-click="profile.clickPhoto();">clickPhoto</a>
+    <br><br>
+    <a ng-click="profile.switchCamera();">switchCamera</a> -->
+    <!-- <div ng-if="profile.image">
+      <img src="{{profile.image}}"/>
+    </div>
+    <img src="/img2.jpg"/> -->
+    <!-- <p><img id="previewPicture" width="200"/></p>
+    <p><img id="originalPicture" width="200"/></p>
+  </ion-content>
+</ion-view> -->
+
 <ion-view view-title="Review">
   <ion-header-bar align-title="left" class="bar-positive">
     <div class="bar bar-header bar-light head_bar">
       <div class="back_arrrow">
-        <span class="sp2"><a href="window.history.back();"><img src="./arrrow_left.png" /></a></span>  
+        <span class="sp2"><a ng-click="review.previousView()"><img src="./left-arrow.png" alt=""/></a></span>  
         <h2>Review a dish</h2>
       </div>
     </div>
@@ -22,13 +41,13 @@
   </ion-content>
     <div class="bar-assertive suggest_foot">
       <div class="tabs tabs-icon-top dish-view">
-          <a class="tab-item">
+          <a class="tab-item" ng-click="review.openGallery()">
             <img src="/gallery.png" alt="" class="inactive">
-            <img src="/gallery-hover.png"  class="active" alt="" style="display:none">
+            <img src="/gallery-hover.png" class="active" alt="" style="display:none">
           </a>
           <a class="tab-item">
-             <img src="/cam.png" alt=""  class="active" style="display:none">
-            <img src="/cam-hover.png" alt="" class="inactive">
+             <img src="/cam.png" alt=""  class="inactive" style="display:none">
+            <img src="/cam-hover.png" alt="" class="active">
           </a>
           <a class="tab-item">
             <img src="/video.png" alt="" class="inactive">
