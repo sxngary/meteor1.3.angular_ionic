@@ -1,23 +1,21 @@
-<!-- <ion-tabs class="tabs-stable tabs-icon-top tabs-color-positive" ng-cloak>
-  
-  <ion-tab icon-on="ion-android-globe" icon-off="ion-android-globe" href="/tab/suggestion">
-    <ion-nav-view name="tab-suggestions"></ion-nav-view>
+<ion-tabs class="tabs-icon-top tab-icns">
+
+  <ion-tab href="/tab/suggestion" icon-on="globe-off" icon-off="globe-on">
+    <ion-nav-view name="suggestion-tab"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab icon-on="ion-ios-search" icon-off="ion-ios-search" href="/tab/search">
-    <ion-nav-view name="tab-search"></ion-nav-view>
+  <ion-tab  icon-on="search-off" href="/tab/search" icon-off="search-on">
+    <ion-nav-view name="search-tab"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab icon-on="ion-fork" icon-off="ion-fork" href="/tab/review">
-    <ion-nav-view name="tab-review"></ion-nav-view>
+  <ion-tab  icon-on="dish-off"  icon-off="dish-off" ui-sref="review" class="active">
+    <ion-nav-view name="review-tab"></ion-nav-view>
+  </ion-tab>
+  <ion-tab  icon-on="feed-off" ui-sref="tab.feed" icon-off="feed-on">
+    <ion-nav-view name="feed-tab"></ion-nav-view>
+  </ion-tab>
+  <ion-tab icon-on="user-off" ui-sref="tab.profile" icon-off="user-on">
+    <ion-nav-view name="profile-tab"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab icon-on="ion-ios-chatbubble" icon-off="ion-ios-chatbubble-outline" href="/tab/feed">
-    <ion-nav-view name="tab-feed"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab icon-on="ion-ios-cog" icon-off="ion-ios-cog-outline" href="/tab/profile">
-    <ion-nav-view name="tab-profile"></ion-nav-view>
-  </ion-tab>
-
-</ion-tabs> -->
+</ion-tabs>

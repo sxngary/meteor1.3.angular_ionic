@@ -68,11 +68,13 @@ export default class SignupCtrl extends Controller {
   		_this = this;
   		_this.$validation.validate(form)
 	    .success(function(){
+            data.email = data.email.toLowerCase();
 	      	Accounts.createUser(data, (err) => {
 		    	if (err) return _this.handleError(err);
 
+                _this.$ionicLoading.show({ template: 'Registered successfully!', noBackdrop: true, duration:3000});
 		    	_this.$validation.reset(form);
-		    	_this.$state.go('suggestion');
+		    	_this.$state.go('tab.suggestion');
 		  	});
 	    })
 	    .error(function(err){
@@ -85,4 +87,4 @@ export default class SignupCtrl extends Controller {
 	}
 }
 
-SignupCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$log', "$validation"];
+SignupCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$log', "$validation", "$ionicLoading"];

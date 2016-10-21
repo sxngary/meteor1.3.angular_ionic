@@ -2,7 +2,7 @@
   <ion-header-bar align-title="left" class="bar-positive">
     <div class="bar bar-header bar-light head_bar">
       <div class="back_arrrow">
-        <span class="sp2"><a ui-sref="welcome"><img src="./arrrow_left.png" /></a></span>
+        <span class="sp2"><a ui-sref="welcome"><img src="/left-arrow.png" alt=""/></a></span>
       </div>
     </div>
   </ion-header-bar>
@@ -34,15 +34,17 @@
             <input name="password" ng-model="login.data.password" type="password" placeholder="PASSWORD" required-error-message="This field is required!" validator="required">
           </span>
         </label>
-        <h2 class="forgt_pss"><a href="javascript:void(0);">FORGOT PASSWORD?</a></h2>
+        <h2 class="forgt_pss"><a href="/forgot_password">FORGOT PASSWORD?</a></h2>
         <button class="button button-block button-light log_btn">
           LOGIN
         </button>
       </form>
       <span class="sp_or">or</span>
       <div class="social_fb">
-        <span class=""><!--<i class="icon ion-social-facebook ion-social-facebook"></i>--><img src="./fb.png"/></span><span class="login_social">Login with facebook</span>
-      </div>  
+        <button class="button button-block button-light log_btn fb_btn">
+            <span><img src="./fb.png" alt=""/></span>Login With Facebook
+          </button>
+      </div>
     </div>
   </div>
 </ion-content>

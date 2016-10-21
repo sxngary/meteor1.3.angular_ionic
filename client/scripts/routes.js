@@ -12,6 +12,7 @@ class RoutesConfig extends Config {
   }
 
   configure() {
+    this.$ionicConfigProvider.tabs.position('bottom'); 
     this.$stateProvider
       .state('tab', {
         url: '/tab',
@@ -21,20 +22,22 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
-      .state('suggestion', {
+      .state('tab.suggestion', {
         url: '/suggestion',
-        templateUrl: 'client/templates/suggestion.html',
-        controller: 'SuggestionCtrl as suggestion',
-        resolve: {
-          user: this.isAuthorized
+        views: {
+          'suggestion-tab': {
+            templateUrl: 'client/templates/suggestion.html',
+            controller: 'SuggestionCtrl as suggestion'
+          }
         }
       })
-      .state('search', {
+      .state('tab.search', {
         url: '/search',
-        templateUrl: 'client/templates/search.html',
-        controller: 'SearchCtrl as search',
-        resolve: {
-          user: this.isAuthorized
+        views: {
+          'search-tab': {
+            templateUrl: 'client/templates/search.html',
+            controller: 'SearchCtrl as search',
+          }
         }
       })
       .state('review', {
@@ -45,18 +48,28 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
-      .state('feed', {
+      .state('tab.feed', {
         url: '/feed',
-        templateUrl: 'client/templates/feed.html',
-        controller: 'FeedCtrl as feed',
-        resolve: {
-          user: this.isAuthorized
+        views: {
+          'feed-tab': {
+            templateUrl: 'client/templates/feed.html',
+            controller: 'FeedCtrl as feed'
+          }
         }
       })
-      .state('profile', {
+      .state('tab.profile', {
         url: '/profile',
-        templateUrl: 'client/templates/profile.html',
-        controller: 'ProfileCtrl as profile',
+        views: {
+          'profile-tab': {
+            templateUrl: 'client/templates/profile.html',
+            controller: 'ProfileCtrl as profile'
+          }
+        }
+      })
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'client/templates/settings.html',
+        controller: 'SettingsCtrl as settings',
         resolve: {
           user: this.isAuthorized
         }
@@ -124,7 +137,7 @@ class RoutesConfig extends Config {
       });
 
     this.$locationProvider.html5Mode({enabled: true,requireBase: false});
-    this.$urlRouterProvider.otherwise('/suggestion');
+    this.$urlRouterProvider.otherwise('/tab/suggestion');
   }
 
   isAuthorized($auth) {
@@ -132,7 +145,7 @@ class RoutesConfig extends Config {
   }
 }
 
-RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$validationProvider'];
+RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$validationProvider', '$ionicConfigProvider'];
 
 class RoutesRunner extends Runner {
   run() {

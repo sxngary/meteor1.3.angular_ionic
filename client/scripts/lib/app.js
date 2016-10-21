@@ -24,6 +24,7 @@ import SearchCtrl from '../controllers/search.controller';
 import ReviewCtrl from '../controllers/review.controller';
 import FeedCtrl from '../controllers/feed.controller';
 import ProfileCtrl from '../controllers/profile.controller';
+import SettingsCtrl from '../controllers/settings.controller';
 import Routes from '../routes';
 
 const App = 'The Dish';
@@ -51,6 +52,7 @@ new Loader(App)
   .load(ReviewCtrl)
   .load(FeedCtrl)
   .load(ProfileCtrl)
+  .load(SettingsCtrl)
   .load(Routes);
 
   // Using config phase to add Schema's to schemaProvider
@@ -77,10 +79,13 @@ new Loader(App)
       },
       email:{
         'validations': 'required,email',
-        'validate-on': 'keyup',
+        'validate-on': 'submit',
         'messages':{
           'required': {
             'error':'This field is required!'
+          },
+          'email': {
+            'error': 'This should be valid email!'
           }
         }
       }
