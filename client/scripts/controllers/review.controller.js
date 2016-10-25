@@ -7,8 +7,8 @@ export default class ReviewCtrl extends Controller {
 
 		this.helpers({
 	   		image(){
-	   			/*if(Session.get('clickedImage'))
-	   				return Session.get('clickedImage');*/
+	   			if(Session.get('clickedImage'))
+	   				return Meteor.absoluteUrl() + Session.get('clickedImage');
 	   		}
 	    });
   	}
@@ -22,64 +22,62 @@ export default class ReviewCtrl extends Controller {
 
 	openGallery(e){
 		if(Meteor.isCordova){
-	  		/*var options = {  
+			imgWidth = $(window).width();
+			windowHeight = $(window).height();
+			headerHeight = $(".rev-header").height();
+			btnHeight = $(".round-btn").outerHeight();
+			tabsHeight = $(".rev-tabs").height();
+			imgHeight = parseInt(windowHeight) - (parseInt(headerHeight) + parseInt(btnHeight) + parseInt(tabsHeight));
+
+	  		var options = {  
 				correctOrientation: true,
 				quality: 100,
 				sourceType: Camera.PictureSourceType.PHOTOLIBRARY
 			}
 			MeteorCamera.getPicture(options, function(err, data) {  
-			  	if (err) {
-			    	console.log('error', err);
+			  	if (!err) {
+			    	if (data) {
+				    	Meteor.call('uploadImage', data, imgWidth, imgHeight, function(err, res){
+				    		if(!err){
+				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
+				    		}
+				    	});
+				  	}
 			  	}
-			  	if (data) {
-			    	alert(data);
-			  	}
-			});*/
+			});
 		}
 	}
 
 	clickPicture(){
 		if(Meteor.isCordova){
-	  		/*var options = {  
+			imgWidth = $(window).width();
+			windowHeight = $(window).height();
+			headerHeight = $(".rev-header").height();
+			btnHeight = $(".round-btn").outerHeight();
+			tabsHeight = $(".rev-tabs").height();
+			imgHeight = parseInt(windowHeight) - (parseInt(headerHeight) + parseInt(btnHeight) + parseInt(tabsHeight));
+	  		var options = {  
 				correctOrientation: true,
 				quality: 100
 			}
 			MeteorCamera.getPicture(options, function(err, data) {  
-			  	if (err) {
-			    	console.log('error', err);
+			  	if (!err) {
+			    	if (data) {
+				    	Meteor.call('uploadImage', data, imgWidth, imgHeight, function(err, res){
+				    		if(!err){
+				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
+				    		}
+				    	});
+				  	}
 			  	}
-			  	if (data) {
-			    	Meteor.call('uploadImage', data, function(err, res){
-			    		if(!err){
-			    			alert('image uploaded!')
-			    		}
-			    	});
-
-			    	Session.set('clickedImage', data);
-			  	}
-			});*/
-
-			var tapEnabled = false; //enable tap take picture
-			var dragEnabled = false; //enable preview box drag across the screen
-			var toBack = false; //send preview box to the back of the webview
-			var rect = {x: 0, y: 250, width: 400, height:350};
-			cordova.plugins.camerapreview.startCamera(rect, "back", tapEnabled, dragEnabled, toBack)
+			});
 		}
 	}
 
-	clickPhoto(){
-		if(Meteor.isCordova){
-			cordova.plugins.camerapreview.takePicture();
-		}
-	}
-
-	switchCamera(){
-		cordova.plugins.camerapreview.switchCamera();
-	}
 
 	captureVideo(){
 		if(Meteor.isCordova){
-	  		
+	  		navigator.device.capture.captureVideo(captureSuccess, captureError);
 		}
 	}
 
@@ -88,8 +86,17 @@ export default class ReviewCtrl extends Controller {
 ReviewCtrl.$inject = ['$state', '$log', '$ionicHistory', '$scope'];
 
 if(Meteor.isCordova){
-	cordova.plugins.camerapreview.setOnPictureTakenHandler(function(result){
-		document.getElementById('originalPicture').src = result[0];//originalPicturePath;
-		document.getElementById('previewPicture').src = result[1];//previewPicturePath;
-	});
+	// capture callback
+	var captureSuccess = function(mediaFiles) {
+	    var i, path, len;
+	    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+	        path = mediaFiles[i].fullPath;
+	        alert(path);
+	    }
+	};
+
+	// capture error callback
+	var captureError = function(error) {
+	    navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+	};
 }

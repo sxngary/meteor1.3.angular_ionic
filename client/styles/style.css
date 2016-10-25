@@ -1,5 +1,6 @@
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, u, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, fieldset, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input, button, select, textarea{font-family: 'Roboto'!important;}
 img{max-width:100%;width:100%;}
+.dish-image img{max-width:100%; height:auto; width:100%;}
 .img1{height:100%;width:100%;background-image:url(./image1.jpg);background-size:cover;}
 .img2{height:100%;width:100%;background-image:url(./img2.jpg);background-size:cover;}
 .img3{height:100%;width:100%;background-image:url(./img3.jpg);background-size:cover;}
@@ -110,6 +111,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .suggest_foot .tabs .tab-item{opacity:1;padding:10px 0}
 .suggest_foot .tabs a span {font-size: 17px;}
 .suggest_foot .tabs a{line-height:40px !important;height:100%;width:69px;border-radius:50%;display:block;margin:0 auto;position:relative}
+.review  .tabs a{border-radius: 0}
 .suggest_foot .tabs a.active{background-color:#e23814;}
 .suggest_foot .tabs a img{display: block;left: 0;margin: 0 auto;position: absolute; right: 0;text-align: center;top:25%;}
 .pro_con span {color: #ffffff;display: block;text-align: center;font-size:17px;}
@@ -151,7 +153,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .rating-value span i{font-size:16px}
 .outline-star{color:#b7b7b7}
 .rating-value span:first-of-type{float:left;width:75%}
-.rating-value span:last-of-type{float:left;width:25%;font-size:13px;color:#777170}
+.rating-value span:last-of-type{float:left;width:25%;font-size:13px;color:#777170;line-height:5px;}
 .rating-value{float:left;width:100%;clear:both}
 .dish-name{color:#777170;font-size:14px;font-weight:500;width:100%;overflow:hidden; text-overflow: ellipsis;white-space: nowrap;margin-bottom:0}
 .resturant-name{color:#777170;font-size:13px;font-weight:300;margin-bottom:0}
@@ -233,7 +235,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
     max-width: 52px !important;
     width: 52px !important;
 }
-.tabs .tab-item.active{background:#e23814}
+
 
 .tabs{height:59px;padding:0 8px}
 .fb_btn{width:100%;background-color:#475993!important;color:#fff!important;font-size:16px!important}
@@ -243,7 +245,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .star-img > img {width: 25px;}
 .read-more{text-align:left!important}
 .read-more a{color:#E23814;text-decoration:none;}
-.user-profile .row{display:block}
+.user-profile .row{display:block;clear:both}
 .content-wrap{float:left;width:70%}
 .user-profile{background-color:#f9f9f9}
 .edit-btn{border-radius:40px;color:#e23814!important;font-size:22px;text-transform:uppercase;padding-top:4px}
@@ -252,6 +254,11 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
     color: #3a0900;
     font-size: 14px;
 }
+.tabs .tab-item.active{background:#e23814;}
+.bttn-wrap{clear:both;padding-left:3px}
+.tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated{border:none 0 transparent!important;margin-top:3px!important;}
+.has-tabs, .bar-footer.has-tabs{bottom:60px}
+
 /*---------media-------*/
 @media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx){
   .bar{background-size:100% 0px}

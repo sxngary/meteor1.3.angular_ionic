@@ -25,6 +25,8 @@ import ReviewCtrl from '../controllers/review.controller';
 import FeedCtrl from '../controllers/feed.controller';
 import ProfileCtrl from '../controllers/profile.controller';
 import SettingsCtrl from '../controllers/settings.controller';
+import DishDetailCtrl from '../controllers/dishdetail.controller';
+
 import Routes from '../routes';
 
 const App = 'The Dish';
@@ -53,6 +55,7 @@ new Loader(App)
   .load(FeedCtrl)
   .load(ProfileCtrl)
   .load(SettingsCtrl)
+  .load(DishDetailCtrl)
   .load(Routes);
 
   // Using config phase to add Schema's to schemaProvider

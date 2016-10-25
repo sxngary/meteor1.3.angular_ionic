@@ -28,3 +28,4 @@ service-configuration
 mdg:camera
 session
 fortawesome:fontawesome
+cfs:graphicsmagick

@@ -14,8 +14,8 @@ export default class ProfileCtrl extends Controller {
 	    this.$ionicScrollDelegate.scrollTop();
   	}
 
-  	goTop(){
-    	// this.$ionicScrollDelegate.scrollTop();
+  	redirectTo(){
+    	this.$state.go('settings');
   	}
 }
 

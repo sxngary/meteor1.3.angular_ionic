@@ -12,7 +12,9 @@ class RoutesConfig extends Config {
   }
 
   configure() {
-    this.$ionicConfigProvider.tabs.position('bottom'); 
+    //Displayed tabs in bottom for android.
+    this.$ionicConfigProvider.tabs.position('bottom');
+
     this.$stateProvider
       .state('tab', {
         url: '/tab',
@@ -70,6 +72,14 @@ class RoutesConfig extends Config {
         url: '/settings',
         templateUrl: 'client/templates/settings.html',
         controller: 'SettingsCtrl as settings',
+        resolve: {
+          user: this.isAuthorized
+        }
+      })
+      .state('dish_detail', {
+        url: '/dish_detail',
+        templateUrl: 'client/templates/dishdetail.html',
+        controller: 'DishDetailCtrl as dish',
         resolve: {
           user: this.isAuthorized
         }
