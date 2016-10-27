@@ -17,6 +17,7 @@
     "ionic-scripts": "0.0.1",
     "meteor-node-stubs": "~0.2.0",
     "moment": "^2.15.1",
+    "multer": "^1.2.0",
     "ng-cordova": "^0.1.27-alpha"
   }
 }

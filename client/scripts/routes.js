@@ -84,6 +84,14 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
+      .state('filter', {
+        url: '/filter',
+        templateUrl: 'client/templates/filter.html',
+        controller: 'FilterCtrl as filter',
+        resolve: {
+          user: this.isAuthorized
+        }
+      })
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'client/templates/welcome.html',

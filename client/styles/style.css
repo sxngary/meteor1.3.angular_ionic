@@ -1,4 +1,5 @@
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, u, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, fieldset, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input, button, select, textarea{font-family: 'Roboto'!important;}
+.fa{font-family:FontAwesome !important}
 img{max-width:100%;width:100%;}
 .dish-image img{max-width:100%; height:auto; width:100%;}
 .img1{height:100%;width:100%;background-image:url(./image1.jpg);background-size:cover;}
@@ -53,6 +54,7 @@ img{max-width:100%;width:100%;}
 }
 .slider-pager .slider-pager-page.active .icon::before{background:#fff;}
 .full_back{background-color:#e23814;height:100%;}
+.full_back_slide {background-color:#e23814;}
 .content1{padding:0px 60px;}
 .content2{padding:30px 60px;}
 /*.logo img {height: 110px;width: 110px;}*/
@@ -198,8 +200,8 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .user-detail {float:left;width:33%;text-align:center;}
 .user-detail h3{color:#777170;font-weight:300;font-size:33px}
 .user-detail p{color:#9c9998;font-weight:500;font-size:18px}
-.user-name h5{color:#777170;font-size:22px;margin:0;font-weight:500}
-.user-del p{color:#9c9998;font-size:18px;margin:0}
+.user-name h5{color:#777170;font-size:14px;margin:0;font-weight:500}
+.user-del p{color:#9c9998;font-size:14px;margin:0}
 .your-post{margin:0;color:#777170;font-size:18px;text-transform:uppercase}
 .search-bg{background-color:#f9f9f9}
 .edit-btn img{height:auto;width:auto}
@@ -259,12 +261,42 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated{border:none 0 transparent!important;margin-top:3px!important;}
 .has-tabs, .bar-footer.has-tabs{bottom:60px}
 
+/*****25-10-2016*****/
+.slide-wrap{float:left;width:100%;clear:both;text-align:center;}
+.slide-wrap h3{color:#e23814;text-transform:uppercase;font-size: 17px;margin:5px 0 0}
+.next-btn{background-color:#e23814;border-radius: 25px;text-align:center;float:none;clear: both;color: #fff;display:block;font-size:18px; margin:15px auto 10px;padding: 10px 0;text-decoration: none;text-transform: uppercase; width: 130px;}
+.next-btn:hover{background-color:#ddd;color:#e23814}
+
+.dsh-img{height:190px}
+.dsh-img img{height:100%}
+.review-form{margin:35px 0 0}
+.review-form .icon-top{top:4px}
+.review-form .location{top:5px}
+.review-form input{border-bottom:1px solid;border-color:rgba(0, 0, 0, 0.4)}
+.review-form .icon-wrap input{margin-left: 29px;padding-left: 3px;}
+.rate-box {text-align:center;margin-bottom:25px}
+.rate-box a{display:inline-block;float:none;text-align:center;}
+.rate-box a img{height:100%;width:auto}
+.comments textarea{height:50px;background-color:transparent;border-bottom:1px solid;border-color:rgba(0, 0, 0, 0.4);  border-color: rgba(0, 0, 0, 0.4); margin-left: 28px;    padding-left: 3px;    padding-top: 0;}
+.responsive {padding: 5px;width: 100%;}
+.slick-slide img{width:auto}
+.review-form input::-moz-placeholder, .review-form textarea::-moz-placeholder{color: #aaa ;opacity:0.9;text-transform:uppercase;font-weight:300;font-size:16px;}
+.review-form input:-ms-input-placeholder, .review-form textarea:-ms-input-placeholder { color: #aaa ;opacity:0.9;font-weight:300;font-size:16px;text-transform:uppercase}
+.review-form ::-webkit-input-placeholder , .review-form textarea::-webkit-input-placeholder { color:  #aaa;opacity:1;text-transform:uppercase;font-weight:300;font-size:16px;}
+.review-form input:-moz-placeholder { color:  #aaa;opacity:1;font-weight:300}
+.no-suggestion{height:100%;text-align:center;position:relative;top:0;bottom:0;left:0;right:0}
+.no-content{  position:absolute;left:0;top:50%;transform:translateY(50%);right:0}
+.no-content h4{font-size:28px;margin-bottom:5px;color:#777170}
+.no-content p{font-size:21px;color:#777170;font-weight:300}
+.user-del{padding: 0 5px}
 /*---------media-------*/
 @media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx){
   .bar{background-size:100% 0px}
   }
 @media(max-width:480px){
   .star-img > img {width: 20px;}
+  .no-content h4{font-size:18px}
+.no-content p{font-size:14px}
   }
 @media(max-width:460px){
   .logo {height: 125px;width:165px}
@@ -280,7 +312,6 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
     .suggest_foot .tabs a.active img{height: 25px;width: 36px;}
     .user-rate > span, .user-rate > .user-name{float:left;width:100%}
     .user-name > span{float:right}
-    .user-name {margin-top:5px}
     .resturant-detail .row{display:block}
     .resturant-detail .mobi-50{width:100%;}
     .resturant-rate.text-right{text-align:left}

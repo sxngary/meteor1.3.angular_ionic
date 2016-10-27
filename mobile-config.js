@@ -1,4 +1,5 @@
 App.accessRule("*");
+App.accessRule("blob:*");
 App.setPreference("orientation", "portrait");
 
 App.info({

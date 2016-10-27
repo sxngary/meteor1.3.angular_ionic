@@ -28,13 +28,14 @@
   </ion-header-bar>
   <ion-content>
     <div class="full_back suggest">
-      <div class="dish-image" ng-if="review.image">
+      <!-- <div class="dish-image" ng-if="review.image" >
         <img src="{{review.image}}" alt="" />
-      </div>
-      <div class="dish-image" ng-if="!review.image">
+      </div> -->
+      <div class="dish-image" style="display: none;">
         <img src="/dish-view.png" alt="" />
       </div>
-      <div class="btn-row round-btn">
+
+      <div class="btn-row round-btn" style="display:none;">
         <div class="center-btn">
           <div class="btn-wrap">
           </div>

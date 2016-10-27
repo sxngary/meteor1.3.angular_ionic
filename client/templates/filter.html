@@ -1,0 +1,55 @@
+<ion-view view-title="signIn">
+    <ion-header-bar align-title="left" class="bar-positive">
+	    <div class="bar bar-header bar-light head_bar">
+		    <div class="back_arrrow">
+		    	<span class="sp2"><a ui-sref="review"><img src="./left-arrow.png" alt=""/></a></span>	
+		    	<h2>Review a dish</h2>
+		    </div>
+	    </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="full_back_slide suggest">
+	        <div class="dish-image" ng-if="filter.image">
+	        	<img id="clickedImage" src="{{filter.image}}" alt=""/>
+	        </div>
+        </div>
+    	<div class="slide-wrap">
+    		<h3>Filter</h3>
+    		<div class="row">
+    			<div class="responsive">
+					<div>
+                    	<a href="javascript:void(0)" ng-click="filter.setFilter()">
+							<img src="./dish1.png" alt=""/>
+                        </a>
+					</div>
+					<div>     
+                    	<a href="javascript:void(0)">       
+							<img src="./dish3.png" alt=""/>
+                        </a>
+					</div>
+					<div>  
+                    	<a href="javascript:void(0)">          
+							<img src="./dish2.png" alt=""/>
+                        </a>
+					</div>
+					<div>
+                    	<a href="javascript:void(0)">
+							<img src="./dish1.png" alt=""/>
+                        </a>
+					</div>
+					<div>     
+                    	<a href="javascript:void(0)">       
+							<img src="./dish3.png" alt=""/>
+                        </a>
+					</div>
+					<div>  
+                    	<a href="javascript:void(0)">          
+							<img src="./dish2.png" alt=""/>
+                        </a>
+					</div>
+    			</div>
+            </div>
+    		<a href="javascript:void(0)" class="next-btn" ng-click="filter.playVideo()">Next</a>
+    	</div>
+    </ion-content>
+</ion-view>
