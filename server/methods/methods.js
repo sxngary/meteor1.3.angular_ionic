@@ -5,7 +5,6 @@ import { Dishes } from '../collections/collections';
 Meteor.methods({
 	//This function is used to convert image from base64string and save created image in uploads folder.
   	uploadImage(base64String, width, height){
-		var base = path.resolve('.').split('.meteor')[0];
   		var _dirPath  = base + 'media/uploads/dishes';
   		var myFuture = new Future();
   		// declare a regexp to match the non base64 first characters
@@ -68,5 +67,11 @@ Meteor.methods({
   			}).run();
   		}
   		return myFuture.wait();
+  	},
+  	setFilter(){
+  		
+  	},
+  	uploadVideo(file){
+  		console.log(file, "file");
   	}
 });

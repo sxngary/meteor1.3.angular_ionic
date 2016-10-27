@@ -26,6 +26,7 @@ import FeedCtrl from '../controllers/feed.controller';
 import ProfileCtrl from '../controllers/profile.controller';
 import SettingsCtrl from '../controllers/settings.controller';
 import DishDetailCtrl from '../controllers/dishdetail.controller';
+import FilterCtrl from '../controllers/filter.controller';
 
 import Routes from '../routes';
 
@@ -56,6 +57,7 @@ new Loader(App)
   .load(ProfileCtrl)
   .load(SettingsCtrl)
   .load(DishDetailCtrl)
+  .load(FilterCtrl)
   .load(Routes);
 
   // Using config phase to add Schema's to schemaProvider

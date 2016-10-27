@@ -5,12 +5,6 @@ export default class ReviewCtrl extends Controller {
   	constructor() {
     	super(...arguments);
 
-		this.helpers({
-	   		image(){
-	   			if(Session.get('clickedImage'))
-	   				return Meteor.absoluteUrl() + Session.get('clickedImage');
-	   		}
-	    });
   	}
 
   	previousView(){
@@ -22,6 +16,9 @@ export default class ReviewCtrl extends Controller {
 
 	openGallery(e){
 		if(Meteor.isCordova){
+			Session.set('clickedImage', '');
+			Session.set('videoPath', '');
+			_this= this;
 			imgWidth = $(window).width();
 			windowHeight = $(window).height();
 			headerHeight = $(".rev-header").height();
@@ -40,6 +37,7 @@ export default class ReviewCtrl extends Controller {
 				    	Meteor.call('uploadImage', data, imgWidth, imgHeight, function(err, res){
 				    		if(!err){
 				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
+				    			_this.$state.go('filter');
 				    		}
 				    	});
 				  	}
@@ -50,6 +48,9 @@ export default class ReviewCtrl extends Controller {
 
 	clickPicture(){
 		if(Meteor.isCordova){
+			Session.set('clickedImage', '');
+			Session.set('videoPath', '');
+			_this= this;
 			imgWidth = $(window).width();
 			windowHeight = $(window).height();
 			headerHeight = $(".rev-header").height();
@@ -66,6 +67,7 @@ export default class ReviewCtrl extends Controller {
 				    	Meteor.call('uploadImage', data, imgWidth, imgHeight, function(err, res){
 				    		if(!err){
 				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
+				    			_this.$state.go('filter');
 				    		}
 				    	});
 				  	}
@@ -74,29 +76,42 @@ export default class ReviewCtrl extends Controller {
 		}
 	}
 
-
 	captureVideo(){
 		if(Meteor.isCordova){
-	  		navigator.device.capture.captureVideo(captureSuccess, captureError);
+			_this= this;
+			Session.set('clickedImage', '');
+			Session.set('videoPath', '');
+	  		navigator.device.capture.captureVideo(
+	  			function(mediaFiles){
+	  				_this.$ionicLoading.show({ template: 'Uploading ...'});
+	  				var i, path, len;
+				    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+				        var fileURL = mediaFiles[i].fullPath;
+					    var uri = encodeURI(Meteor.absoluteUrl() + "upload");
+					    var options = new FileUploadOptions();
+					    options.fileKey = "dish";
+					    options.fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);
+					    options.mimeType = "video/mp4";
+					   	var ft = new FileTransfer();
+					   	ft.upload(fileURL, uri, 
+					   		function(res){
+								parseObj = JSON.parse(res.response);
+								videoType = parseObj.mimetype.split('/');
+								Session.set('videoPath', 'uploads/video/' + parseObj.filename + '.' + videoType[1]);
+								_this.$state.go('filter');
+							}, function(err) {
+								console.log(err);
+							}, options
+						);	        
+				    }
+	  			}, 
+	  			function(error) {
+				    navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+				}
+	  		);
 		}
 	}
 
 }
 
-ReviewCtrl.$inject = ['$state', '$log', '$ionicHistory', '$scope'];
-
-if(Meteor.isCordova){
-	// capture callback
-	var captureSuccess = function(mediaFiles) {
-	    var i, path, len;
-	    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-	        path = mediaFiles[i].fullPath;
-	        alert(path);
-	    }
-	};
-
-	// capture error callback
-	var captureError = function(error) {
-	    navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
-	};
-}
+ReviewCtrl.$inject = ['$state', '$ionicHistory', '$ionicLoading'];
