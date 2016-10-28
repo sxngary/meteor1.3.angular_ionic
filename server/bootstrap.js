@@ -20,7 +20,9 @@ Meteor.startup(function() {
 	Fiber = Npm.require('fibers');
 	Future = Npm.require('fibers/future');
 	multer  = require('multer');
+	exec = Npm.require('child_process').exec;
 	base = path.resolve('.').split('.meteor')[0];
+
 
 	WebApp.connectHandlers.use(function(req, res, next) {
 	    var re = /^\/uploads\/(.*)$/.exec(req.url);
@@ -47,13 +49,22 @@ Meteor.startup(function() {
 		}
 	});
 
-	uploadMulter = multer({ storage: storage })
 
+	uploadMulter = multer({ storage: storage })
 	Picker.middleware(uploadMulter.single('dish'));
 
 	//Defined server routes
 	Picker.route('/upload', function(params, req, res, next) {
-	  	res.end(JSON.stringify(req.file));
+		var name = req.file.filename.split('.');
+		videoPath = base + 'media/uploads/video/' + req.file.filename;
+	  	exec("ffmpeg  -itsoffset -1  -i " + videoPath + " -vcodec mjpeg -vframes 1 -an -f rawvideo -s " + req.body.width + "x" + req.body.height + " " + base + "/media/uploads/video_thumb/"+ name[0] +".jpg", function(err, resp){
+	  		if(!err) {
+	  			req.file['image'] = 'uploads/video_thumb/' + name[0] + '.jpg';
+	  			res.end(JSON.stringify(req.file));
+	  		}else{
+	  			console.log(err);
+	  		}
+	  	});
 	});
 
 });
