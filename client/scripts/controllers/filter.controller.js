@@ -13,9 +13,8 @@ export default class FilterCtrl extends Controller {
 		    });
   		}, 0);
   		
-      if(Session.get('videoPath')){
-        this.$ionicLoading.hide();
-      }
+      //hide loading template
+      this.$ionicLoading.hide();
 
   		this.helpers({
 	   		image(){
@@ -30,6 +29,7 @@ export default class FilterCtrl extends Controller {
   	}
 
   	playVideo(){
+      alert(1);
       if(Session.get('videoPath')){
         var videoUrl = Meteor.absoluteUrl() + Session.get('videoPath');
         // Just play a video
