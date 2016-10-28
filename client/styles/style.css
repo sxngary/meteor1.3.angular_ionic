@@ -187,8 +187,8 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .user-name > .user-img{width:25%;float:left;margin-top:-5px}
 .post-date {color: #bbb7b6;font-size: 15px;margin:0}
 .feed > .row{margin-bottom:10px}
-.fill-content{padding:15px 0;border-radius:5px;background-color:#EDEDED;text-align:center;width:100%}
-.fill-content p{margin:0;color:#545454}
+.fill-content{padding:5px 0;border-radius:5px;background-color:#F2DEDE;text-align:center;width:100%}
+.fill-content p{margin:0;color:#a94442}
 .resturant-detail .mobi-50{width:50%;float:left;padding:5px}
 .resturant-detail h3{color:#e23814;font-size:27px;margin-bottom:-5px;font-weight:500}
 .resturant-detail p{margin-left:30px;color:#777170;font-size:16px;margin-bottom:0}
@@ -264,7 +264,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 /*****25-10-2016*****/
 .slide-wrap{float:left;width:100%;clear:both;text-align:center;}
 .slide-wrap h3{color:#e23814;text-transform:uppercase;font-size: 17px;margin:5px 0 0}
-.next-btn{background-color:#e23814;border-radius: 25px;text-align:center;float:none;clear: both;color: #fff;display:block;font-size:18px; margin:15px auto 10px;padding: 10px 0;text-decoration: none;text-transform: uppercase; width: 130px;}
+.next-btn{background-color:#e23814;border-radius: 25px;text-align:center;float:none;clear: both;color: #fff;display:block;font-size:18px; margin:3px auto 10px;padding: 10px 0;text-decoration: none;text-transform: uppercase; width: 130px;}
 .next-btn:hover{background-color:#ddd;color:#e23814}
 
 .dsh-img{height:190px}
@@ -285,10 +285,39 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .review-form ::-webkit-input-placeholder , .review-form textarea::-webkit-input-placeholder { color:  #aaa;opacity:1;text-transform:uppercase;font-weight:300;font-size:16px;}
 .review-form input:-moz-placeholder { color:  #aaa;opacity:1;font-weight:300}
 .no-suggestion{height:100%;text-align:center;position:relative;top:0;bottom:0;left:0;right:0}
-.no-content{  position:absolute;left:0;top:50%;transform:translateY(50%);right:0}
+.no-content{position:absolute;left:0;top:50%;transform:translateY(50%);right:0}
 .no-content h4{font-size:28px;margin-bottom:5px;color:#777170}
 .no-content p{font-size:21px;color:#777170;font-weight:300}
 .user-del{padding: 0 5px}
+.center-img img{border-radius: 50%;height: 140px;width: 140px;}
+.center-img{text-align:center}
+.center-img a{text-decoration:none}
+.center-img a:hover{color:#444}
+.switch-notify .toggle-balanced{margin-top:10px}
+.switch-notify .toggle .track{height:25px}
+.switch-notify .toggle .handle{height:21px}
+.switch-notify .track, .switch-notify .handle{margin-left:45px}
+.switch-notify .toggle-balanced img{width:25px;height:24px;margin-left:7px}
+.notify{vertical-align:middle}
+.switch-notify .icon-top {top:17px}
+.switch-notify .toggle-balanced .icon-top {top:4px}
+.changepass{text-decoration:none;text-align:center}
+.changepass:hover{color:#444}
+.edit-profile{margin: 0}
+.user-wrap{float:left;width:100%}
+.user-detl{float:left;width:70%}
+.like-share{float:left;width:30%}
+.user-wrap p {color: #333;font-size: 15px;font-weight: 500;margin: 0 0 5px;text-transform: uppercase;}
+.like-share img{height:auto;width:20px}
+.user-wrap .rate-box {text-align:left;margin:0}
+.user-wrap .rate-box a{width:20px;}
+.like-share {display: inline-block;float: left;margin-top: 5px;text-align: right;}
+.restro-detail .dish-image img{height:180px}
+.restro-detail .resturant-detail h3{font-size:16px}
+.restro-detail .resturant-detail h3 span{margin-right:6px}
+.restro-detail .resturant-detail h3 span i{font-size:20px}
+.play-video{position:relative;text-align:center}
+.play-video a{display:inline-block;left:0;right:0;text-align:center;top:40%;position:absolute;width:50px;height:50px;margin:0 auto;float:none}
 /*---------media-------*/
 @media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx){
   .bar{background-size:100% 0px}

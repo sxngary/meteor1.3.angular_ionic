@@ -29,6 +29,7 @@ export default class ReviewCtrl extends Controller {
 			MeteorCamera.getPicture(options, function(err, data) {  
 			  	if (!err) {
 			    	if (data) {
+			    		_this.$ionicLoading.show({ template: 'Uploading ...'});
 				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
 				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
@@ -36,6 +37,8 @@ export default class ReviewCtrl extends Controller {
 				    		}
 				    	});
 				  	}
+			  	}else{
+			  		_this.$ionicLoading.hide();
 			  	}
 			});
 		}
@@ -55,6 +58,7 @@ export default class ReviewCtrl extends Controller {
 			MeteorCamera.getPicture(options, function(err, data) {  
 			  	if (!err) {
 			    	if (data) {
+			    		_this.$ionicLoading.show({ template: 'Uploading ...'});
 				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
 				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
@@ -62,6 +66,8 @@ export default class ReviewCtrl extends Controller {
 				    		}
 				    	});
 				  	}
+			  	}else{
+			  		_this.$ionicLoading.hide();
 			  	}
 			});
 		}
@@ -91,7 +97,7 @@ export default class ReviewCtrl extends Controller {
 					   		function(res){
 								parseObj = JSON.parse(res.response);
 								videoType = parseObj.mimetype.split('/');
-								Session.set('videoPath', 'uploads/video/' + parseObj.filename + '.' + videoType[1]);
+								Session.set('videoPath', 'uploads/video/' + parseObj.filename);
 								Session.set('videoImagePath', parseObj.image);
 								_this.$state.go('filter');
 							}, function(err) {
