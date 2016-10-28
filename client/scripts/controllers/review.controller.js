@@ -18,14 +18,9 @@ export default class ReviewCtrl extends Controller {
 		if(Meteor.isCordova){
 			Session.set('clickedImage', '');
 			Session.set('videoPath', '');
+			Session.set('videoImagePath', '');
 			_this= this;
-			imgWidth = $(window).width();
-			windowHeight = $(window).height();
-			headerHeight = $(".rev-header").height();
-			btnHeight = $(".round-btn").outerHeight();
-			tabsHeight = $(".rev-tabs").height();
-			imgHeight = parseInt(windowHeight) - (parseInt(headerHeight) + parseInt(btnHeight) + parseInt(tabsHeight));
-
+			dimension = getDimension();
 	  		var options = {  
 				correctOrientation: true,
 				quality: 100,
@@ -34,7 +29,7 @@ export default class ReviewCtrl extends Controller {
 			MeteorCamera.getPicture(options, function(err, data) {  
 			  	if (!err) {
 			    	if (data) {
-				    	Meteor.call('uploadImage', data, imgWidth, imgHeight, function(err, res){
+				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
 				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
 				    			_this.$state.go('filter');
@@ -50,13 +45,9 @@ export default class ReviewCtrl extends Controller {
 		if(Meteor.isCordova){
 			Session.set('clickedImage', '');
 			Session.set('videoPath', '');
+			Session.set('videoImagePath', '');
 			_this= this;
-			imgWidth = $(window).width();
-			windowHeight = $(window).height();
-			headerHeight = $(".rev-header").height();
-			btnHeight = $(".round-btn").outerHeight();
-			tabsHeight = $(".rev-tabs").height();
-			imgHeight = parseInt(windowHeight) - (parseInt(headerHeight) + parseInt(btnHeight) + parseInt(tabsHeight));
+			dimension = getDimension();
 	  		var options = {  
 				correctOrientation: true,
 				quality: 100
@@ -64,7 +55,7 @@ export default class ReviewCtrl extends Controller {
 			MeteorCamera.getPicture(options, function(err, data) {  
 			  	if (!err) {
 			    	if (data) {
-				    	Meteor.call('uploadImage', data, imgWidth, imgHeight, function(err, res){
+				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
 				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
 				    			_this.$state.go('filter');
@@ -81,6 +72,8 @@ export default class ReviewCtrl extends Controller {
 			_this= this;
 			Session.set('clickedImage', '');
 			Session.set('videoPath', '');
+			Session.set('videoImagePath', '');
+			dimension = getDimension();
 	  		navigator.device.capture.captureVideo(
 	  			function(mediaFiles){
 	  				_this.$ionicLoading.show({ template: 'Uploading ...'});
@@ -92,12 +85,14 @@ export default class ReviewCtrl extends Controller {
 					    options.fileKey = "dish";
 					    options.fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);
 					    options.mimeType = "video/mp4";
+					    options.params = { width: dimension.width, height: dimension.height};
 					   	var ft = new FileTransfer();
 					   	ft.upload(fileURL, uri, 
 					   		function(res){
 								parseObj = JSON.parse(res.response);
 								videoType = parseObj.mimetype.split('/');
 								Session.set('videoPath', 'uploads/video/' + parseObj.filename + '.' + videoType[1]);
+								Session.set('videoImagePath', parseObj.image);
 								_this.$state.go('filter');
 							}, function(err) {
 								console.log(err);
@@ -115,3 +110,13 @@ export default class ReviewCtrl extends Controller {
 }
 
 ReviewCtrl.$inject = ['$state', '$ionicHistory', '$ionicLoading'];
+
+function getDimension(){
+	imgWidth = $(window).width();
+	windowHeight = $(window).height();
+	headerHeight = $(".rev-header").height();
+	btnHeight = $(".round-btn").outerHeight();
+	tabsHeight = $(".rev-tabs").height();
+	imgHeight = parseInt(windowHeight) - (parseInt(headerHeight) + parseInt(btnHeight) + parseInt(tabsHeight));
+	return { width: imgWidth, height: imgHeight };
+}

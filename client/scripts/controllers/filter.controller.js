@@ -22,9 +22,9 @@ export default class FilterCtrl extends Controller {
 	   			if(Session.get('clickedImage'))
 	   				return Meteor.absoluteUrl() + Session.get('clickedImage');
 	   		},
-        video(){
-          if(Session.get('videoPath'))
-            return Meteor.absoluteUrl() + Session.get('videoPath');
+        videoImage(){
+          if(Session.get('videoImagePath'))
+            return Meteor.absoluteUrl() + Session.get('videoImagePath');
         }
 	    });
   	}
