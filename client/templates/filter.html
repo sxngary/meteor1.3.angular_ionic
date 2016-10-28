@@ -18,41 +18,18 @@
 	        </div>
         </div>
     	<div class="slide-wrap">
-    		<h3>Filter</h3>
-    		<div class="row">
-    			<div class="responsive">
-					<div>
-                    	<a href="javascript:void(0)" ng-click="filter.setFilter()">
-							<img src="./dish1.png" alt=""/>
-                        </a>
-					</div>
-					<div>     
-                    	<a href="javascript:void(0)">       
-							<img src="./dish3.png" alt=""/>
-                        </a>
-					</div>
-					<div>  
-                    	<a href="javascript:void(0)">          
-							<img src="./dish2.png" alt=""/>
-                        </a>
-					</div>
-					<div>
-                    	<a href="javascript:void(0)">
-							<img src="./dish1.png" alt=""/>
-                        </a>
-					</div>
-					<div>     
-                    	<a href="javascript:void(0)">       
-							<img src="./dish3.png" alt=""/>
-                        </a>
-					</div>
-					<div>  
-                    	<a href="javascript:void(0)">          
-							<img src="./dish2.png" alt=""/>
-                        </a>
-					</div>
-    			</div>
-            </div>
+    		<div ng-if="filter.image">
+	    		<h3>Filter</h3>
+	    		<div class="row">
+	    			<div class="responsive">
+						<div ng-repeat="i in filter.getNumber()">
+	                    	<a href="javascript:void(0)" ng-click="filter.setFilter()">
+								<img src="{{filter.squareImg}}" alt=""/>
+	                        </a>
+						</div>
+	    			</div>
+	            </div>
+    		</div>
     		<a href="javascript:void(0)" class="next-btn">Next</a>
     	</div>
     </ion-content>

@@ -21,6 +21,7 @@ Meteor.startup(function() {
 	Future = Npm.require('fibers/future');
 	multer  = require('multer');
 	exec = Npm.require('child_process').exec;
+	mime = Npm.require('mime');
 	base = path.resolve('.').split('.meteor')[0];
 
 
@@ -45,7 +46,7 @@ Meteor.startup(function() {
 		    cb(null, base + 'media/uploads/video/');
 		},
 		filename: function (req, file, cb) {
-		    cb(null, new Meteor.Collection.ObjectID()._str + '.' + file.mimetype.split('/')[1]);
+		    cb(null, new Meteor.Collection.ObjectID()._str + '.' + mime.extension(file.mimetype));
 		}
 	});
 

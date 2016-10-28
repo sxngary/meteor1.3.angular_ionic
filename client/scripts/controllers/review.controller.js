@@ -32,7 +32,7 @@ export default class ReviewCtrl extends Controller {
 			    		_this.$ionicLoading.show({ template: 'Uploading ...'});
 				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
-				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
+				    			Session.set('clickedImage', { bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_sqaure.jpeg'});
 				    			_this.$state.go('filter');
 				    		}
 				    	});
@@ -61,7 +61,7 @@ export default class ReviewCtrl extends Controller {
 			    		_this.$ionicLoading.show({ template: 'Uploading ...'});
 				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
-				    			Session.set('clickedImage', 'uploads/dishes/' + res + '.jpeg');
+				    			Session.set('clickedImage', {bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_sqaure.jpeg'});
 				    			_this.$state.go('filter');
 				    		}
 				    	});
@@ -97,7 +97,7 @@ export default class ReviewCtrl extends Controller {
 					   		function(res){
 								parseObj = JSON.parse(res.response);
 								videoType = parseObj.mimetype.split('/');
-								Session.set('videoPath', 'uploads/video/' + parseObj.filename);
+								Session.set('videoPath', {server: 'uploads/video/' + parseObj.filename, local: fileURL});
 								Session.set('videoImagePath', parseObj.image);
 								_this.$state.go('filter');
 							}, function(err) {

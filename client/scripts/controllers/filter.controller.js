@@ -15,11 +15,12 @@ export default class FilterCtrl extends Controller {
   		
       //hide loading template
       this.$ionicLoading.hide();
-
+      this.$scope.number = 5;
+      this.squareImg = Session.get('clickedImage') ? Meteor.absoluteUrl() + Session.get('clickedImage').small : ''; 
   		this.helpers({
 	   		image(){
 	   			if(Session.get('clickedImage'))
-	   				return Meteor.absoluteUrl() + Session.get('clickedImage');
+	   				return Meteor.absoluteUrl() + Session.get('clickedImage').bigger;
 	   		},
         videoImage(){
           if(Session.get('videoImagePath'))
@@ -29,9 +30,8 @@ export default class FilterCtrl extends Controller {
   	}
 
   	playVideo(){
-      alert(1);
       if(Session.get('videoPath')){
-        var videoUrl = Meteor.absoluteUrl() + Session.get('videoPath');
+        var videoUrl = Session.get('videoPath').local;
         // Just play a video
         window.plugins.streamingMedia.playVideo(videoUrl, {
             initFullscreen: false
@@ -39,9 +39,13 @@ export default class FilterCtrl extends Controller {
       }
     }
 
+    getNumber(){
+      return [1, 2, 3, 4, 5, 6];   
+    }
+
     setFilter(){
   		
   	}
 }
 
-FilterCtrl.$inject = ['$state', '$ionicLoading'];
+FilterCtrl.$inject = ['$state', '$ionicLoading', '$scope'];
