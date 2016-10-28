@@ -26,12 +26,22 @@ Meteor.methods({
 					            .quality(100)
 					            .write(_dirPath + '/' + uniqueStr + '.jpeg', function(err) {
 					                if (!err) {
-					                	Fiber(function() {
-							            	inserted = Dishes.insert({ image: uniqueStr });
-							            	if(inserted){
-							            		return myFuture.return(uniqueStr);;
-							            	}
-							            }).run();
+					                	gm(_dirPath + '/' + uniqueStr + '_original.jpeg')
+								            .resize(width, height, '^')
+								            .gravity('Center')
+								            .crop(130, 120)
+								            .quality(75)
+								            .write(_dirPath + '/' + uniqueStr + '_square.jpeg', function(err) {
+								                if (!err) {
+								                	Fiber(function() {
+										            	inserted = Dishes.insert({ image: uniqueStr });
+										            	if(inserted){
+										            		return myFuture.return(uniqueStr);;
+										            	}
+										            }).run();
+								            	}
+								            });
+					                	
 					            	}
 					            });
 					    } else {
@@ -51,13 +61,21 @@ Meteor.methods({
 				            .quality(100)
 				            .write(_dirPath + '/' + uniqueStr + '.jpeg', function(err) {
 				                if (!err) {
-
-				                	Fiber(function() {
-						            	inserted = Dishes.insert({ image: uniqueStr });
-						            	if(inserted){
-						            		return myFuture.return(uniqueStr);
-						            	}
-						            }).run();
+				                	gm(_dirPath + '/' + uniqueStr + '_original.jpeg')
+							            .resize(width, height, '^')
+							            .gravity('Center')
+							            .crop(130, 120)
+							            .quality(75)
+							            .write(_dirPath + '/' + uniqueStr + '_square.jpeg', function(err) {
+							                if (!err) {
+							                	Fiber(function() {
+									            	inserted = Dishes.insert({ image: uniqueStr });
+									            	if(inserted){
+									            		return myFuture.return(uniqueStr);;
+									            	}
+									            }).run();
+							            	}
+							            });
 				            	}
 				            });
 				    } else {
