@@ -1,7 +1,7 @@
 <ion-view view-title="Home">
   <div class="background-bg">
-    <ion-slide-box on-slide-changed="home.slideChanged(index)">
-      <ion-slide>
+    <ion-slide-box active-slide="myActiveSlide" on-slide-changed="home.slideChanged(index)">
+      <ion-slide on-drag-left="home.enableSlide()">
         <div class="img2">
             <div class="content1">
                 <h2>Share and record your culinary experiences</h2>
@@ -19,7 +19,7 @@
     
         </div>
       </ion-slide>
-      <ion-slide>
+      <ion-slide on-drag-right="home.enableSlide()">
         <div class="img1">
           <div class="content1">
             <h2>Find the dishes you love.</h2>

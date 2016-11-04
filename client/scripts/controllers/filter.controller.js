@@ -7,7 +7,7 @@ export default class FilterCtrl extends Controller {
 
   		Meteor.setTimeout(function(){
   			$('.responsive').slick({
-		      	infinite: true,
+		      infinite: true,
 			  	slidesToShow: 3,
 			  	slidesToScroll: 3
 		    });
@@ -15,8 +15,6 @@ export default class FilterCtrl extends Controller {
   		
       //hide loading template
       this.$ionicLoading.hide();
-      this.$scope.number = 5;
-      this.squareImg = Session.get('clickedImage') ? Meteor.absoluteUrl() + Session.get('clickedImage').small : ''; 
   		this.helpers({
 	   		image(){
 	   			if(Session.get('clickedImage'))
@@ -25,6 +23,27 @@ export default class FilterCtrl extends Controller {
         videoImage(){
           if(Session.get('videoImagePath'))
             return Meteor.absoluteUrl() + Session.get('videoImagePath');
+        },
+        thumb(){
+          if(Session.get('clickedImage'))
+            return Meteor.absoluteUrl() + Session.get('clickedImage').small;
+        },
+        effects(){
+          return  [
+            { 
+              color: ""
+            },{ 
+              color: "vignette:0.6;sepia:true;contrast:-64"
+            },{ 
+              color: "brightness:20;sepia:true;contrast:-20"
+            },{ 
+              color: "lighten:0.3;contrast:-5"
+            },{ 
+              color: "desaturate:0.9;contrast:-10"
+            },{ 
+              color: "noise:120;contrast:-10"
+            }
+          ];   
         }
 	    });
   	}
@@ -39,13 +58,15 @@ export default class FilterCtrl extends Controller {
       }
     }
 
-    getNumber(){
-      return [1, 2, 3, 4, 5, 6];   
-    }
-
     setFilter(){
   		
   	}
+
+    redirectTo(){
+      if(Session.get('clickedImage') || Session.get('videoImagePath')){
+        this.$state.go('location');
+      }
+    }
 }
 
 FilterCtrl.$inject = ['$state', '$ionicLoading', '$scope'];

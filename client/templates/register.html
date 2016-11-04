@@ -23,13 +23,13 @@
               <label class="item-input item-floating-label">
               	<span class="icon-wrap">
         			    <span class="icon-top user"><img src="./user.png" alt="" /></span>
-                	<input name="firstname" ng-model="data.profile.firstname" type="text" placeholder="FIRST NAME" >
+                	<input name="firstname" ng-model="data.profile.firstname" type="text" placeholder="FIRST NAME" validator="required, nameValidate">
                	</span>
               </label>
               <label class="item-input item-floating-label">
               	<span class="icon-wrap">
           			  <span class="icon-top user"><img src="./user.png" alt="" /></span>
-                  <input name="lastname" ng-model="data.profile.lastname" type="text" placeholder="LAST NAME">
+                  <input name="lastname" ng-model="data.profile.lastname" type="text" placeholder="LAST NAME" validator="required, nameValidate">
                	</span>
               </label>
               <label class="item-input item-floating-label">

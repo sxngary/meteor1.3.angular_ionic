@@ -10,6 +10,8 @@ import 'ng-cordova';
 import 'angular-validation/dist/angular-validation';
 import 'angular-validation/dist/angular-validation-rule';
 import './angular-validation-schema.min';
+import './ng-rateit';
+import 'vintagejs/dist/angular.vintage';
 import Angular from 'angular';
 import Loader from 'angular-ecmascript/module-loader';
 import { Meteor } from 'meteor/meteor';
@@ -27,6 +29,8 @@ import ProfileCtrl from '../controllers/profile.controller';
 import SettingsCtrl from '../controllers/settings.controller';
 import DishDetailCtrl from '../controllers/dishdetail.controller';
 import FilterCtrl from '../controllers/filter.controller';
+import LocationCtrl from '../controllers/location.controller';
+import PostReviewCtrl from '../controllers/post_review.controller';
 
 import Routes from '../routes';
 
@@ -41,6 +45,8 @@ app = Angular.module(App, [
   'validation', 
   'validation.rule',
   'validation.schema',
+  'vintagejs',
+  'ngRateIt',
   'ngCordova'
 ]);
 
@@ -58,30 +64,14 @@ new Loader(App)
   .load(SettingsCtrl)
   .load(DishDetailCtrl)
   .load(FilterCtrl)
+  .load(LocationCtrl)
+  .load(PostReviewCtrl)
   .load(Routes);
 
   // Using config phase to add Schema's to schemaProvider
   app.config(function(validationSchemaProvider){
     //Registeration form and login form validation rules.
     var Register = {
-      firstname:{
-        'validations': 'required',
-        'validate-on': 'keyup',
-        'messages':{
-          'required': {
-            'error':'This field is required!'
-          }
-        }
-      },
-      lastname:{
-        'validations': 'required',
-        'validate-on': 'keyup',
-        'messages':{
-          'required': {
-            'error':'This field is required!'
-          }
-        }
-      },
       email:{
         'validations': 'required,email',
         'validate-on': 'submit',
@@ -109,3 +99,11 @@ else {
 function onReady() {
   Angular.bootstrap(document, [App]);
 }
+
+// client
+Meteor.startup(function() {
+  GoogleMaps.load({
+    key: 'AIzaSyCQU36oZjlxKSuAZkF3THXWJVWbar6pWIE',
+    libraries: 'places'  // also accepts an array if need more than one library
+  });
+});

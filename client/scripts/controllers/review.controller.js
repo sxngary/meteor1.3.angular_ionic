@@ -29,16 +29,16 @@ export default class ReviewCtrl extends Controller {
 			MeteorCamera.getPicture(options, function(err, data) {  
 			  	if (!err) {
 			    	if (data) {
-			    		_this.$ionicLoading.show({ template: 'Uploading ...'});
+			    		_this.$ionicLoading.show({ template: 'Uploading ...', noBackdrop: true});
 				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
-				    			Session.set('clickedImage', { bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_sqaure.jpeg'});
+				    			Session.set('clickedImage', { bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_square.jpeg'});
 				    			_this.$state.go('filter');
 				    		}
 				    	});
 				  	}
 			  	}else{
-			  		_this.$ionicLoading.hide();
+			  		_this.$ionicLoading.show({ template: 'upload images only!', duration:3000, noBackdrop: true});
 			  	}
 			});
 		}
@@ -58,10 +58,10 @@ export default class ReviewCtrl extends Controller {
 			MeteorCamera.getPicture(options, function(err, data) {  
 			  	if (!err) {
 			    	if (data) {
-			    		_this.$ionicLoading.show({ template: 'Uploading ...'});
+			    		_this.$ionicLoading.show({ template: 'Uploading ...', noBackdrop: true});
 				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
-				    			Session.set('clickedImage', {bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_sqaure.jpeg'});
+				    			Session.set('clickedImage', {bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_square.jpeg'});
 				    			_this.$state.go('filter');
 				    		}
 				    	});
@@ -82,7 +82,7 @@ export default class ReviewCtrl extends Controller {
 			dimension = getDimension();
 	  		navigator.device.capture.captureVideo(
 	  			function(mediaFiles){
-	  				_this.$ionicLoading.show({ template: 'Uploading ...'});
+	  				_this.$ionicLoading.show({ template: 'Uploading ...', noBackdrop: true});
 	  				var i, path, len;
 				    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
 				        var fileURL = mediaFiles[i].fullPath;

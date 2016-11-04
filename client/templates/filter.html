@@ -22,15 +22,16 @@
 	    		<h3>Filter</h3>
 	    		<div class="row">
 	    			<div class="responsive">
-						<div ng-repeat="i in filter.getNumber()">
+						<div ng-repeat="effect in filter.effects">
 	                    	<a href="javascript:void(0)" ng-click="filter.setFilter()">
-								<img src="{{filter.squareImg}}" alt=""/>
+							<img ng-if="effect.color" vintage="{{effect.color}}" src="{{filter.thumb}}" alt=""/>
+							<img ng-if="!effect.color" src="{{filter.thumb}}" alt=""/>
 	                        </a>
 						</div>
 	    			</div>
 	            </div>
     		</div>
-    		<a href="javascript:void(0)" class="next-btn">Next</a>
+    		<a href="javascript:void(0)" class="next-btn" ng-click="filter.redirectTo()">Next</a>
     	</div>
     </ion-content>
 </ion-view>
