@@ -33,12 +33,7 @@ Meteor.methods({
 								            .quality(100)
 								            .write(_dirPath + '/' + uniqueStr + '_square.jpeg', function(err) {
 								                if (!err) {
-								                	Fiber(function() {
-										            	inserted = Dishes.insert({ image: uniqueStr });
-										            	if(inserted){
-										            		return myFuture.return(uniqueStr);;
-										            	}
-										            }).run();
+								                	return myFuture.return(uniqueStr);
 								            	}
 								            });
 					                	
@@ -68,12 +63,7 @@ Meteor.methods({
 							            .quality(100)
 							            .write(_dirPath + '/' + uniqueStr + '_square.jpeg', function(err) {
 							                if (!err) {
-							                	Fiber(function() {
-									            	inserted = Dishes.insert({ image: uniqueStr });
-									            	if(inserted){
-									            		return myFuture.return(uniqueStr);;
-									            	}
-									            }).run();
+							                	return myFuture.return(uniqueStr);
 							            	}
 							            });
 				            	}
@@ -86,10 +76,8 @@ Meteor.methods({
   		}
   		return myFuture.wait();
   	},
-  	setFilter(){
+  	save(data, restaurant){
   		
-  	},
-  	uploadVideo(file){
-  		console.log(file, "file");
+  		return Dishes.insert(data);
   	}
 });
