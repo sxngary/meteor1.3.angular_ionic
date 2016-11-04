@@ -32,7 +32,7 @@ export default class ReviewCtrl extends Controller {
 			    		_this.$ionicLoading.show({ template: 'Uploading ...', noBackdrop: true});
 				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
-				    			Session.set('clickedImage', { bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_square.jpeg'});
+				    			Session.set('clickedImage', { bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_square.jpeg', imageId: res});
 				    			_this.$state.go('filter');
 				    		}
 				    	});
@@ -61,7 +61,7 @@ export default class ReviewCtrl extends Controller {
 			    		_this.$ionicLoading.show({ template: 'Uploading ...', noBackdrop: true});
 				    	Meteor.call('uploadImage', data, dimension.width, dimension.height, function(err, res){
 				    		if(!err){
-				    			Session.set('clickedImage', {bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_square.jpeg'});
+				    			Session.set('clickedImage', {bigger: 'uploads/dishes/' + res + '.jpeg', small: 'uploads/dishes/' + res + '_square.jpeg', imageId: res});
 				    			_this.$state.go('filter');
 				    		}
 				    	});

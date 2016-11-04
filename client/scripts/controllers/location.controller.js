@@ -9,8 +9,21 @@ export default class LocationCtrl extends Controller {
 		    	$("#restaurant").
 		    		geocomplete({types: ['geocode', 'establishment']}).
 		    		bind("geocode:result", function(event, result){
-						//console.log(result, result.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
-						Session.set('restaurant', result);
+						console.log(result.types /*,result.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})*/);
+						photo = (result.photos ? result.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}) : '')
+						var restauData = 
+							{
+					  			name: (result.name ? result.name : ''),
+					  			lat: result.geometry.location.lat(),
+					  			long: result.geometry.location.lng(),
+					  			rating: (result.rating ? result.rating : ''),
+					  			distance: '',
+					  			address: result.formatted_address,
+					  			city: '',
+					  			Country: '',
+					  			image: photo,
+					  		};
+				  		Session.set('restaurant', restauData);
 					});
 		    }
 		});
@@ -26,7 +39,7 @@ export default class LocationCtrl extends Controller {
 
   	dishData(data){
   		if(data){
-  			if(data.dishname && data.rating && Session.get('restaurant')){
+  			if(data.name && data.rating && Session.get('restaurant')){
   				Session.set('dishData', data);
   				this.$state.go('post_review');
   			}

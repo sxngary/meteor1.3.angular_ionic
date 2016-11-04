@@ -103,6 +103,7 @@ function onReady() {
 // client
 Meteor.startup(function() {
   GoogleMaps.load({
+    v: '3',
     key: 'AIzaSyCQU36oZjlxKSuAZkF3THXWJVWbar6pWIE',
     libraries: 'places'  // also accepts an array if need more than one library
   });

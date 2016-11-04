@@ -9,7 +9,7 @@
     </ion-header-bar>
 	<ion-content>
 		<div class="full_back suggest reviews">
-            <div class="dsh-img">
+            <div class="dsh-img" ng-if="location.image">
                 <img src="{{location.image}}" alt="" />
             </div>
             <div class="row">
@@ -25,7 +25,7 @@
                           <label class="item-input item-floating-label">
                           	<span class="icon-top zip"><img src="./dish-name.png" alt="" class=""></span>
                             <span class="icon-wrap">
-                                <input type="text" ng-model="data.dishname" placeholder="Dish Name">
+                                <input type="text" ng-model="data.name" placeholder="Dish Name">
                             </span>
                           </label>
                           <label class="item-input item-floating-label">

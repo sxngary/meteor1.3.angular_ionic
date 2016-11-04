@@ -11,8 +11,8 @@
 		<div class="full_back suggest reviews-final">
         	<div class="row">
             	<div class="col col-33">
-                    <div class="">
-                        <img src="./dish-view.png" alt="" />
+                    <div class="" ng-if="content.dishImage">
+                        <img src="{{content.dishImage}}" alt="" />
                     </div>
                 </div>
                 <div class="col col-67">
@@ -40,11 +40,11 @@
             <div class="row">
             	<div class="col">
                 	<ion-list>
-	  					<ion-checkbox>Share on Facebook</ion-checkbox>
+	  					<ion-checkbox ng-model="isChecked">Share on Facebook</ion-checkbox>
                     </ion-list>
                 </div>
             </div>
-            <a href="javascript:void(0)" ng-click="content.postAndSave()" class="next-btn">Post Review!</a>
+            <a href="javascript:void(0)" ng-click="content.postAndSave(isChecked)" class="next-btn">Post Review!</a>
    		</div>
        
 	</ion-content>
