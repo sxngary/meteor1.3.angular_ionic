@@ -54,6 +54,26 @@ export default class SignupCtrl extends Controller {
                     success: ''
                 }
             });
+
+         //Add custom validation function for first & last name.
+        this.$validation
+            .setExpression({
+                nameValidate: function (value, scope, element, attrs, param) {
+                    if(value){
+                        var re = /^[a-z ,.'-]+$/i;
+                        var nv =  re.test(value);
+                        if(nv){
+                            return true;
+                        }
+                    }
+                }
+            })
+            .setDefaultMsg({
+                nameValidate: {
+                    error: "This should be valid",
+                    success: ''
+                }
+            });
 	       
         this.helpers({
             registerErr(){

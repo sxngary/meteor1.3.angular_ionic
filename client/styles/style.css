@@ -318,6 +318,11 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .restro-detail .resturant-detail h3 span i{font-size:20px}
 .play-video{position:relative;text-align:center}
 .play-video a{display:inline-block;left:0;right:0;text-align:center;top:40%;position:absolute;width:50px;height:50px;margin:0 auto;float:none}
+.ngrateit-star{
+  background-size: 30px;
+}
+.pac-container:after{display:none !important;}
+.left-icon img { width: auto; height: auto;}
 /*---------media-------*/
 @media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx){
   .bar{background-size:100% 0px}

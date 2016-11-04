@@ -1,0 +1,52 @@
+<ion-view view-title="signIn">
+	<ion-header-bar align-title="left" class="bar-positive">
+		<div class="bar bar-header bar-light head_bar">
+        	 <div class="back_arrrow">
+        		<span class="sp2"><a ui-sref="location"><img src="./left-arrow.png" alt=""/></a></span>	
+               	<h2>Review a dish</h2>
+        	 </div>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<div class="full_back suggest reviews-final">
+        	<div class="row">
+            	<div class="col col-33">
+                    <div class="">
+                        <img src="./dish-view.png" alt="" />
+                    </div>
+                </div>
+                <div class="col col-67">
+                	<div class="content-box">
+                    	<p><span class="left-icon"><img src="./location.png" alt="" class=""></span>{{content.dishData.restaurant}}</p>
+                    </div>
+                    <div class="content-box">
+                    	<p><span class="left-icon"><img src="./dish-name.png" alt="" class=""></span>{{content.dishData.dishName}}</p>
+                    </div>
+                    <div class="post-review">
+                    	<ng-rate-it ng-model="content.rating" star-width="30" star-height="30" read-only="true"></ng-rate-it>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col">
+                	<p ng-if="content.dishData.comment" class="restu-details">
+                    	{{content.dishData.comment}}
+                    </p>
+                    <p ng-if="!content.dishData.comment" class="restu-details">
+                        No content found!
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col">
+                	<ion-list>
+	  					<ion-checkbox>Share on Facebook</ion-checkbox>
+                    </ion-list>
+                </div>
+            </div>
+            <a href="javascript:void(0)" ng-click="content.postAndSave()" class="next-btn">Post Review!</a>
+   		</div>
+       
+	</ion-content>
+    
+</ion-view>

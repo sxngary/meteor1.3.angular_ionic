@@ -27,10 +27,10 @@ Meteor.methods({
 					            .write(_dirPath + '/' + uniqueStr + '.jpeg', function(err) {
 					                if (!err) {
 					                	gm(_dirPath + '/' + uniqueStr + '_original.jpeg')
-								            .resize(width, height, '^')
+								            .resize(105, 105, '^')
 								            .gravity('Center')
-								            .crop(130, 120)
-								            .quality(75)
+								            .crop(105, 105)
+								            .quality(100)
 								            .write(_dirPath + '/' + uniqueStr + '_square.jpeg', function(err) {
 								                if (!err) {
 								                	Fiber(function() {
@@ -62,10 +62,10 @@ Meteor.methods({
 				            .write(_dirPath + '/' + uniqueStr + '.jpeg', function(err) {
 				                if (!err) {
 				                	gm(_dirPath + '/' + uniqueStr + '_original.jpeg')
-							            .resize(width, height, '^')
+							            .resize(105, 105, '^')
 							            .gravity('Center')
-							            .crop(130, 120)
-							            .quality(75)
+							            .crop(105, 105)
+							            .quality(100)
 							            .write(_dirPath + '/' + uniqueStr + '_square.jpeg', function(err) {
 							                if (!err) {
 							                	Fiber(function() {

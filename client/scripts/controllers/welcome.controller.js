@@ -5,7 +5,17 @@ export default class HomeCtrl extends Controller {
   	constructor() {
 	    super(...arguments);
 
-	   	
+	    this.$scope.myActiveSlide = 0;
+  		_this = this;
+		_this.$scope.$watch(function(scope) { return scope.myActiveSlide },
+			function(newValue, oldValue) {
+			  	switch(newValue) {
+			    	case 0:
+			    	case 2:      _this.$ionicSlideBoxDelegate.enableSlide(false);
+			      		break;
+	  			}
+			}
+		);
   	}
 
 	handleError(err) {
@@ -21,13 +31,9 @@ export default class HomeCtrl extends Controller {
 		
 	}
 
-	next(){
-		this.$ionicSlideBoxDelegate.next();
-	}
-
-	previous(){
-		this.$ionicSlideBoxDelegate.previous();
+	enableSlide(){
+		this.$ionicSlideBoxDelegate.enableSlide(true);
 	}
 }
 
-HomeCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$log', '$ionicSlideBoxDelegate', '$scope'];
+HomeCtrl.$inject = ['$ionicPopup', '$ionicSlideBoxDelegate', '$scope'];

@@ -92,6 +92,22 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
+      .state('location', {
+        url: '/location',
+        templateUrl: 'client/templates/location.html',
+        controller: 'LocationCtrl as location',
+        resolve: {
+          user: this.isAuthorized
+        }
+      })
+      .state('post_review', {
+        url: '/post_review',
+        templateUrl: 'client/templates/post_review.html',
+        controller: 'PostReviewCtrl as content',
+        resolve: {
+          user: this.isAuthorized
+        }
+      })
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'client/templates/welcome.html',

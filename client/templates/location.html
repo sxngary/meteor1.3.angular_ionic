@@ -1,0 +1,53 @@
+<ion-view view-title="signIn">
+    <ion-header-bar align-title="left" class="bar-positive">
+	    <div class="bar bar-header bar-light head_bar">
+		    <div class="back_arrrow">
+		    	<span class="sp2"><a ui-sref="filter"><img src="./left-arrow.png" alt=""/></a></span>	
+		    	<h2>Review a dish</h2>
+		    </div>
+	    </div>
+    </ion-header-bar>
+	<ion-content>
+		<div class="full_back suggest reviews">
+            <div class="dsh-img">
+                <img src="{{location.image}}" alt="" />
+            </div>
+            <div class="row">
+            	<div class="col">
+                	<div class="review-form">
+                        <div class="list list_item">
+                           <label class="item-input item-floating-label">
+                           <span class="icon-top location"><img src="./location.png" alt="" class=""></span>
+                            <span class="icon-wrap">
+                                <input id="restaurant" type="text" placeholder="Restaurant Name">
+                            </span>
+                          </label>
+                          <label class="item-input item-floating-label">
+                          	<span class="icon-top zip"><img src="./dish-name.png" alt="" class=""></span>
+                            <span class="icon-wrap">
+                                <input type="text" ng-model="data.dishname" placeholder="Dish Name">
+                            </span>
+                          </label>
+                          <label class="item-input item-floating-label">
+                          	<span class="icon-top"><img src="./comments.png" alt="" class=""></span>
+                            <span class="icon-wrap comments">
+                                <textarea  ng-model="data.comment" placeholder="Comments"></textarea>
+                            </span>
+                          </label>
+                       </div>
+                   </div>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col">
+                	<div class="rate-box">
+                    	<ng-rate-it ng-model="data.rating" star-width="30" star-height="30"></ng-rate-it>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="next-btn" ng-click="location.dishData(data)">Next</a>
+   		</div>
+       
+	</ion-content>
+    
+</ion-view>
