@@ -13,9 +13,11 @@ export default class FilterCtrl extends Controller {
 		    });
   		}, 0);
   		
-      //hide loading template
-      this.$ionicLoading.hide();
   		this.helpers({
+        //hide loading template
+        hideLoading(){
+          this.$ionicLoading.hide();
+        },
 	   		image(){
 	   			if(Session.get('clickedImage'))
 	   				return Meteor.absoluteUrl() + Session.get('clickedImage').bigger;

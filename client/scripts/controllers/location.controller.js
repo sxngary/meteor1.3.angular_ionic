@@ -4,48 +4,82 @@ export default class LocationCtrl extends Controller {
   	constructor() {
     	super(...arguments);
 
-		this.autorun(function () {
-		    if (GoogleMaps.loaded()) {
-		    	$("#restaurant").
-		    		geocomplete({types: ['geocode', 'establishment']}).
-		    		bind("geocode:result", function(event, result){
-						console.log(result.types /*,result.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})*/);
-						photo = (result.photos ? result.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}) : '')
-						var restauData = 
-							{
-					  			name: (result.name ? result.name : ''),
-					  			lat: result.geometry.location.lat(),
-					  			long: result.geometry.location.lng(),
-					  			rating: (result.rating ? result.rating : ''),
-					  			distance: '',
-					  			address: result.formatted_address,
-					  			city: '',
-					  			Country: '',
-					  			image: photo,
-					  		};
-				  		Session.set('restaurant', restauData);
-					});
-		    }
-		});
+        this.autocompleteOptions = {
+            types: ['establishment']
+        };
     	
     	this.helpers({
 	   		image(){
 	   			if(Session.get('clickedImage'))
 	   				return Meteor.absoluteUrl() + Session.get('clickedImage').bigger;
-	   		}
+	   		},
+	   		videoImage(){
+	          if(Session.get('videoImagePath'))
+	            return Meteor.absoluteUrl() + Session.get('videoImagePath');
+	        }
 	   	});
 
   	}
 
-  	dishData(data){
+  	dishData(data, rt){
   		if(data){
-  			if(data.name && data.rating && Session.get('restaurant')){
-  				Session.set('dishData', data);
-  				this.$state.go('post_review');
+  			if(data.name && data.rating && rt.restaurantdata){
+	  			var restaurant = rt.restaurantdata;
+	  			if(_.contains(restaurant.types, 'restaurant')){
+	  				var country = '', city = '', postal_code= '';
+	  				if(restaurant.address_components){
+	  					address = restaurant.address_components;
+	  					for (var i = 0; i < address.length; i++) {
+		                  	for (address2 in address[i]) {
+		                     	if (address2 == "types") {
+		                        	var types = address[i][address2];
+		                        	if (types[0] == "country") {
+		                            	country = address[i].long_name;
+		                        	} 
+		                        	if (types[0] == "locality") {
+		                           		city = address[i].long_name;
+		                       		} 
+		                     		if (types[0] == "postal_code") {
+		                           		postal_code = address[i].long_name;
+		                       		} 
+		                     	}	
+		                  	}          
+		                }
+	  				}
+	  				photo = (restaurant.photos ? restaurant.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}) : '')
+					var restauData = 
+						{
+				  			name: (restaurant.name ? restaurant.name : ''),
+				  			lat: restaurant.geometry.location.lat(),
+				  			lng: restaurant.geometry.location.lng(),
+				  			rating: (restaurant.rating ? restaurant.rating : ''),
+				  			address: restaurant.formatted_address,
+				  			city: city,
+				  			country: country,
+				  			postal_code: postal_code,
+				  			image: photo,
+				  		};
+			  		Session.set('restaurant', restauData);
+	  				Session.set('dishData', data);
+	  				this.$state.go('post_review');
+  				}else{
+  					this.$ionicLoading.show({ template: 'Add restaurant only', noBackdrop: true, duration:2500});
+  					delete rt.restaurantdata;
+  				}
   			}
   		}
   	}
 
+  	playVideo(){
+      if(Session.get('videoPath')){
+        var videoUrl = Session.get('videoPath').local;
+        // Just play a video
+        window.plugins.streamingMedia.playVideo(videoUrl, {
+            initFullscreen: false
+        });
+      }
+    }
+
 }
 
-LocationCtrl.$inject = ['$state', '$scope', '$reactive'];
+LocationCtrl.$inject = ['$state', '$scope', '$ionicLoading'];

@@ -10,7 +10,11 @@
 	<ion-content>
 		<div class="full_back suggest reviews">
             <div class="dsh-img" ng-if="location.image">
-                <img src="{{location.image}}" alt="" />
+              <img src="{{location.image}}" alt="" />
+            </div>
+            <div ng-if="location.videoImage" class="dsh-img dish-image play-video" ng-click="location.playVideo()">
+              <img id="clickedImage" src="{{location.videoImage}}" alt=""/>
+              <a href="javascript:void(0)"><img src="./play.png" alt=""/></a>
             </div>
             <div class="row">
             	<div class="col">
@@ -19,7 +23,7 @@
                            <label class="item-input item-floating-label">
                            <span class="icon-top location"><img src="./location.png" alt="" class=""></span>
                             <span class="icon-wrap">
-                                <input id="restaurant" type="text" placeholder="Restaurant Name">
+                              <input  type="text" g-places-autocomplete options="location.autocompleteOptions" ng-model="rt.restaurantdata" placeholder="Add Restaurant" />
                             </span>
                           </label>
                           <label class="item-input item-floating-label">
@@ -30,7 +34,7 @@
                           </label>
                           <label class="item-input item-floating-label">
                           	<span class="icon-top"><img src="./comments.png" alt="" class=""></span>
-                            <span class="icon-wrap comments">
+                            <span class="icon-wrap">
                                 <textarea  ng-model="data.comment" placeholder="Comments"></textarea>
                             </span>
                           </label>
@@ -45,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <a href="javascript:void(0)" class="next-btn" ng-click="location.dishData(data)">Next</a>
+            <a href="javascript:void(0)" class="next-btn" ng-click="location.dishData(data, rt)">Next</a>
    		</div>
        
 	</ion-content>

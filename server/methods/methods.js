@@ -76,8 +76,7 @@ Meteor.methods({
   		}
   		return myFuture.wait();
   	},
-  	save(data, restaurant){
-  		
+  	save(data){
   		return Dishes.insert(data);
   	}
 });

@@ -6,10 +6,10 @@ import 'angular-moment';
 import 'angular-sanitize';
 import 'angular-ui-router';
 import 'ionic-scripts';
-import 'ng-cordova';
 import 'angular-validation/dist/angular-validation';
 import 'angular-validation/dist/angular-validation-rule';
 import './angular-validation-schema.min';
+import './autocomplete.min';
 import './ng-rateit';
 import 'vintagejs/dist/angular.vintage';
 import Angular from 'angular';
@@ -47,7 +47,7 @@ app = Angular.module(App, [
   'validation.schema',
   'vintagejs',
   'ngRateIt',
-  'ngCordova'
+  'google.places'
 ]);
 
 //Load modules
@@ -99,12 +99,3 @@ else {
 function onReady() {
   Angular.bootstrap(document, [App]);
 }
-
-// client
-Meteor.startup(function() {
-  GoogleMaps.load({
-    v: '3',
-    key: 'AIzaSyCQU36oZjlxKSuAZkF3THXWJVWbar6pWIE',
-    libraries: 'places'  // also accepts an array if need more than one library
-  });
-});
