@@ -9,6 +9,10 @@ export default class PostReviewCtrl extends Controller {
 	   			if(Session.get('clickedImage'))
 	   				return Meteor.absoluteUrl() + Session.get('clickedImage').bigger;
 	   		},
+	   		videoImage(){
+	          if(Session.get('videoImagePath'))
+	            return Meteor.absoluteUrl() + Session.get('videoImagePath');
+	        },
 	   		dishData(){
 	   			if(Session.get('dishData')){
 		   			return {
@@ -34,22 +38,41 @@ export default class PostReviewCtrl extends Controller {
 	  		dishData['video'] = Session.get('videoPath').server;
 	  	}
 	  	dishData['uploadedBy'] = this.currentUser._id;
-	  	dishData['shared_on_facebook'] = false;	  	
-  		//if share on facebook
-  		if(isChecked){
-  			dishData['shared_on_facebook'] = isChecked;
-  		}
   		dishData['dateMillisecond'] = new Date().getTime();
   		dishData['offset'] = new Date().getTimezoneOffset()/ 60;
   		dishData['createdAt'] = new Date();
-  		Meteor.call('save', dishData,function(err, res){
-  			if(!err){
-
-  			}else{
-
-  			}
-  		});
+  		if(Session.get('clickedImage')){
+  			imageShare = Meteor.absoluteUrl() + Session.get('clickedImage').bigger;
+  		}else{
+  			imageShare = Meteor.absoluteUrl() + Session.get('videoImagePath');
+  		}
+  		 _this = this
+		if(isChecked){
+			window.plugins.socialsharing.shareViaFacebook(
+				'Message via Facebook',
+				imageShare,
+				null,
+				function() {
+					
+				},function(errormsg){
+					
+				}
+			);
+			Meteor.call('save', dishData, function(err, res){
+	  			if(!err){
+	  				_this.$ionicLoading.show({ template: 'Uploaded successfully!', noBackdrop: true, duration:2000});
+	  				_this.$state.go('tab.profile');
+	  			}
+	  		});
+		}else{
+	  		Meteor.call('save', dishData, function(err, res){
+	  			if(!err){
+	  				_this.$ionicLoading.show({ template: 'Uploaded successfully!', noBackdrop: true, duration:2000});
+	  				_this.$state.go('tab.profile');
+	  			}
+	  		});
+  		}
   	}
 }
 
-PostReviewCtrl.$inject = ['$state'];
+PostReviewCtrl.$inject = ['$state', '$ionicLoading'];

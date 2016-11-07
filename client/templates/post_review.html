@@ -1,4 +1,4 @@
-<ion-view view-title="signIn">
+<ion-view view-title="Post Review">
 	<ion-header-bar align-title="left" class="bar-positive">
 		<div class="bar bar-header bar-light head_bar">
         	 <div class="back_arrrow">
@@ -10,19 +10,20 @@
 	<ion-content>
 		<div class="full_back suggest reviews-final">
         	<div class="row">
-            	<div class="col col-33">
-                    <div class="" ng-if="content.dishImage">
-                        <img src="{{content.dishImage}}" alt="" />
-                    </div>
+            	<div class="dsh-img" ng-if="content.dishImage">
+                    <img src="{{content.dishImage}}" alt="" />
                 </div>
-                <div class="col col-67">
+                <div class="dsh-img" ng-if="content.videoImage">
+                    <img src="{{content.videoImage}}" alt="" />
+                </div>
+                <div class="dsh-del">
                 	<div class="content-box">
                     	<p><span class="left-icon"><img src="./location.png" alt="" class=""></span>{{content.dishData.restaurant}}</p>
                     </div>
                     <div class="content-box">
                     	<p><span class="left-icon"><img src="./dish-name.png" alt="" class=""></span>{{content.dishData.dishName}}</p>
                     </div>
-                    <div class="post-review">
+                    <div class="rate-box post-review">
                     	<ng-rate-it ng-model="content.rating" star-width="30" star-height="30" read-only="true"></ng-rate-it>
                     </div>
                 </div>
