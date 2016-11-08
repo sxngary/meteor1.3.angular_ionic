@@ -10,19 +10,19 @@
       <div class="user-profile">
           <div class="row">
               <div class="user-image">
-                  <img src="/user-image.png" alt="" />
+                  <img src="/user_none.png" alt="" />
                 </div>
                 <div class="content-wrap">
                     <div class="user-detail user-review">
-                        <h3>100</h3>
+                        <h3>{{profile.reviews}}</h3>
                         <p>Reviews</p>
                     </div>
                     <div class="user-detail user-followes">
-                        <h3>50</h3>
+                        <h3>{{profile.followers}}</h3>
                         <p>Followers</p>
                     </div>
                     <div class="user-detail user-following">
-                        <h3>43</h3>
+                        <h3>{{profile.following}}</h3>
                         <p>Following</p>
                     </div>
                     
@@ -47,90 +47,42 @@
                 </div>
             </div>
         </div>
-    <div class="full_back suggest">
+        <div class="full_back suggest">
           <div class="row">
-              <div class="col">
-                  <h4 class="your-post">Your Post</h4>
-                </div>
+            <div class="col">
+              <h4 class="your-post">Your Post</h4>
             </div>
-      <div class="row">
-              <div class="col col-33">
+          </div>
+            <div class="row" ng-repeat="product in profile.posts" ng-if="$index % 3 == 0">
+              <div class="col col-33" ng-if="profile.posts[$index]">
                     <div class="div1">
-                        <img src="/d1.png"/>
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
+                        <img ng-if="profile.posts[$index].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index].videoThumb}}"/>
+                        <img ng-if="profile.posts[$index].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index].imageId}}.jpeg"/>
+                        <p class="dish-name">{{profile.posts[$index].name}}</p>
+                        <p class="resturant-name">{{profile.posts[$index].restaurant[0].name}}</p>
                     </div>
               </div>
-                <div class="col col-33">
-                    <div class="div1">
-                        <img src="/d3.png"/>
-                        
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                    </div>
-                </div>
-                <div class="col col-33">
+              <div class="col col-33" ng-if="profile.posts[$index + 1]">
                   <div class="div1">
-                        <img src="/d1.png"/>
-                        
-                        <p class="dish-name">Burger with cheddar...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
+                      <img ng-if="profile.posts[$index+1].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index+1].videoThumb}}"/>
+                      <img ng-if="profile.posts[$index+1].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+1].imageId}}.jpeg"/>
+                      
+                      <p class="dish-name">{{profile.posts[$index+1].name}}</p>
+                      <p class="resturant-name">{{profile.posts[$index+1].restaurant[0].name}}</p>
                   </div>
-                </div>
-      </div>
-          <div class="row">
-              <div class="col col-33">
-                  <div class="div1">
-                        <img src="/d1.png"/>
-                        
-                        <p class="dish-name">Burger with cheddar...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                  </div>
-                </div>
-                <div class="col col-33">
-                  <div class="div1">
-                        <img src="/d3.png"/>
-                        
-                        <p class="dish-name">Italian pizza salami</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                  </div>
-                </div>
-                <div class="col col-33">
-                  <div class="div1">
-                        <img src="/d1.png"/>
-                        
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                  </div>
-                </div>
-         </div>
-          <div class="row">
-              <div class="col col-33">
+              </div>
+              <div class="col col-33" ng-if="profile.posts[$index+ 2]">
                 <div class="div1">
-                        <img src="/d1.png"/>
-                       
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
+                      <img ng-if="profile.posts[$index+2].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index+2].videoThumb}}"/>
+                      <img ng-if="profile.posts[$index+2].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+ 2].imageId}}.jpeg"/>
+                      
+                      <p class="dish-name">{{profile.posts[$index + 2].name}}</p>
+                      <p class="resturant-name">{{profile.posts[$index + 2].restaurant[0].name}}</p>
                 </div>
               </div>
-                <div class="col col-33">
-                    <div class="div1">
-                        <img src="/d3.png"/>
-                       
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                    </div>
-                </div>
-                <div class="col col-33">
-                    <div class="div1">
-                        <img src="/d1.png"/>
-                        
-                        <p class="dish-name">Burger with cheddar...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                    </div>
-                </div>
-      </div>
-      </div>
+            </div>
+            <div class="row" ng-if="!profile.posts.length">No post found!</div>
+        </div>
   </ion-content>
     
 </ion-view>
