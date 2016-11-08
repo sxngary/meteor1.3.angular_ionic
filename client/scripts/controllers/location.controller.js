@@ -46,7 +46,7 @@ export default class LocationCtrl extends Controller {
 		                  	}          
 		                }
 	  				}
-	  				photo = (restaurant.photos ? restaurant.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}) : '')
+	  				photo = (restaurant.photos ? restaurant.photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}) : '');
 					var restauData = 
 						{
 				  			name: (restaurant.name ? restaurant.name : ''),
@@ -63,7 +63,7 @@ export default class LocationCtrl extends Controller {
 	  				Session.set('dishData', data);
 	  				this.$state.go('post_review');
   				}else{
-  					this.$ionicLoading.show({ template: 'Add restaurant only', noBackdrop: true, duration:2500});
+  					this.$ionicLoading.show({ template: 'Add restaurant only', noBackdrop: true, duration:2000});
   					delete rt.restaurantdata;
   				}
   			}
