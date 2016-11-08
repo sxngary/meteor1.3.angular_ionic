@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { Chats, Messages } from './collections/collections';
+import { Dishes } from '../lib/collections';
 
-Meteor.publish('users', function() {
-  return Meteor.users.find({}, { fields: { profile: 1 } });
+Meteor.publish('dishes', function() {
+  	return Dishes.find({uploadedBy: this.userId},{ sort: { createdAt: 1 } });
 });
