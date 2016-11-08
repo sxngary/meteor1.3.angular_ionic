@@ -38,7 +38,7 @@ export default class ReviewCtrl extends Controller {
 				    	});
 				  	}
 			  	}else{
-			  		_this.$ionicLoading.show({ template: 'upload images only!', duration:3000, noBackdrop: true});
+			  		_this.$ionicLoading.show({ template: err.reason, duration:2000, noBackdrop: true});
 			  	}
 			});
 		}

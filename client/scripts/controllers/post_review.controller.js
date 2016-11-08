@@ -49,7 +49,7 @@ export default class PostReviewCtrl extends Controller {
   		 _this = this
 		if(isChecked){
 			window.plugins.socialsharing.shareViaFacebook(
-				'Message via Facebook',
+				dishData.comment,
 				imageShare,
 				null,
 				function() {

@@ -207,9 +207,13 @@ class RoutesRunner extends Runner {
     }
   });
 
+  var _this = this;
+    _this.$rootScope.$on("$ionicView.afterLeave", function () {
+       _this.$ionicHistory.clearCache();
+    }); 
   }
 }
 
-RoutesRunner.$inject = ['$rootScope', '$state', '$ionicPlatform'];
+RoutesRunner.$inject = ['$rootScope', '$state', '$ionicPlatform', '$ionicHistory'];
 
 export default [RoutesConfig, RoutesRunner];
