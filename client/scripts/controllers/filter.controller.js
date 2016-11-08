@@ -12,7 +12,7 @@ export default class FilterCtrl extends Controller {
 			  	slidesToScroll: 3
 		    });
   		}, 0);
-  		
+
   		this.helpers({
         //hide loading template
         hideLoading(){
@@ -61,7 +61,7 @@ export default class FilterCtrl extends Controller {
     }
 
     setFilter(){
-  		
+  		alert('setFilter');
   	}
 
     redirectTo(){
