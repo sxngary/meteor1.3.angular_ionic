@@ -61,7 +61,7 @@ export default class FilterCtrl extends Controller {
     }
 
     setFilter(){
-  		alert('setFilter');
+  
   	}
 
     redirectTo(){
