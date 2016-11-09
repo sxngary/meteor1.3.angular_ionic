@@ -4,15 +4,16 @@ export default class SuggestionCtrl extends Controller {
   constructor() {
     super(...arguments);
 
+  	console.log(this.$state)
   }
   
   suggestions(){
     
   }
 
-  redirectTo(){
-  	this.$state.go('dish_detail');
+  redirectToDish(){
+	this.$location.url('/dish_detail');
   }
 }
 
-SuggestionCtrl.$inject = ['$state', '$ionicPopup', '$log'];
+SuggestionCtrl.$inject = ['$state', '$ionicPopup', '$location'];
