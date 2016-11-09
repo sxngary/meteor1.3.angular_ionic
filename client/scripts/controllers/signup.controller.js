@@ -92,10 +92,10 @@ export default class SignupCtrl extends Controller {
 	      	Accounts.createUser(data, (err) => {
 		    	if (err) return _this.handleError(err);
 
-		    	_this.Tag.showModal();
+		    	_this.Tag.showModal('register');
                 _this.$validation.reset(form);
 		  	    _this.$ionicLoading.show({ template: 'Registered successfully!', noBackdrop: true, duration:2500});
-                _this.$state.go('tab.suggestion');
+                //_this.$state.go('tab.suggestion');
             });
 	    })
 	    .error(function(err){
