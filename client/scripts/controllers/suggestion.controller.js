@@ -4,7 +4,6 @@ export default class SuggestionCtrl extends Controller {
   constructor() {
     super(...arguments);
 
-  	console.log(this.$state)
   }
   
   suggestions(){
