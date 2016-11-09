@@ -31,6 +31,7 @@ import DishDetailCtrl from '../controllers/dishdetail.controller';
 import FilterCtrl from '../controllers/filter.controller';
 import LocationCtrl from '../controllers/location.controller';
 import PostReviewCtrl from '../controllers/post_review.controller';
+import ChangePasswordCtrl from '../controllers/change_password.controller';
 
 import Routes from '../routes';
 
@@ -66,6 +67,7 @@ new Loader(App)
   .load(FilterCtrl)
   .load(LocationCtrl)
   .load(PostReviewCtrl)
+  .load(ChangePasswordCtrl)
   .load(Routes);
 
   // Using config phase to add Schema's to schemaProvider

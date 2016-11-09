@@ -1,4 +1,3 @@
-import { Accounts } from 'meteor/accounts-base';
 import { Controller } from 'angular-ecmascript/module-helpers';
 
 export default class SuggestionCtrl extends Controller {
@@ -9,6 +8,10 @@ export default class SuggestionCtrl extends Controller {
   
   suggestions(){
     
+  }
+
+  redirectTo(){
+  	this.$state.go('dish_detail');
   }
 }
 
