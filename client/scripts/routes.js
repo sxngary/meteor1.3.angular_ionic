@@ -108,6 +108,14 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
+      .state('change_password', {
+        url: '/change_password',
+        templateUrl: 'client/templates/change_password.html',
+        controller: 'ChangePasswordCtrl as password',
+        resolve: {
+          user: this.isAuthorized
+        }
+      })
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'client/templates/welcome.html',
@@ -189,25 +197,31 @@ class RoutesRunner extends Runner {
       if (err === 'AUTH_REQUIRED') {
         this.$state.go('welcome');
       }else if(err === 'CANT_ACCESS'){
-        this.$state.go('suggestion');
+        this.$state.go('tab.suggestion');
       }
     });
 
-  this.$ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
+    this.$ionicPlatform.ready(function() {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
 
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
+      }
+      if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleDefault();
+      }
+    });
 
-  var _this = this;
+    var _this = this;
+    _this.$ionicPlatform.onHardwareBackButton(function() {
+      if(_this.$state.current.name == 'tab.profile'){
+        _this.$state.go('tab.suggestion');
+      }
+    });
+
     _this.$rootScope.$on("$ionicView.afterLeave", function () {
        _this.$ionicHistory.clearCache();
     }); 
