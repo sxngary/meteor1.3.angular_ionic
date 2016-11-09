@@ -7,7 +7,7 @@ export default class TagService extends Service {
     this.templateUrl = 'client/templates/tag_modal.html';
   }
 
-  showModal() {
+  showModal(check) {
     this.scope = this.$rootScope.$new();
 
     this.$ionicModal.fromTemplateUrl(this.templateUrl, {
@@ -15,7 +15,11 @@ export default class TagService extends Service {
     })
     .then((modal) => {
       this.modal = modal;
-      this.modal.show();
+      this.modal.show().then(() => {
+        if(check === 'register'){
+          this.$state.go('tab.suggestion');
+        }
+      });
     });
   }
 
@@ -26,4 +30,4 @@ export default class TagService extends Service {
 }
 
 TagService.$name = 'Tag';
-TagService.$inject = ['$rootScope', '$ionicModal'];
+TagService.$inject = ['$rootScope', '$ionicModal', '$state'];
