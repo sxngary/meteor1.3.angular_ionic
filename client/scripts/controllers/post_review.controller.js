@@ -16,7 +16,7 @@ export default class PostReviewCtrl extends Controller {
 	   		dishData(){
 	   			if(Session.get('dishData')){
 		   			return {
-		   				restaurant : Session.get('restaurant').name,
+		   				restaurant : Session.get('restaurant').name + ', ' + Session.get('restaurant').address,
 			    		dishName :(Session.get('dishData').name ? Session.get('dishData').name : ''),
 			    		comment :(Session.get('dishData').comment ? Session.get('dishData').comment : '')
 	   				}
