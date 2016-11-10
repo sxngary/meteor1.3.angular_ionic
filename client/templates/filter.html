@@ -1,9 +1,10 @@
 <ion-view view-title="signIn">
     <ion-header-bar align-title="left" class="bar-positive">
 	    <div class="bar bar-header bar-light head_bar">
-		    <div class="back_arrrow">
+		    <div class="back_arrrow next-bar">
 		    	<span class="sp2"><a ui-sref="review"><img src="./left-arrow.png" alt=""/></a></span>	
 		    	<h2>Review a dish</h2>
+		    	<span class="nxt"><a href="javascript:void(0)" ng-click="filter.redirectTo()">Next</a></span>
 		    </div>
 	    </div>
     </ion-header-bar>
@@ -18,7 +19,7 @@
 	        </div>
         </div>
     	<div class="slide-wrap">
-    		<div ng-if="filter.image">
+    		<div ng-if="filter.image"> 
 	    		<h3>Choose a filter</h3>
 	    		<div class="row">
 	    			<div class="responsive">
@@ -31,7 +32,7 @@
 	    			</div>
 	            </div>
     		</div>
-    		<a href="javascript:void(0)" class="next-btn" ng-click="filter.redirectTo()">Next</a>
+    		<!--<a href="javascript:void(0)" class="next-btn" ng-click="filter.redirectTo()">Next</a>-->
     	</div>
     </ion-content>
 </ion-view>

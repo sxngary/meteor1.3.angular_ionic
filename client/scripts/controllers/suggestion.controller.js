@@ -10,13 +10,9 @@ export default class SuggestionCtrl extends Controller {
     
   }
 
-  openModal(){
-  	this.Tag.showModal();
-  }
-
   redirectToDish(){
-	   this.$location.url('/dish_detail');
+	  this.$location.url('/dish_detail');
   }
 }
 
-SuggestionCtrl.$inject = ['Tag', '$state', '$ionicPopup', '$location'];
+SuggestionCtrl.$inject = ['$state', '$ionicPopup', '$location'];

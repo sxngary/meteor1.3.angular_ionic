@@ -1,9 +1,10 @@
 <ion-view view-title="signIn">
     <ion-header-bar align-title="left" class="bar-positive">
 	    <div class="bar bar-header bar-light head_bar">
-		    <div class="back_arrrow">
+		    <div class="back_arrrow next-bar">
 		    	<span class="sp2"><a ui-sref="filter"><img src="./left-arrow.png" alt=""/></a></span>	
 		    	<h2>Review a dish</h2>
+          <span class="nxt"><a href="javascript:void(0)" ng-click="location.dishData()">Next</a></span>
 		    </div>
 	    </div>
     </ion-header-bar>
@@ -23,19 +24,19 @@
                            <label class="item-input item-floating-label">
                            <span class="icon-top location"><img src="./location.png" alt="" class=""></span>
                             <span class="icon-wrap">
-                              <input  type="text" g-places-autocomplete options="location.autocompleteOptions" ng-model="rt.restaurantdata" placeholder="Add Restaurant" />
+                              <input  type="text" g-places-autocomplete options="location.autocompleteOptions" ng-model="location.rt.restaurantdata" placeholder="Add Restaurant" />
                             </span>
                           </label>
                           <label class="item-input item-floating-label">
                           	<span class="icon-top zip"><img src="./dish-name.png" alt="" class=""></span>
                             <span class="icon-wrap">
-                                <input type="text" ng-model="data.name" placeholder="Dish Name">
+                                <input type="text" ng-model="location.data.name" placeholder="Dish Name">
                             </span>
                           </label>
                           <label class="item-input item-floating-label">
                           	<span class="icon-top"><img src="./comments.png" alt="" class=""></span>
                             <span class="icon-wrap">
-                                <textarea  ng-model="data.comment" placeholder="Comments"></textarea>
+                                <textarea  ng-model="location.data.comment" placeholder="Comments"></textarea>
                             </span>
                           </label>
                        </div>
@@ -45,11 +46,11 @@
             <div class="row">
             	<div class="col">
                 	<div class="rate-box">
-                    	<ng-rate-it ng-model="data.rating" step="1" star-width="30" star-height="30"></ng-rate-it>
+                    	<ng-rate-it ng-model="location.data.rating" step="1" star-width="30" star-height="30"></ng-rate-it>
                     </div>
                 </div>
             </div>
-            <a href="javascript:void(0)" class="next-btn" ng-click="location.dishData(data, rt)">Next</a>
+           <!-- <a href="javascript:void(0)" class="next-btn" ng-click="location.dishData(data, rt)">Next</a> -->
    		</div>
        
 	</ion-content>
