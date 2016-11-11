@@ -50,8 +50,7 @@ export default class LocationCtrl extends Controller {
 					var restauData = 
 						{
 				  			name: (restaurant.name ? restaurant.name : ''),
-				  			lat: restaurant.geometry.location.lat(),
-				  			lng: restaurant.geometry.location.lng(),
+				  			coordinates: [restaurant.geometry.location.lng(), restaurant.geometry.location.lat()],
 				  			rating: (restaurant.rating ? restaurant.rating : ''),
 				  			address: restaurant.formatted_address,
 				  			city: city,

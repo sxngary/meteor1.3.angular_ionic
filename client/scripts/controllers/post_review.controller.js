@@ -30,7 +30,8 @@ export default class PostReviewCtrl extends Controller {
 
   	postAndSave(isChecked){
   		dishData = Session.get('dishData');
-  		dishData['restaurant'] = [Session.get('restaurant')];
+  		dishData['restaurant'] = Session.get('restaurant');
+  		console.log("Dines",dishData);return;
 	  	if(Session.get('clickedImage')){
 	  		dishData['imageId'] = Session.get('clickedImage').imageId;
 	  	}else{
