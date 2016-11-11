@@ -59,7 +59,7 @@
                         <img ng-if="profile.posts[$index].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index].videoThumb}}"/>
                         <img ng-if="profile.posts[$index].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index].imageId}}.jpeg"/>
                         <p class="dish-name">{{profile.posts[$index].name}}</p>
-                        <p class="resturant-name">{{profile.posts[$index].restaurant[0].name}}</p>
+                        <p class="resturant-name">{{profile.posts[$index].restaurant.name}}</p>
                     </div>
               </div>
               <div class="col col-33" ng-if="profile.posts[$index + 1]">
@@ -68,7 +68,7 @@
                       <img ng-if="profile.posts[$index+1].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+1].imageId}}.jpeg"/>
                       
                       <p class="dish-name">{{profile.posts[$index+1].name}}</p>
-                      <p class="resturant-name">{{profile.posts[$index+1].restaurant[0].name}}</p>
+                      <p class="resturant-name">{{profile.posts[$index+1].restaurant.name}}</p>
                   </div>
               </div>
               <div class="col col-33" ng-if="profile.posts[$index+ 2]">
@@ -77,7 +77,7 @@
                       <img ng-if="profile.posts[$index+2].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+ 2].imageId}}.jpeg"/>
                       
                       <p class="dish-name">{{profile.posts[$index + 2].name}}</p>
-                      <p class="resturant-name">{{profile.posts[$index + 2].restaurant[0].name}}</p>
+                      <p class="resturant-name">{{profile.posts[$index + 2].restaurant.name}}</p>
                 </div>
               </div>
             </div>

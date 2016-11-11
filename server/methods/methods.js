@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Dishes } from '../../lib/collections';
 
+Dishes._ensureIndex({'restaurant.coordinates':'2dsphere'}); 
+
 Meteor.methods({
 	//This function is used to convert image from base64string and save created image in uploads folder.
   	uploadImage(base64String, width, height){
