@@ -65,6 +65,7 @@ oauth@1.1.8
 oauth2@1.1.7
 observe-sequence@1.0.9
 ordered-dict@1.0.5
+pagebakers:ionicons@2.0.1_1
 promise@0.6.5
 random@1.0.7
 rate-limit@1.0.2

@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="full_back suggest">
+        <div class="full_back suggest" ng-class="profile.posts.length==0 ? 'no-cnt' : ''"> <!-- Add no-cnt class when there is no record in posts -->
           <div class="row">
             <div class="col">
               <h4 class="your-post">Your Post</h4>
@@ -81,7 +81,7 @@
                 </div>
               </div>
             </div>
-            <div class="row" ng-if="!profile.posts.length">No post found!</div>
+            <div class="row no-record" ng-if="!profile.posts.length">No post found!</div>
         </div>
   </ion-content>
     

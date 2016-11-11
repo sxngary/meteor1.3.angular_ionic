@@ -21,10 +21,10 @@ export default class LocationCtrl extends Controller {
 
   	}
 
-  	dishData(data, rt){
-  		if(data){
-  			if(data.name && data.rating && rt.restaurantdata){
-	  			var restaurant = rt.restaurantdata;
+  	dishData(){
+  		if(this.data){
+  			if(this.data.name && this.data.rating && this.rt.restaurantdata){
+	  			var restaurant = this.rt.restaurantdata;
 	  			if(_.contains(restaurant.types, 'restaurant')){
 	  				var country = '', city = '', postal_code= '';
 	  				if(restaurant.address_components){
@@ -50,8 +50,7 @@ export default class LocationCtrl extends Controller {
 					var restauData = 
 						{
 				  			name: (restaurant.name ? restaurant.name : ''),
-				  			lat: restaurant.geometry.location.lat(),
-				  			lng: restaurant.geometry.location.lng(),
+				  			coordinates: [restaurant.geometry.location.lng(), restaurant.geometry.location.lat()],
 				  			rating: (restaurant.rating ? restaurant.rating : ''),
 				  			address: restaurant.formatted_address,
 				  			city: city,
@@ -60,7 +59,7 @@ export default class LocationCtrl extends Controller {
 				  			image: photo,
 				  		};
 			  		Session.set('restaurant', restauData);
-	  				Session.set('dishData', data);
+	  				Session.set('dishData', this.data);
 	  				this.$state.go('post_review');
   				}else{
   					this.$ionicLoading.show({ template: 'Add restaurant only', noBackdrop: true, duration:2000});

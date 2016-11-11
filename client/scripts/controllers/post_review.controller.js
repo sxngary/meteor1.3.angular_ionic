@@ -30,7 +30,7 @@ export default class PostReviewCtrl extends Controller {
 
   	postAndSave(isChecked){
   		dishData = Session.get('dishData');
-  		dishData['restaurant'] = [Session.get('restaurant')];
+  		dishData['restaurant'] = Session.get('restaurant');
 	  	if(Session.get('clickedImage')){
 	  		dishData['imageId'] = Session.get('clickedImage').imageId;
 	  	}else{
