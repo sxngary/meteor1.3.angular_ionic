@@ -2,34 +2,39 @@
 	<ion-header-bar align-title="left" class="bar-positive">
 		<div class="bar bar-header bar-light head_bar">
         	<div class="back_arrrow">
-        		<!-- <span class="sp2"><a ui-sref="login"><img src="./arrrow_left.png" /></a></span> -->	
             <h2>Search for a dish</h2>
         	</div>
 		</div>
+
 	</ion-header-bar>
-    
-	<ion-content>
-    	<div class="search-bar">
-        	<div class="list">
+        <div class="bar bar-subheader serach-ht">
+      <div class="search-bar">
+          <div class="list">
               <label class="item item-input no-padding search-bg">
-              	<div class="row">
-                	<div class="col col-67 search-input">
-                    	<img src="/search-icon.png" alt="" class="search-icon" />
-                    	<input type="text" placeholder="Search...">
+                <div class="row">
+                  <div class="col col-67 search-input">
+                      <img src="/search-icon.png" alt="" class="search-icon" />
+                      <input type="text" placeholder="Search...">
                     </div>
                     <div class="col col-33">
-                    	<div class="select-style">
-                            <select class="search-select search-bg">
-                              <option selected>Filter</option>
-                              <option>Green</option>
-                              <option>Red</option>
-                            </select>
+                      <label class="item item-input item-select item-select-rw">
+                        <div class="input-label">
+                          Lightsaber
                         </div>
+                        <select>
+                          <option selected>Filter</option>
+                          <option>Green</option>
+                          <option>Red</option>
+                        </select>
+                      </label>
                     </div>
                 </div>
               </label>
             </div>
         </div>
+    </div>
+	<ion-content class="has-subheader dishtop">
+    	
 		<div class="full_back suggest">
 			<div class="row">
           		<div class="col col-33">

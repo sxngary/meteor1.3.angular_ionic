@@ -119,10 +119,10 @@ ReviewCtrl.$inject = ['$state', '$ionicHistory', '$ionicLoading'];
 
 function getDimension(){
 	imgWidth = $(window).width();
-	windowHeight = $(window).height();
-	headerHeight = $(".rev-header").height();
-	btnHeight = $(".round-btn").outerHeight();
-	tabsHeight = $(".rev-tabs").height();
-	imgHeight = parseInt(windowHeight) - (parseInt(headerHeight) + parseInt(btnHeight) + parseInt(tabsHeight));
-	return { width: imgWidth, height: imgHeight };
+	//windowHeight = $(window).height();
+	//headerHeight = $(".rev-header").height();
+	//btnHeight = $(".round-btn").outerHeight();
+	//tabsHeight = $(".rev-tabs").height();
+	//imgHeight = parseInt(windowHeight) - (parseInt(headerHeight) + parseInt(btnHeight) + parseInt(tabsHeight));
+	return { width: imgWidth, height: imgWidth };
 }
