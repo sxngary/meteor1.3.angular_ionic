@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { ServiceConfiguration } from 'meteor/service-configuration'
+import { Dishes, Restaurants } from '../lib/collections';
 
 Meteor.startup(function() {
 	//Configuration settings for facebook login
@@ -12,6 +13,10 @@ Meteor.startup(function() {
 	    appId: '1699875387003760',
 	    secret: '86f1da6750162686eaff73f0831cd44b'
 	});
+
+    WebApp.connectHandlers.use(function(req, res, next) {
+	    res.setHeader("Access-Control-Allow-Origin", "*");
+  	});
 
 	//include node modules here.
 	fs = Npm.require('fs');
@@ -68,4 +73,45 @@ Meteor.startup(function() {
 	  	});
 	});
 
+	//api to search for dishes
+	Picker.route('/api/search', function(params, req, res, next) {
+		if(params.query.by && params.query.q && params.query.lat){
+			searchFrom = params.query.by;
+			searchText = params.query.q;
+			if(searchFrom == 'restaurant'){
+				//data = Restaurants.find({'name':{ $regex: searchText, $options: 'i' }, name:1}).fetch();
+				data = Dishes.aggregate([
+				    { "$geoNear": {
+				        "near": {
+				            "type": "Point",
+				            "coordinates": [ Number(params.query.lng), Number(params.query.lat) ]
+				        }, 
+				        "maxDistance": 30 * 1609.34,
+				        "query": {'restaurant.name':{ $regex: searchText, $options: 'i' }, 'restaurant.name': 1},
+				        "spherical": true,
+				        "distanceField": "distance",
+				        "distanceMultiplier": 0.000621371
+				    }}
+				]);
+			}else{
+				//data = Dishes.find({'name':{ $regex: searchText, $options: 'i' }, name:1}).fetch();
+				data = Dishes.aggregate([
+				    { "$geoNear": {
+				        "near": {
+				            "type": "Point",
+				            "coordinates": [ Number(params.query.lng), Number(params.query.lat) ]
+				        }, 
+				        "maxDistance": 30 * 1609.34,
+				        "query": {name:{ $regex: searchText, $options: 'i' }, name: 1},
+				        "spherical": true,
+				        "distanceField": "distance",
+				        "distanceMultiplier": 0.000621371
+				    }}
+				]);
+			}
+			res.end(JSON.stringify({result: true, items: data}));
+		}else{
+			res.end(JSON.stringify({result: true, items: []}));
+		}
+	});
 });

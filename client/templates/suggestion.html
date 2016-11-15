@@ -2,7 +2,6 @@
 	<ion-header-bar align-title="left" class="bar-positive">
 		<div class="bar bar-header bar-light head_bar">
       <div class="back_arrrow">
-        <!-- <span class="sp2"><a ui-sref="login"><i class="ion-chevron-left"></i></a></span> -->	
         <h2>Suggested for you</h2>
       </div>
 		</div>
@@ -10,191 +9,74 @@
 	<ion-content>
 	
   <div class="full_back suggest">
- 
-    <div class="row">
-    	<div class="col col-33">
-        <div class="div1" ng-click="suggestion.redirectToDish()">
-          <img src="/d1.png"/>
-          <div class="rating-value">
-          	<span>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/half-star.png" alt=""/>
-              <img src="/empty-star.png" alt=""/>
-            </span>
-            <span class="pull-right">
-            	4mi
-            </span>
-      	  </div>
-          <p class="dish-name">Tasty chicken tacos...</p>
-          <p class="resturant-name">KFC Restaurant</p>
+    <div ng-if="suggestion.suggestions.length">
+      <div class="row" ng-repeat="dish in suggestion.suggestions" ng-if="$index % 3 == 0">
+      	<div class="col col-33" ng-if="suggestion.suggestions[$index]">
+          <div class="div1" ng-click="suggestion.redirectToDish()">
+            <img ng-if="suggestion.suggestions[$index].videoThumb" src="{{suggestion.rootUrl}}/{{suggestion.suggestions[$index].videoThumb}}"/>
+            <img ng-if="suggestion.suggestions[$index].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index].imageId}}.jpeg"/>
+            <div class="rating-value">
+            	<span >
+                <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index].rating) track by $index" src="/fill-star.png" alt=""/>
+                <img ng-if="suggestion.checkHalfStar(suggestion.suggestions[$index].rating)" src="/half-star.png" alt=""/>
+                <img ng-repeat="i in suggestion.printEmptyStar(suggestion.suggestions[$index].rating) track by $index" src="/empty-star.png" alt=""/>
+              </span>
+              <span class="pull-right">
+              	{{suggestion.uptoDecimal(suggestion.suggestions[$index].distance)}}mi
+              </span>
+        	  </div>
+            <p class="dish-name">{{suggestion.suggestions[$index].name}}</p>
+            <p class="resturant-name">{{suggestion.suggestions[$index].restaurant.name}}</p>
+          </div>
         </div>
-      </div>
-      <div class="col col-33">
-        <div class="div1" ng-click="suggestion.redirectToDish()">
-          <img src="/d3.png"/>
-          <div class="rating-value">
-          	<span>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/half-star.png" alt=""/>
-              <img src="/empty-star.png" alt=""/>
-            </span>
-            <span class="pull-right">
-             	2mi
-            </span>
-      	  </div>
-          <p class="dish-name">Tasty chicken tacos...</p>
-          <p class="resturant-name">KFC Restaurant</p>
+        <div class="col col-33" ng-if="suggestion.suggestions[$index +1]">
+          <div class="div1" ng-click="suggestion.redirectToDish()">
+            <img ng-if="suggestion.suggestions[$index+1].videoThumb" src="{{suggestion.rootUrl}}/{{suggestion.suggestions[$index+1].videoThumb}}"/>
+            <img ng-if="suggestion.suggestions[$index+1].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+1].imageId}}.jpeg"/>
+            <div class="rating-value">
+            	<span>
+                <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index+1].rating) track by $index" src="/fill-star.png" alt=""/>
+                <img ng-if="suggestion.checkHalfStar(suggestion.suggestions[$index+1].rating)" src="/half-star.png" alt=""/>
+                <img ng-repeat="i in suggestion.printEmptyStar(suggestion.suggestions[$index+1].rating) track by $index" src="/empty-star.png" alt=""/>                
+              </span>
+              <span class="pull-right">
+               	{{suggestion.uptoDecimal(suggestion.suggestions[$index+1].distance)}}mi
+              </span>
+        	  </div>
+            <p class="dish-name">{{suggestion.suggestions[$index+1].name}}</p>
+            <p class="resturant-name">{{suggestion.suggestions[$index+1].restaurant.name}}</p>
+          </div>
         </div>
-      </div>
-      <div class="col col-33">
-      	<div class="div1" ng-click="suggestion.redirectToDish()">
-          <img src="/d1.png"/>
-          <div class="rating-value">
-          	<span>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/half-star.png" alt=""/>
-              <img src="/empty-star.png" alt=""/>
-            </span>
-            <span class="pull-right">
-             	2mi
-            </span>
-      	  </div>
-          <p class="dish-name">Burger with cheddar...</p>
-          <p class="resturant-name">KFC Restaurant</p>
-      	</div>
-      </div>
-		</div>
-  	<div class="row">
-    	<div class="col col-33">
-      	<div class="div1">
-          <img src="/d1.png"/>
-          <div class="rating-value">
-          	<span>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/half-star.png" alt=""/>
-              <img src="/empty-star.png" alt=""/>
-            </span>
-            <span class="pull-right">
-              4mi
-            </span>
-      	  </div>
-          <p class="dish-name">Burger with cheddar...</p>
-          <p class="resturant-name">KFC Restaurant</p>
-      	</div>
-      </div>
-      <div class="col col-33">
-      	<div class="div1">
-          <img src="/d3.png"/>
-          <div class="rating-value">
-          	<span>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/half-star.png" alt=""/>
-              <img src="/empty-star.png" alt=""/>
-            </span>
-            <span class="pull-right">
-            	2mi
-            </span>
-      	  </div>
-          <p class="dish-name">Italian pizza salami</p>
-          <p class="resturant-name">KFC Restaurant</p>
-      	</div>
-    	</div>
-      <div class="col col-33">
-      	<div class="div1">
-          <img src="/d1.png"/>
-          <div class="rating-value">
-          	<span>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/half-star.png" alt=""/>
-              <img src="/empty-star.png" alt=""/>
-            </span>
-            <span class="pull-right">
-           		2mi
-            </span>
-      	  </div>
-          <p class="dish-name">Tasty chicken tacos...</p>
-          <p class="resturant-name">KFC Restaurant</p>
-      	</div>
-    	</div>
-    </div>
-  	<div class="row">
-  		<div class="col col-33">
-  			<div class="div1">
-          <img src="/d1.png"/>
-          <div class="rating-value">
-          	<span>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/half-star.png" alt=""/>
-              <img src="/empty-star.png" alt=""/>
-            </span>
-            <span class="pull-right">
-            	4mi
-            </span>
-      	  </div>
-          <p class="dish-name">Tasty chicken tacos...</p>
-          <p class="resturant-name">KFC Restaurant</p>
-    		</div>
-  		</div>
-      <div class="col col-33">
-        <div class="div1">
-          <img src="/d3.png"/>
-          <div class="rating-value">
-          	<span>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/half-star.png" alt=""/>
-              <img src="/empty-star.png" alt=""/>
-            </span>
-            <span class="pull-right">
-              2mi
-            </span>
-      	  </div>
-          <p class="dish-name">Tasty chicken tacos...</p>
-          <p class="resturant-name">KFC Restaurant</p>
-        </div>
-      </div>
-      <div class="col col-33">
-        <div class="div1">
-          <img src="/d1.png"/>
-          <div class="rating-value">
-          	<span>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/fill-star.png" alt=""/>
-              <img src="/half-star.png" alt=""/>
-              <img src="/empty-star.png" alt=""/>
-            </span>
-            <span class="pull-right">
-            	2mi
-            </span>
+        <div class="col col-33" ng-if="suggestion.suggestions[$index+2]">
+        	<div class="div1" ng-click="suggestion.redirectToDish()">
+            <img ng-if="suggestion.suggestions[$index+2].videoThumb" src="{{suggestion.rootUrl}}/{{suggestion.suggestions[$index+2].videoThumb}}"/>
+            <img ng-if="suggestion.suggestions[$index+2].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+2].imageId}}.jpeg"/>
+            <div class="rating-value">
+            	<span>
+                <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index+2].rating) track by $index" src="/fill-star.png" alt=""/>
+                <img ng-if="suggestion.checkHalfStar(suggestion.suggestions[$index+2].rating)" src="/half-star.png" alt=""/>
+                <img ng-repeat="i in suggestion.printEmptyStar(suggestion.suggestions[$index+2].rating) track by $index" src="/empty-star.png" alt=""/> 
+                <!--<img src="/fill-star.png" alt=""/>
+                <img src="/fill-star.png" alt=""/>
+                <img src="/half-star.png" alt=""/>
+                <img src="/empty-star.png" alt=""/> -->
+              </span>
+              <span class="pull-right">
+               	{{suggestion.uptoDecimal(suggestion.suggestions[$index+2].distance)}}mi
+              </span>
+        	  </div>
+            <p class="dish-name">{{suggestion.suggestions[$index+2].name}}</p>
+            <p class="resturant-name">{{suggestion.suggestions[$index+2].restaurant.name}}</p>
         	</div>
-          <p class="dish-name">Burger with cheddar...</p>
-          <p class="resturant-name">KFC Restaurant</p>
         </div>
+  		</div>
+ 	  </div>
+    <div class="no-suggestion" ng-if="suggestion.suggestions.length == 0">
+      <div class="no-content">
+        <h4>No suggestions currently available</h4>
+        <p>Try the search icon below to search by tags and more</p>
       </div>
-		</div>
- 	   
-      <!-- <div class="no-suggestion">
-        <div class="no-content">
-          <h4>No suggestions currently available</h4>
-          <p>Try the search icon below to search by tags and more</p>
-        </div>
-      </div> -->
     </div>
+  </div>
   </ion-content>
 </ion-view>
