@@ -50,7 +50,7 @@ export default class LocationCtrl extends Controller {
 					var restauData = 
 						{
 				  			name: (restaurant.name ? restaurant.name : ''),
-				  			coordinates: [restaurant.geometry.location.lng(), restaurant.geometry.location.lat()],
+				  			location: { coordinates: [restaurant.geometry.location.lng(), restaurant.geometry.location.lat()], type: "Point" },
 				  			rating: (restaurant.rating ? restaurant.rating : ''),
 				  			address: restaurant.formatted_address,
 				  			city: city,
@@ -63,7 +63,7 @@ export default class LocationCtrl extends Controller {
 	  				this.$state.go('post_review');
   				}else{
   					this.$ionicLoading.show({ template: 'Add restaurant only', noBackdrop: true, duration:2000});
-  					delete rt.restaurantdata;
+  					delete this.rt.restaurantdata;
   				}
   			}
   		}

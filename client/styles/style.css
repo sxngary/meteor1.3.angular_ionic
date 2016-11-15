@@ -155,8 +155,8 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .yellow-star{color:#ffda44}
 .rating-value span i{font-size:16px}
 .outline-star{color:#b7b7b7}
-.rating-value span:first-of-type{float:left;width:75%}
-.rating-value span:last-of-type{float:left;width:25%;font-size:13px;color:#777170;line-height:5px;}
+.rating-value span:first-of-type{float:left;width:70%}
+.rating-value span:last-of-type{float:left;width:30%;font-size:13px;color:#777170;line-height:15px;}
 .rating-value{float:left;width:100%;clear:both}
 .dish-name{color:#777170;font-size:14px;font-weight:500;width:100%;overflow:hidden; text-overflow: ellipsis;white-space: nowrap;margin-bottom:0}
 .resturant-name{color:#777170;font-size:13px;font-weight:300;margin-bottom:0}

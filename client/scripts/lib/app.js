@@ -6,6 +6,7 @@ import 'angular-moment';
 import 'angular-sanitize';
 import 'angular-ui-router';
 import 'ionic-scripts';
+import 'angucomplete-alt';
 import 'angular-validation/dist/angular-validation';
 import 'angular-validation/dist/angular-validation-rule';
 import './angular-validation-schema.min';
@@ -50,7 +51,8 @@ app = Angular.module(App, [
   'validation.schema',
   'vintagejs',
   'ngRateIt',
-  'google.places'
+  'google.places',
+  'angucomplete-alt'
 ]);
 
 //Load modules
