@@ -14,10 +14,6 @@ Meteor.startup(function() {
 	    secret: '86f1da6750162686eaff73f0831cd44b'
 	});
 
-    WebApp.connectHandlers.use(function(req, res, next) {
-	    res.setHeader("Access-Control-Allow-Origin", "*");
-  	});
-
 	//include node modules here.
 	fs = Npm.require('fs');
   	path = Npm.require('path');
@@ -74,7 +70,8 @@ Meteor.startup(function() {
 	});
 
 	//api to search for dishes
-	Picker.route('/api/search', function(params, req, res, next) {
+	/*Picker.route('/search', function(params, req, res, next) {
+		res.setHeader("Access-Control-Allow-Origin", "*");
 		if(params.query.by && params.query.q && params.query.lat){
 			searchFrom = params.query.by;
 			searchText = params.query.q;
@@ -86,7 +83,7 @@ Meteor.startup(function() {
 				            "type": "Point",
 				            "coordinates": [ Number(params.query.lng), Number(params.query.lat) ]
 				        }, 
-				        "maxDistance": 30 * 1609.34,
+				        "maxDistance": 20 * 1609.34,
 				        "query": {'restaurant.name':{ $regex: searchText, $options: 'i' }, 'restaurant.name': 1},
 				        "spherical": true,
 				        "distanceField": "distance",
@@ -101,7 +98,7 @@ Meteor.startup(function() {
 				            "type": "Point",
 				            "coordinates": [ Number(params.query.lng), Number(params.query.lat) ]
 				        }, 
-				        "maxDistance": 30 * 1609.34,
+				        "maxDistance": 20 * 1609.34,
 				        "query": {name:{ $regex: searchText, $options: 'i' }, name: 1},
 				        "spherical": true,
 				        "distanceField": "distance",
@@ -113,5 +110,5 @@ Meteor.startup(function() {
 		}else{
 			res.end(JSON.stringify({result: true, items: []}));
 		}
-	});
+	});*/
 });

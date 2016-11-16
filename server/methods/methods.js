@@ -82,27 +82,37 @@ Meteor.methods({
   	save(data){
   		dish_id = Dishes.insert(data);
   		if(dish_id){
-  			data.restaurant['dishes'] = [{dishId: dish_id}];
-  			data.restaurant['uploadedBy'] = data.uploadedBy;
-  			data.restaurant['offset'] = data.offset;
-  			data.restaurant['createdAt'] = data.createdAt;
-  			return Restaurants.insert(data.restaurant);
+  			checkExistsRe = Restaurants.findOne({placeId: data.restaurant.placeId});
+  			if(checkExistsRe){
+  				return Restaurants.update({_id:checkExistsRe._id}, { $push: { dishes: {dishId: dish_id} } });
+  			}else{
+	  			data.restaurant['dishes'] = [{dishId: dish_id}];
+	  			data.restaurant['uploadedBy'] = data.uploadedBy;
+	  			data.restaurant['offset'] = data.offset;
+	  			data.restaurant['createdAt'] = data.createdAt;
+	  			return Restaurants.insert(data.restaurant);
+  			}
   		}
   	},
   	getSuggestions(lat, lng){
   		var METERS_PER_MILE = 1609.34
 		// return Dishes.find({ 'restaurant.location': { $nearSphere: { $geometry: { type: "Point", coordinates: [ lng, lat ] }, $maxDistance: 10 * METERS_PER_MILE, distanceField: 'distance',  distanceMultiplier: 0.000621371} } }).fetch();
-  		return Dishes.aggregate([
-		    { "$geoNear": {
-		        "near": {
-		            "type": "Point",
-		            "coordinates": [ lng, lat ]
-		        }, 
-		        "maxDistance": 30 * METERS_PER_MILE,
-		        "spherical": true,
-		        "distanceField": "distance",
-		        "distanceMultiplier": 0.000621371
-		    }}
-		]);
+  		checKDishes = Dishes.find().count();
+	  	if(checKDishes){
+	  		return Dishes.aggregate([
+			    { "$geoNear": {
+			        "near": {
+			            "type": "Point",
+			            "coordinates": [ lng, lat ]
+			        }, 
+			        "maxDistance": 20 * METERS_PER_MILE,
+			        "spherical": true,
+			        "distanceField": "distance",
+			        "distanceMultiplier": 0.000621371
+			    }}
+			]);
+  		}else{
+  			return [];
+  		}
   	}
 });

@@ -22,6 +22,7 @@ export default class LocationCtrl extends Controller {
   	}
 
   	dishData(){
+  		console.log(this.rt.restaurantdata);
   		if(this.data){
   			if(this.data.name && this.data.rating && this.rt.restaurantdata){
 	  			var restaurant = this.rt.restaurantdata;
@@ -49,6 +50,7 @@ export default class LocationCtrl extends Controller {
 	  				photo = (restaurant.photos ? restaurant.photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}) : '');
 					var restauData = 
 						{
+				  			placeId: restaurant.place_id,
 				  			name: (restaurant.name ? restaurant.name : ''),
 				  			location: { coordinates: [restaurant.geometry.location.lng(), restaurant.geometry.location.lat()], type: "Point" },
 				  			rating: (restaurant.rating ? restaurant.rating : ''),
