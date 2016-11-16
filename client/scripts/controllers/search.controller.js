@@ -3,8 +3,8 @@ import { Controller } from 'angular-ecmascript/module-helpers';
 import { Dishes } from '../../../lib/collections';
 
 export default class SearchCtrl extends Controller {
-  constructor() {
-    super(...arguments);
+  	constructor() {
+    	super(...arguments);
 
 	  	this.selectList = [
 			{
@@ -16,41 +16,79 @@ export default class SearchCtrl extends Controller {
 			}
 		];
 		this.selectedBy = this.selectList[0];
+		Session.set("searchValue", '');
 		Session.set('searchFrom', 'restaurant');
 		_this = this;
 		navigator.geolocation.getCurrentPosition(
-    	// success callback with current GPS coordinates 
-    	function(position) {
-			Session.set('latlng', {lng: position.coords.longitude, lat: position.coords.latitude});
-		}, 
-		// onError Callback receives a PositionError object
-		function onError(error) {
-		    _this.$ionicLoading.show({ template: error.message, noBackdrop: true, duration:2000});
-			Session.set('suggestions', []);
-		});
+	    	// success callback with current GPS coordinates 
+	    	function(position) {
+				Session.set('latlng', {lng: position.coords.longitude, lat: position.coords.latitude});
+			}, 
+			// onError Callback receives a PositionError object
+			function onError(error) {
+			    _this.$ionicLoading.show({ template: error.message, noBackdrop: true, duration:2000});
+			}
+		);
 
 	  	this.helpers({
-	  		serverUrl(){
-	  			return Meteor.absoluteUrl() + 'api/search';
-	  		}
+	  		searchList(){
+	  			if(Session.get("searchValue")){
+		  			Meteor.subscribe('nearest-locations-data', Session.get('latlng').lng, Session.get('latlng').lat, Session.get("searchValue"), Session.get('searchFrom'));
+				  	return Dishes.find({}).fetch();
+			  	}
+	  		},
+	  		rootUrl(){
+  				return Meteor.absoluteUrl();
+  			}
 	  	});
   	}
-  	selectedData(selected) {
-      	if (selected) {
-        	//console.log(selected);
-      	} else {
-        	//console.log('cleared');
-      	}
-    }
 
     changedValue(){
     	Session.set('searchFrom', this.selectedBy.value);
     }
 
-    remoteUrlRequestFn (str) {
-
-    	return {q: str, by: Session.get('searchFrom'), lat: Session.get('latlng').lat , lng: Session.get('latlng').lng};
+    keyupevt(){
+    	Session.set("searchValue", this.textValue);
     }
+
+    uptoDecimal(value){
+		if(value % 1 != 0){
+			return value.toFixed(1);
+		}else{
+			return value;
+		}
+	}
+
+	getNumber(num) {
+		if(num){
+			if(num % 1 != 0){
+				num = parseInt(num);
+			}
+			return new Array(num); 
+		}
+	}
+
+	checkHalfStar(num){
+		if(num != 5){
+			if(num % 1 != 0){
+				return true;
+			}
+		}
+	}
+
+	printEmptyStar(num){
+		if(num % 1 != 0){			
+			num = parseInt(5 - num);
+		}else{
+			num = 5 - num; 
+		}
+		if(!num){
+			return [];
+		}else{
+			return new Array(num); 
+		}
+	}
+
 }
 
 SearchCtrl.$inject = ['$state', '$ionicLoading'];

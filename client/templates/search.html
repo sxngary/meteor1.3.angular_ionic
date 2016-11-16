@@ -1,230 +1,101 @@
 <ion-view view-title="Search">
 	<ion-header-bar align-title="left" class="bar-positive">
 		<div class="bar bar-header bar-light head_bar">
-        	<div class="back_arrrow">
-            <h2>Search for a dish</h2>
-        	</div>
+    	<div class="back_arrrow">
+        <h2>Search for a dish</h2>
+    	</div>
 		</div>
-
 	</ion-header-bar>
-        <div class="bar bar-subheader serach-ht">
-      <div class="search-bar">
-          <div class="list">
-              <label class="item item-input no-padding search-bg">
-                <div class="row">
-                  <div class="col col-67 search-input">
-                      <img src="/search-icon.png" alt="" class="search-icon" />
-                      <!--<input type="text" id="searchBox" placeholder="Search..."> -->
-                      <angucomplete-alt id="searchBox"
-                        placeholder="Search..."
-                        pause="500"
-                        selected-object="search.selectedData"
-                        remote-url="{{search.serverUrl}}"
-                        remote-url-request-formatter="search.remoteUrlRequestFn"
-                        remote-url-data-field="items"
-                        title-field="name"
-                        minlength="1"
-                        input-class="form-control form-control-small"
-                        match-class="highlight"></angucomplete-alt>
-                    </div>
-                    <div class="col col-33">
-                      <label class="item item-input item-select item-select-rw">
-                        <div class="input-label">
-                          Lightsaber
-                        </div>
-                        <!-- <select>
-                          <option selected>by restaurant</option>
-                          <option>by dish</option>
-                        </select> --> 
-                        <select ng-model="search.selectedBy" ng-change="search.changedValue()" ng-options="select.label for select in search.selectList">           
-                        </select>
-                      </label>
-                    </div>
-                </div>
+
+  <div class="bar bar-subheader serach-ht">
+    <div class="search-bar">
+      <div class="list">
+        <label class="item item-input no-padding search-bg">
+          <div class="row">
+            <div class="col col-67 search-input">
+              <img src="/search-icon.png" alt="" class="search-icon" />
+              <input type="text" id="searchBox" ng-model="search.textValue" placeholder="Search..." ng-keyup="search.keyupevt()" >
+            </div>
+            <div class="col col-33">
+              <label class="item item-input item-select item-select-rw">
+                <div class="input-label">
+                  Lightsaber
+                </div> 
+                <select ng-model="search.selectedBy" ng-change="search.changedValue()" ng-options="select.label for select in search.selectList">           
+                </select>
               </label>
             </div>
-        </div>
+          </div>
+        </label>
+      </div>
     </div>
+  </div>
+
 	<ion-content class="has-subheader dishtop">
-    	
 		<div class="full_back suggest">
-			<div class="row">
-          		<div class="col col-33" ng-click="search.vall()">
-                    <div class="div1">
-                        <img src="/d1.png"/>
-                        <div class="rating-value">
-                        	<span>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/half-star.png" alt=""/>
-                            <img src="/empty-star.png" alt=""/>
-                          </span>
-                           <span class="pull-right">
-                           		4mi
-                           </span>
-                    	</div>
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                    </div>
-          		</div>
-                <div class="col col-33">
-                    <div class="div1">
-                        <img src="/d3.png"/>
-                        <div class="rating-value">
-                        	<span>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/half-star.png" alt=""/>
-                            <img src="/empty-star.png" alt=""/>
-                          </span>
-                           <span class="pull-right">
-                           		2mi
-                           </span>
-                    	</div>
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                    </div>
-                </div>
-                <div class="col col-33">
-                	<div class="div1">
-                        <img src="/d1.png"/>
-                        <div class="rating-value">
-                        	<span>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/half-star.png" alt=""/>
-                            <img src="/empty-star.png" alt=""/>
-                          </span>
-                           <span class="pull-right">
-                           		2mi
-                           </span>
-                    	</div>
-                        <p class="dish-name">Burger with cheddar...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                	</div>
-                </div>
-			</div>
-        	<div class="row">
-            	<div class="col col-33">
-                	<div class="div1">
-                        <img src="/d1.png"/>
-                        <div class="rating-value">
-                        	<span>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/half-star.png" alt=""/>
-                            <img src="/empty-star.png" alt=""/>
-                          </span>
-                           <span class="pull-right">
-                           		4mi
-                           </span>
-                    	</div>
-                        <p class="dish-name">Burger with cheddar...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                	</div>
-              	</div>
-                <div class="col col-33">
-                	<div class="div1">
-                        <img src="/d3.png"/>
-                        <div class="rating-value">
-                        	<span>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/half-star.png" alt=""/>
-                            <img src="/empty-star.png" alt=""/>
-                          </span>
-                           <span class="pull-right">
-                           		2mi
-                           </span>
-                    	</div>
-                        <p class="dish-name">Italian pizza salami</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                	</div>
-              	</div>
-                <div class="col col-33">
-                	<div class="div1">
-                        <img src="/d1.png"/>
-                        <div class="rating-value">
-                        	<span>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/half-star.png" alt=""/>
-                            <img src="/empty-star.png" alt=""/>
-                          </span>
-                           <span class="pull-right">
-                           		2mi
-                           </span>
-                    	</div>
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                	</div>
-              	</div>
-         </div>
-        	<div class="row">
-          		<div class="col col-33">
-          			<div class="div1">
-                        <img src="/d1.png"/>
-                        <div class="rating-value">
-                        	<span>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/half-star.png" alt=""/>
-                            <img src="/empty-star.png" alt=""/>
-                          </span>
-                           <span class="pull-right">
-                           		4mi
-                           </span>
-                    	</div>
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-            		</div>
-          		</div>
-                <div class="col col-33">
-                    <div class="div1">
-                        <img src="/d3.png"/>
-                        <div class="rating-value">
-                        	<span>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/half-star.png" alt=""/>
-                            <img src="/empty-star.png" alt=""/>
-                          </span>
-                           <span class="pull-right">
-                           		2mi
-                           </span>
-                    	</div>
-                        <p class="dish-name">Tasty chicken tacos...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                    </div>
-                </div>
-                <div class="col col-33">
-                    <div class="div1">
-                        <img src="/d1.png"/>
-                        <div class="rating-value">
-                        	<span>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/fill-star.png" alt=""/>
-                            <img src="/half-star.png" alt=""/>
-                            <img src="/empty-star.png" alt=""/>
-                          </span>
-                           <span class="pull-right">
-                           		2mi
-                           </span>
-                    	</div>
-                        <p class="dish-name">Burger with cheddar...</p>
-                        <p class="resturant-name">KFC Restaurant</p>
-                    </div>
-                </div>
-			</div>
-   		</div>
+  		<div ng-if="search.searchList.length">
+      	<div class="row" ng-repeat="result in search.searchList" ng-if="$index % 3 == 0">
+      		<div class="col col-33" ng-if="search.searchList[$index]">
+            <div class="div1">
+              <img ng-if="search.searchList[$index].videoThumb" src="{{search.rootUrl}}/{{search.searchList[$index].videoThumb}}"/>
+              <img ng-if="search.searchList[$index].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index].imageId}}.jpeg"/>
+              <div class="rating-value">
+              	<span>
+                  <img ng-repeat="i in search.getNumber(search.searchList[$index].rating) track by $index" src="/fill-star.png" alt=""/>
+                  <img ng-if="search.checkHalfStar(search.searchList[$index].rating)" src="/half-star.png" alt=""/>
+                  <img ng-repeat="i in search.printEmptyStar(search.searchList[$index].rating) track by $index" src="/empty-star.png" alt=""/>
+                </span>
+                <span class="pull-right">
+                 	{{search.uptoDecimal(search.searchList[$index].distance)}}mi
+                </span>
+            	</div>
+              <p class="dish-name">{{search.searchList[$index].name}}</p>
+              <p class="resturant-name">{{search.searchList[$index].restaurant.name}}</p>
+            </div>
+      		</div>
+          <div class="col col-33" ng-if="search.searchList[$index +1]">
+            <div class="div1">
+              <img ng-if="search.searchList[$index+1].videoThumb" src="{{search.rootUrl}}/{{search.searchList[$index+1].videoThumb}}"/>
+              <img ng-if="search.searchList[$index+1].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+1].imageId}}.jpeg"/>
+              <div class="rating-value">
+              	<span>
+                  <img ng-repeat="i in search.getNumber(search.searchList[$index+1].rating) track by $index" src="/fill-star.png" alt=""/>
+                  <img ng-if="search.checkHalfStar(search.searchList[$index+1].rating)" src="/half-star.png" alt=""/>
+                  <img ng-repeat="i in search.printEmptyStar(search.searchList[$index+1].rating) track by $index" src="/empty-star.png" alt=""/> 
+                </span>
+                <span class="pull-right">
+                	{{search.uptoDecimal(search.searchList[$index+1].distance)}}mi
+                </span>
+            	</div>
+              <p class="dish-name">{{search.searchList[$index+1].name}}</p>
+              <p class="resturant-name">{{search.searchList[$index+1].restaurant.name}}</p>
+            </div>
+          </div>
+          <div class="col col-33" ng-if="search.searchList[$index +2]">
+          	<div class="div1">
+              <img ng-if="search.searchList[$index+2].videoThumb" src="{{search.rootUrl}}/{{search.searchList[$index+2].videoThumb}}"/>
+              <img ng-if="search.searchList[$index+2].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+2].imageId}}.jpeg"/>
+              <div class="rating-value">
+              	<span>
+                  <img ng-repeat="i in search.getNumber(search.searchList[$index+2].rating) track by $index" src="/fill-star.png" alt=""/>
+                  <img ng-if="search.checkHalfStar(search.searchList[$index+2].rating)" src="/half-star.png" alt=""/>
+                  <img ng-repeat="i in search.printEmptyStar(search.searchList[$index+2].rating) track by $index" src="/empty-star.png" alt=""/>
+                </span>
+                <span class="pull-right">
+                 	{{search.uptoDecimal(search.searchList[$index+2].distance)}}mi
+                </span>
+          	  </div>
+              <p class="dish-name">{{search.searchList[$index+2].name}}</p>
+              <p class="resturant-name">{{search.searchList[$index+2].restaurant.name}}</p>
+          	</div>
+          </div>
+  		  </div>
+      </div>
+      <div class="no-suggestion" ng-if="search.searchList.length == 0">
+        <div class="no-content">
+          <h4>No results found!</h4>
+        </div>
+      </div>
+   	</div>
 	</ion-content>
 </ion-view>

@@ -6,7 +6,6 @@ import 'angular-moment';
 import 'angular-sanitize';
 import 'angular-ui-router';
 import 'ionic-scripts';
-import 'angucomplete-alt';
 import 'angular-validation/dist/angular-validation';
 import 'angular-validation/dist/angular-validation-rule';
 import './angular-validation-schema.min';
@@ -34,7 +33,6 @@ import FilterCtrl from '../controllers/filter.controller';
 import LocationCtrl from '../controllers/location.controller';
 import PostReviewCtrl from '../controllers/post_review.controller';
 import ChangePasswordCtrl from '../controllers/change_password.controller';
-//import TagService from '../services/tag.service';
 
 import Routes from '../routes';
 
@@ -51,8 +49,7 @@ app = Angular.module(App, [
   'validation.schema',
   'vintagejs',
   'ngRateIt',
-  'google.places',
-  'angucomplete-alt'
+  'google.places'
 ]);
 
 //Load modules
