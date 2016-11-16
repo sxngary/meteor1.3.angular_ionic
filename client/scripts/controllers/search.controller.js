@@ -1,6 +1,6 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Controller } from 'angular-ecmascript/module-helpers';
-import { Dishes, Restaurants } from '../../../lib/collections';
+import { Dishes } from '../../../lib/collections';
 
 export default class SearchCtrl extends Controller {
   	constructor() {
@@ -91,4 +91,4 @@ export default class SearchCtrl extends Controller {
 
 }
 
-SearchCtrl.$inject = ['$state', '$ionicLoading', '$scope'];
+SearchCtrl.$inject = ['$state', '$ionicLoading'];

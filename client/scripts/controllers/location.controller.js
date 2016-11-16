@@ -22,7 +22,6 @@ export default class LocationCtrl extends Controller {
   	}
 
   	dishData(){
-  		console.log(this.rt.restaurantdata);
   		if(this.data){
   			if(this.data.name && this.data.rating && this.rt.restaurantdata){
 	  			var restaurant = this.rt.restaurantdata;
