@@ -74,7 +74,27 @@ export default class SignupCtrl extends Controller {
                     success: ''
                 }
             });
-	       
+	    
+         //Add custom validation function for Username.
+        this.$validation
+            .setExpression({
+                isUsername: function (value, scope, element, attrs, param) {
+                    if(value){
+                        var re = /^[a-z0-9_-]{5,15}$/;
+                        var nv =  re.test(value);
+                        if(nv){
+                            return true;
+                        }
+                    }
+                }
+            })
+            .setDefaultMsg({
+                isUsername: {
+                    error: "Only lowercase letters and digits",
+                    success: ''
+                }
+            });
+
         this.helpers({
             registerErr(){
                 if(Session.get('registerErr'))
@@ -103,8 +123,9 @@ export default class SignupCtrl extends Controller {
   	}
 
 	handleError(err) {
+        this.$ionicScrollDelegate.scrollTop();
         Session.set('registerErr', err.reason || 'Registration failed');
 	}
 }
 
-SignupCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$state', "$validation", "$ionicLoading"];
+SignupCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$state', "$validation", "$ionicLoading", '$ionicScrollDelegate'];
