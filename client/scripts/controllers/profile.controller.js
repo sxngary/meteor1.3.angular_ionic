@@ -12,7 +12,7 @@ export default class ProfileCtrl extends Controller {
 	    this.halfFirstname = profile.firstname.charAt(0).toUpperCase();
 	    this.firstname = profile.firstname.charAt(0).toUpperCase() + profile.firstname.slice(1).toLowerCase();
 	    this.lastname = profile.lastname.charAt(0).toUpperCase() + profile.lastname.slice(1).toLowerCase();
-	    this.email = this.currentUser && this.currentUser.emails[0].address;
+	    this.email = (profile.bio ? profile.bio : '');
   		this.helpers({
   			reviews(){
   				data =  Dishes.find({uploadedBy: this.currentUser._id}).fetch();
@@ -31,8 +31,37 @@ export default class ProfileCtrl extends Controller {
   				return Meteor.absoluteUrl();
   			}
   		});
-
   	}
+
+    getNumber(num) {
+      if(num){
+        if(num % 1 != 0){
+          num = parseInt(num);
+        }
+        return new Array(num); 
+      }
+    }
+
+    checkHalfStar(num){
+      if(num != 5){
+        if(num % 1 != 0){
+          return true;
+        }
+      }
+    }
+
+    printEmptyStar(num){
+      if(num % 1 != 0){     
+        num = parseInt(5 - num);
+      }else{
+        num = 5 - num; 
+      }
+      if(!num){
+        return [];
+      }else{
+        return new Array(num); 
+      }
+    }
 }
 
 ProfileCtrl.$inject = ['$state'];

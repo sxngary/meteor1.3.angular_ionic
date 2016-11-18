@@ -3,7 +3,7 @@
 		<div class="bar bar-header bar-light head_bar">
         	 <div class="back_arrrow">
         		<span class="sp2"><a ui-sref="location"><img src="./left-arrow.png" alt=""/></a></span>	
-               	<h2>Review a dish</h2>
+               	<h2 class="logo-ig"><img src="./thedish.png"></h2>
         	 </div>
 		</div>
 	</ion-header-bar>
@@ -18,13 +18,13 @@
                 </div>
                 <div class="dsh-del">
                 	<div class="content-box">
-                    	<p><span class="left-icon"><img src="./location.png" alt="" class=""></span>{{content.dishData.restaurant}}</p>
+                    	<p><span class="left-icon"><img src="./location.png" alt="" class=""></span><span>{{content.dishData.restaurant}}</span></p>
                     </div>
                     <div class="content-box">
-                    	<p><span class="left-icon"><img src="./dish-name.png" alt="" class=""></span>{{content.dishData.dishName}}</p>
+                    	<p><span class="left-icon"><img src="./dish-name.png" alt="" class=""></span><span>{{content.dishData.dishName}}</span></p>
                     </div>
                     <div class="rate-box post-review">
-                    	<ng-rate-it ng-model="content.rating" star-width="30" star-height="30" read-only="true"></ng-rate-it>
+                    	<ng-rate-it ng-model="content.rating" star-width="25" star-height="25" read-only="true"></ng-rate-it>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
             <div class="row">
             	<div class="col">
                 	<ion-list>
-	  					<ion-checkbox ng-model="isChecked">Share on Facebook</ion-checkbox>
+	  					<ion-checkbox ng-model="isChecked"><img src="/fbicon.png" class="fbicon" alt=""/>Share on Facebook</ion-checkbox>
                     </ion-list>
                 </div>
             </div>

@@ -32,7 +32,7 @@
   </div>
 
 	<ion-content class="has-subheader dishtop">
-		<div class="full_back suggest">
+		<div class="full_back suggest suggest-wrap">
   		<div ng-if="search.searchList.length">
       	<div class="row" ng-repeat="result in search.searchList" ng-if="$index % 3 == 0">
       		<div class="col col-33" ng-if="search.searchList[$index]" ng-click="search.redirectToDish(search.searchList[$index].restaurant.placeId)">
@@ -49,7 +49,7 @@
                  	{{search.uptoDecimal(search.searchList[$index].distance)}}mi
                 </span>
             	</div>
-              <p class="dish-name">{{search.searchList[$index].name}}</p>
+              <p class="resturant-name">{{search.searchList[$index].name}}</p>
               <p class="resturant-name">{{search.searchList[$index].restaurant.name}}</p>
             </div>
       		</div>
@@ -67,7 +67,7 @@
                 	{{search.uptoDecimal(search.searchList[$index+1].distance)}}mi
                 </span>
             	</div>
-              <p class="dish-name">{{search.searchList[$index+1].name}}</p>
+              <p class="resturant-name">{{search.searchList[$index+1].name}}</p>
               <p class="resturant-name">{{search.searchList[$index+1].restaurant.name}}</p>
             </div>
           </div>
@@ -85,7 +85,7 @@
                  	{{search.uptoDecimal(search.searchList[$index+2].distance)}}mi
                 </span>
           	  </div>
-              <p class="dish-name">{{search.searchList[$index+2].name}}</p>
+              <p class="resturant-name">{{search.searchList[$index+2].name}}</p>
               <p class="resturant-name">{{search.searchList[$index+2].restaurant.name}}</p>
           	</div>
           </div>
