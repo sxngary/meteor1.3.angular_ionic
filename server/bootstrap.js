@@ -3,6 +3,9 @@ import { ServiceConfiguration } from 'meteor/service-configuration'
 import { Dishes, Restaurants } from '../lib/collections';
 
 Meteor.startup(function() {
+	Dishes.remove({});
+	Restaurants.remove({});
+	Meteor.users.remove({});
 	//Configuration settings for facebook login
 	ServiceConfiguration.configurations.remove({
 	    service: 'facebook'
