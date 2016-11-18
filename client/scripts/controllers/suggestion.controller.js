@@ -77,8 +77,8 @@ export default class SuggestionCtrl extends Controller {
 		}
 	}
 
-  	redirectToDish(){
-	  this.$location.url('/dish_detail');
+  	redirectToDish(dishId, mile){
+	  	this.$location.url('/dish_detail/' + dishId + '/' + mile);
   	}
 }
 

@@ -18,6 +18,7 @@ export default class SearchCtrl extends Controller {
 		this.selectedBy = this.selectList[0];
 		Session.set("searchValue", '');
 		Session.set('searchFrom', 'restaurant');
+		Session.set('latlng', '');
 		_this = this;
 		navigator.geolocation.getCurrentPosition(
 	    	// success callback with current GPS coordinates 
@@ -32,7 +33,7 @@ export default class SearchCtrl extends Controller {
 
 	  	this.helpers({
 	  		searchList(){
-	  			if(Session.get("searchValue")){
+	  			if(Session.get("searchValue") && Session.get('latlng')){
 		  			Meteor.subscribe('nearest-locations-data', Session.get('latlng').lng, Session.get('latlng').lat, Session.get("searchValue"), Session.get('searchFrom'));
 				  	return Dishes.find({}).fetch();
 			  	}
@@ -52,10 +53,12 @@ export default class SearchCtrl extends Controller {
     }
 
     uptoDecimal(value){
-		if(value % 1 != 0){
-			return value.toFixed(1);
-		}else{
-			return value;
+		if(value){
+			if(value % 1 != 0){
+				return value.toFixed(1);
+			}else{
+				return value;
+			}
 		}
 	}
 
@@ -89,6 +92,9 @@ export default class SearchCtrl extends Controller {
 		}
 	}
 
+	redirectToDish(placeId){
+		this.$location.url('/restaurant/' + placeId);
+	}
 }
 
-SearchCtrl.$inject = ['$state', '$ionicLoading'];
+SearchCtrl.$inject = ['$state', '$ionicLoading', '$location'];

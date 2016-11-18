@@ -1,13 +1,13 @@
 import { Service } from 'angular-ecmascript/module-helpers';
 
-export default class TagService extends Service {
+export default class ReviewService extends Service {
   constructor() {
     super(...arguments);
 
-    this.templateUrl = 'client/templates/tag_modal.html';
+    this.templateUrl = 'client/templates/review_modal.html';
   }
 
-  showModal(check) {
+  showModal() {
     this.scope = this.$rootScope.$new();
 
     this.$ionicModal.fromTemplateUrl(this.templateUrl, {
@@ -15,11 +15,12 @@ export default class TagService extends Service {
     })
     .then((modal) => {
       this.modal = modal;
-      this.modal.show().then(() => {
+      this.modal.show();
+      /*this.modal.show().then(() => {
         if(check === 'register'){
           this.$state.go('tab.suggestion');
         }
-      });
+      });*/
     });
   }
 
@@ -29,5 +30,5 @@ export default class TagService extends Service {
   }
 }
 
-TagService.$name = 'Tag';
-TagService.$inject = ['$rootScope', '$ionicModal', '$state'];
+ReviewService.$name = 'OtherReview';
+ReviewService.$inject = ['$rootScope', '$ionicModal'];

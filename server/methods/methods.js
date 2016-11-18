@@ -114,5 +114,24 @@ Meteor.methods({
   		}else{
   			return [];
   		}
+  	},
+  	getDish(dishId){
+  		return Dishes.findOne(dishId);
+  	},
+  	dishWithRestaurant(placeId){
+  		return Dishes.find({'restaurant.placeId': placeId}).fetch();
+  	},
+  	saveOtherUserReview(id, data){
+  		checkDish = Dishes.findOne(id);
+  		checkUser = _.where(checkDish.reviews, {userId: Meteor.userId()});
+	  	if(!checkUser.length){
+	  		if(checkDish.reviews){
+	  			return Dishes.update({_id:id}, { $push: { reviews: { userId: Meteor.userId(), rating: data.rating, comment: data.comment} } });
+	  		}else{
+	  			return Dishes.update({_id:id}, { $set: { reviews: [{ userId: Meteor.userId(), rating: data.rating, comment: data.comment}] } });
+	  		}
+  		}else{
+  			return Dishes.update({_id:id , 'reviews.userId': Meteor.userId()}, { $set: {'reviews.$.rating': data.rating, 'reviews.$.comment': data.comment} });
+  		}
   	}
 });

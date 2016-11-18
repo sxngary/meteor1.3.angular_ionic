@@ -77,9 +77,17 @@ class RoutesConfig extends Config {
         }
       })
       .state('dish_detail', {
-        url: '/dish_detail',
+        url: '/dish_detail/:dishId/:mile',
         templateUrl: 'client/templates/dishdetail.html',
         controller: 'DishDetailCtrl as dish',
+        resolve: {
+          user: this.isAuthorized
+        }
+      })
+      .state('restaurant', {
+        url: '/restaurant/:id',
+        templateUrl: 'client/templates/restaurant.html',
+        controller: 'RestaurantCtrl as restaurant',
         resolve: {
           user: this.isAuthorized
         }
