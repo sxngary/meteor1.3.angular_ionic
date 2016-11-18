@@ -4,6 +4,13 @@ export default class LocationCtrl extends Controller {
   	constructor() {
     	super(...arguments);
 
+    	//Calculate image dimension according to screen.
+    	header = $('.bar-positive').outerHeight();
+    	r1 = $('.r-one').outerHeight();
+    	r2 = $('.r-two').outerHeight();
+    	link = $('.r-button').outerHeight();
+    	console.log(r1, r2, link, header);
+
         this.autocompleteOptions = {
             types: ['establishment']
         };

@@ -8,7 +8,7 @@
 	</ion-header-bar>
 	<ion-content>
 	
-  <div class="full_back suggest">
+  <div class="full_back suggest suggest-wrap">
     <div ng-if="suggestion.suggestions.length">
       <div class="row" ng-repeat="dish in suggestion.suggestions" ng-if="$index % 3 == 0">
       	<div class="col col-33" ng-if="suggestion.suggestions[$index]">
@@ -25,7 +25,7 @@
               	{{suggestion.uptoDecimal(suggestion.suggestions[$index].distance)}}mi
               </span>
         	  </div>
-            <p class="dish-name">{{suggestion.suggestions[$index].name}}</p>
+            <p class="resturant-name">{{suggestion.suggestions[$index].name}}</p>
             <p class="resturant-name">{{suggestion.suggestions[$index].restaurant.name}}</p>
           </div>
         </div>
@@ -43,7 +43,7 @@
                	{{suggestion.uptoDecimal(suggestion.suggestions[$index+1].distance)}}mi
               </span>
         	  </div>
-            <p class="dish-name">{{suggestion.suggestions[$index+1].name}}</p>
+            <p class="resturant-name">{{suggestion.suggestions[$index+1].name}}</p>
             <p class="resturant-name">{{suggestion.suggestions[$index+1].restaurant.name}}</p>
           </div>
         </div>
@@ -65,7 +65,7 @@
                	{{suggestion.uptoDecimal(suggestion.suggestions[$index+2].distance)}}mi
               </span>
         	  </div>
-            <p class="dish-name">{{suggestion.suggestions[$index+2].name}}</p>
+            <p class="resturant-name">{{suggestion.suggestions[$index+2].name}}</p>
             <p class="resturant-name">{{suggestion.suggestions[$index+2].restaurant.name}}</p>
         	</div>
         </div>

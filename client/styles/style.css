@@ -158,7 +158,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .rating-value span:first-of-type{float:left;width:70%}
 .rating-value span:last-of-type{float:left;width:30%;font-size:13px;color:#777170;line-height:15px;}
 .rating-value{float:left;width:100%;clear:both}
-.dish-name{color:#777170;font-size:14px;font-weight:500;width:100%;overflow:hidden; text-overflow: ellipsis;white-space: nowrap;margin-bottom:0;line-height:16px}
+.dish-name{color:#e23814;font-size:13px;font-weight:700;width:100%;overflow:hidden; text-overflow: ellipsis;white-space: nowrap;margin-bottom:0;line-height:16px}
 .resturant-name{color:#777170;font-size:13px;font-weight:300;margin-bottom:0;  overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -195,15 +195,16 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
        -moz-appearance: none;
             appearance: none;
 }
-.user-img img{height:35px;width:35px;border-radius:50%}
+.user-img img{height:45px;width:45px;border-radius:50%}
 .user-rate{float:left;width:100%;}
 .user-rate > span{float:left;width:40%}
 .user-rate .icon{float:left;margin-right:2px;font-size:16px}
 .user-rate .icon.ion-ios-star-outline{color:#bfbfbf}
 .user-rate .icon.ion-ios-star{color:#ffda44}
-.user-rate > .user-name{float:left;width:60%}
+.user-rate > .user-name{float:left;width:100%}
+.user-name > .user-title{margin-top: 5px}
 .user-name span{font-size:16px;color:#777170!important;font-weight:300}
-.user-name > span{width:75%;float:left}
+.user-name > span{width:75%;float:left;text-align: left!important}
 .user-name > .user-img{width:25%;float:left;margin-top:-5px}
 .post-date {color: #bbb7b6;font-size: 15px;margin:0}
 .feed > .row{margin-bottom:10px}
@@ -211,21 +212,22 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .fill-content p{margin:0;color:#a94442}
 .htl-name{width:60%;float:left;padding:5px}
 .htl-rates{width:40%;float:left;padding:5px}
-.resturant-detail h3{color:#e23814;font-size:27px;margin-bottom:-5px;font-weight:500}
-.resturant-detail p{padding-left:30px;color:#777170;font-size:16px;margin-bottom:0;float:left;width:100%}
+.resturant-detail h3{overflow: hidden;text-overflow: ellipsis;white-space: nowrap; width: 100%;margin-left:-2px;color:#000;font-size:27px;margin-bottom:-5px;font-weight:700}
+.resturant-detail p{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;text-align: justify;margin-left:-5px;color:#777170;font-size:16px;margin-bottom:0;float:left;width:100%}
 .resturant-detail h3 span{margin-right:18px}
 .resturant-detail h3 span i{color:#777170}
 .resturant-rate .ion-ios-star{color:#ffda44;font-size:22px}
 .resturant-rate .ion-ios-star-outline{color:#bdbdbd;font-size:22px}
-.user-image{float:left;width:30%}
+.user-image{float:left;width:30%;height: 90px;width:90px;margin-top:8px;}
+.user-image img{border-radius:50%;height:100%;width:100%;border:1px solid #ddd;}
 .user-detail {float:left;width:33%;text-align:center;}
-.user-detail h3{color:#777170;font-weight:300;font-size:33px}
+.user-detail h3{color:#777170;font-weight:300;font-size:33px;margin:0;}
 .user-detail p{color:#9c9998;font-weight:500;font-size:18px}
 .user-name h5{color:#777170;font-size:14px;margin:0;font-weight:500}
 .user-del p{color:#9c9998;font-size:14px;margin:0}
-.your-post{margin:0;color:#777170;font-size:18px;text-transform:uppercase}
+.your-post{margin:0;color:#777170;font-size:16px;text-transform:uppercase}
 
-.edit-btn img{height:auto;width:auto}
+.edit-btn img{height:20px;width:20px;}
 .edit-btn{background-color:#fff}
 .has-footer {
     bottom: 75px;
@@ -265,23 +267,23 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .fb_btn img{width:8px;height:15px}
 .fb_btn span{vertical-align:middle;margin-right:7px}
 .star-img {
-    margin-bottom: -5px;
-    margin-top: -2px;
+    margin-bottom: -8px;
+    margin-top: -3px;
 }
 .star-img > img {width: 25px;}
 .read-more{text-align:left!important}
 .read-more a{color:#E23814;text-decoration:none;}
 .user-profile .row{display:block;clear:both}
-.content-wrap{float:left;width:70%}
-.user-profile{background-color:#f9f9f9}
-.edit-btn{border-radius:40px;color:#e23814!important;font-size:22px;text-transform:uppercase;padding-top:4px}
+.content-wrap{float:left;width:70%;margin-top: 10px;}
+.user-profile{background-color:#f9f9f9;float: left;width: 100%}
+.edit-btn{height: 37px;line-height: 30px;min-height:auto;margin:0 auto;float:none;display: inline-block;border-radius:40px;color:#e23814!important;font-size:16px;text-transform:uppercase;padding-top:4px}
 .edit-btn span{margin-right: 15px;vertical-align: middle;}
 .validation-invalid {
     color: #3a0900;
     font-size: 14px;
 }
 .tabs .tab-item.active{background:#e23814;}
-.bttn-wrap{clear:both;padding-left:3px}
+.bttn-wrap{clear:both;padding-left:3px;text-align: center;}
 .tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated{border:none 0 transparent!important;margin-top:3px!important;}
 .has-tabs, .bar-footer.has-tabs{bottom:60px}
 
@@ -347,7 +349,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .play-video{position:relative;text-align:center}
 .play-video a{display:inline-block;left:0;right:0;text-align:center;top:40%;position:absolute;width:50px;height:50px;margin:0 auto;float:none}
 .rate-box .ngrateit-star{
-  background-size: 30px;
+  background-size: 25px;
 }
 .pac-container:after{display:none !important;}
 .left-icon img { width: auto; height: auto;}
@@ -377,6 +379,8 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .next-bar h2{float:left;width:73%;}
 .change-pass img{width: 28px!important}
 .mobi-50{float: left;width: 50%}
+.mobi-50-dish{float: left;width: 70%}
+.mobi-50-rates{float: left;width: 30%}
 .icn-wrap{display: table;height: 55px;text-align: center;
     vertical-align: middle;
     width: 100%;}
@@ -412,10 +416,30 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .feed .div1 > .row{padding:0}
 .resturant-detail {
     float: left;
-    margin-bottom: 15px;
     width: 100%;
 }
 .dish-slide, .profile-posts{height:auto}
+.star-wrap{margin-top:-5px!important;padding: 0 5px}
+.user-name{margin-top:10px;}
+.user-profile .row{clear: both;display: block;float: left;width: 100%;margin-bottom: 3px}
+.image-box{padding: 0;}
+.image-box > img{border-bottom: 1px solid #ddd}
+.image-box p{padding: 0 5px}
+.dish-title{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100%;text-align: justify;margin:-10px 0 0 -7px;font-size: 23px;font-weight:bold;color:#e23814;}
+.locatio-pin{margin-right:5px;}
+.marker-wrap{text-align: right!important;}
+.resturant-detail .next-btn{margin:5px auto 0;display: inline-block;width: 100px;padding: 4px 0;font-size: 14px;text-transform: capitalize;}
+.res-nam{font-weight: 700;font-size:13px;margin: 0;width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.suggest-wrap .resturant-name, .profile-posts .resturant-name{font-size:14px;}
+.profile-posts .star-img{margin-bottom: 0}
+.content-box{float: left;width: 100%;clear: both;margin-bottom: 5px}
+.content-box > p > span{display: inline-block;float:left;width: 24px}
+.content-box > p > span:last-of-type{line-height: 14px;width:75%}
+.reviews-final .rate-box{text-align: left;} 
+.fbicon{max-width:100%; height:18px;width:10px;vertical-align: middle;margin-right:10px;margin-top: -5px}
+.reviews-final .checkbox-icon{margin-top:-2px;}
+.logo-ig img{width: auto;max-width: auto;margin-top: 2px}
+
 /*---------media-------*/
 @media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx){
   .bar{background-size:100% 0px}
@@ -429,7 +453,6 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
   .logo {height: 125px;width:165px}
   .resturant-detail h3{font-size:22px}
   .feed .resturant-name{max-height:22px;overflow:hidden}
-  .edit-btn{font-size:18px}
   .reviews-final .dsh-img{height: 154px;width: 50%;}
 }
 @media(max-width:420px){
@@ -449,30 +472,29 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 
     .star-img > img {width: 14px;}
    .user-rate .user-name{margin-top:5px}
-   .user-name > span{text-align:right!important}
-   .user-name > .user-img{width:15%;}
+
+   .user-name > .user-img{width:20%;}
+   .edit-btn{font-size: 13px;height: 32px;line-height: 22px;min-height: auto;}
+    .rating-value span{width:100%!important;text-align:left!important}
   }
 @media(max-width:360px)
 {
   .feed .resturant-name{max-height:16px;}
   .create{padding-left:5px;font-size:14px;}
   .login{padding-right:5px;font-size:16px;} 
-  .rating-value span{width:100%!important;text-align:left!important}
+ 
   .resturant-name{font-size:12px}
   .back_arrrow h2{font-size:18px}
   .logo{margin:20px auto}
   .user-name h5{font-size:18px}
   .user-del p{font-size:14px}
   .login > span{padding:15px 45px}
-  .post-date, .read-more{font-size:12px;margin-top:-5px}
+  .read-more{font-size:12px;margin-top:-5px}
   .resturant-name{line-height:15px; max-height: 30px;}
-  .star-img {margin-top: 0;}
   .edit-btn, .user-detail h3{margin:0!important}
   .reviews-final .dsh-img{height: 154px;width: 50%;}
   .resturant-detail h3{font-size:18px}
-  .resturant-detail p{margin-left:0px;}
   .htl-name p{font-size:13px;  margin-left: 26px;}
-
 
 }
 @media(max-width:320px){
@@ -490,10 +512,10 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
   .sp1 i.icon {font-size: 20px;}
   .slider-pager{bottom:110px !important;}
   .star-img > img {width: 13px;}
-  .edit-btn{fotn-size:15px;height:35px;line-height:35px}
-  .edit-btn img{height:20px;width:20px}
+  
+  .edit-btn img{height:15px;width:15px}
   .fb_btn{font-size:14px!important;}
-  .user-name > .user-img{width:17%}
+  .user-name > .user-img{width:20%}
   .fb_btn img {height: 14px; width: 10px;}
   .reviews-final .dsh-img{height: 154px;width: 50%;}
 }

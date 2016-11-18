@@ -3,8 +3,7 @@
 	    <div class="bar bar-header bar-light head_bar">
 		    <div class="back_arrrow next-bar">
 		    	<span class="sp2"><a ui-sref="filter"><img src="./left-arrow.png" alt=""/></a></span>	
-		    	<h2>Review a dish</h2>
-          <span class="nxt"><a href="javascript:void(0)" ng-click="location.dishData()">Next</a></span>
+		    	<h2 class="logo-ig"><img src="./thedish.png"></h2>
 		    </div>
 	    </div>
     </ion-header-bar>
@@ -17,7 +16,7 @@
               <img id="clickedImage" src="{{location.videoImage}}" alt=""/>
               <a href="javascript:void(0)"><img src="./play.png" alt=""/></a>
             </div>
-            <div class="row">
+            <div class="row r-one">
             	<div class="col">
                 	<div class="review-form">
                         <div class="list list_item">
@@ -43,14 +42,14 @@
                    </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row r-two">
             	<div class="col">
                 	<div class="rate-box">
-                    	<ng-rate-it ng-model="location.data.rating" step="1" star-width="30" star-height="30"></ng-rate-it>
+                    	<ng-rate-it ng-model="location.data.rating" step="1" star-width="25" star-height="25"></ng-rate-it>
                     </div>
                 </div>
             </div>
-           <!-- <a href="javascript:void(0)" class="next-btn" ng-click="location.dishData(data, rt)">Next</a> -->
+           <a href="javascript:void(0)" class="next-btn r-button" ng-click="location.dishData(data, rt)">Next</a>
    		</div>
        
 	</ion-content>

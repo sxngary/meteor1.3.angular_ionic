@@ -27,7 +27,7 @@
                     </div>
                     
                     <div class="bttn-wrap">
-                        <a class="button button-block button-light edit-btn" href="/settings">
+                        <a class="button button-light edit-btn" href="/settings">
                             <span><img src="/edit.png" alt=""/></span>
                             Edit Profile
                         </a>
@@ -39,11 +39,9 @@
             <div class="row">
               <div class="col user-del">
                   <div class="user-name">
-                      <h5>{{profile.firstname}} {{profile.lastname}}</h5>
-                        
-                    </div>
-                    <p>{{profile.email}}</p>
-                    <p>{{profile.profile.zip_code}}</p>
+                    <h5>{{profile.firstname}} {{profile.lastname}}</h5>
+                  </div>
+                    <p ng-if="profile.profile.bio">{{profile.profile.bio}}</p>
                 </div>
             </div>
         </div>
@@ -55,28 +53,47 @@
           </div>
             <div class="row" ng-repeat="product in profile.posts" ng-if="$index % 3 == 0">
               <div class="col col-33" ng-if="profile.posts[$index]">
-                    <div class="div1">
+                    <div class="div1 image-box">
                         <img ng-if="profile.posts[$index].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index].videoThumb}}"/>
                         <img ng-if="profile.posts[$index].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index].imageId}}.jpeg"/>
-                        <p class="dish-name">{{profile.posts[$index].name}}</p>
+                        <!--<img src="/no-image.png"> -->
+                        <div class="star-img star-wrap">
+                          <!-- <img src="/fill-star.png" alt=""/>
+                          <img src="/fill-star.png" alt=""/>
+                          <img src="/fill-star.png" alt=""/>
+                          <img src="/half-star.png" alt=""/>
+                          <img src="/empty-star.png" alt=""/> -->
+                          <img ng-repeat="i in profile.getNumber(profile.posts[$index].rating) track by $index" src="/fill-star.png" alt=""/>
+                          <img ng-if="profile.checkHalfStar(profile.posts[$index].rating)" src="/half-star.png" alt=""/>
+                          <img ng-repeat="i in profile.printEmptyStar(profile.posts[$index].rating) track by $index" src="/empty-star.png" alt=""/>
+                        </div>
+                        <p class="resturant-name">{{profile.posts[$index].name}}</p>
                         <p class="resturant-name">{{profile.posts[$index].restaurant.name}}</p>
                     </div>
               </div>
               <div class="col col-33" ng-if="profile.posts[$index + 1]">
-                  <div class="div1">
+                  <div class="div1 image-box">
                       <img ng-if="profile.posts[$index+1].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index+1].videoThumb}}"/>
                       <img ng-if="profile.posts[$index+1].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+1].imageId}}.jpeg"/>
-                      
-                      <p class="dish-name">{{profile.posts[$index+1].name}}</p>
+                      <div class="star-img star-wrap">
+                        <img ng-repeat="i in profile.getNumber(profile.posts[$index+1].rating) track by $index" src="/fill-star.png" alt=""/>
+                        <img ng-if="profile.checkHalfStar(profile.posts[$index+1].rating)" src="/half-star.png" alt=""/>
+                        <img ng-repeat="i in profile.printEmptyStar(profile.posts[$index+1].rating) track by $index" src="/empty-star.png" alt=""/>
+                      </div>
+                      <p class="resturant-name">{{profile.posts[$index+1].name}}</p>
                       <p class="resturant-name">{{profile.posts[$index+1].restaurant.name}}</p>
                   </div>
               </div>
               <div class="col col-33" ng-if="profile.posts[$index+ 2]">
-                <div class="div1">
+                <div class="div1 image-box">
                       <img ng-if="profile.posts[$index+2].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index+2].videoThumb}}"/>
                       <img ng-if="profile.posts[$index+2].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+ 2].imageId}}.jpeg"/>
-                      
-                      <p class="dish-name">{{profile.posts[$index + 2].name}}</p>
+                      <div class="star-img star-wrap">
+                        <img ng-repeat="i in profile.getNumber(profile.posts[$index+2].rating) track by $index" src="/fill-star.png" alt=""/>
+                        <img ng-if="profile.checkHalfStar(profile.posts[$index+2].rating)" src="/half-star.png" alt=""/>
+                        <img ng-repeat="i in profile.printEmptyStar(profile.posts[$index+2].rating) track by $index" src="/empty-star.png" alt=""/>
+                      </div>
+                      <p class="resturant-name">{{profile.posts[$index + 2].name}}</p>
                       <p class="resturant-name">{{profile.posts[$index + 2].restaurant.name}}</p>
                 </div>
               </div>
