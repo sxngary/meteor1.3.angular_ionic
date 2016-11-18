@@ -1,10 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Dishes } from '../lib/collections';
 
+//Publish user posts.
 Meteor.publish('dishes', function() {
-  	return Dishes.find({uploadedBy: this.userId},{ sort: { createdAt: 1 } });
+  	return Dishes.find({uploadedBy: this.userId},{ sort: { createdAt: -1 } });
 });
 
+//Publish nearest dishes and restairant based data for user.
 Meteor.publish('nearest-locations-data', function (longitude, latitude, searchText, searchFrom ) {
   	var parts = searchText.trim().split(/[ \-\:]+/);
 	exp = new RegExp("(" + parts.join('|') + ")", "ig");

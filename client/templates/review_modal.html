@@ -1,0 +1,36 @@
+<ion-modal-view ng-controller="OtherReviewCtrl as other">
+	<ion-header-bar class="bar bar-header bar-positive pop_bar">
+	  	<div class="bar bar-header bar-light head_bar">
+        	 <div class="back_arrrow">
+               	<h2>Add review</h2>
+        	 </div>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+	  	<div class="full_back suggest reviews">
+            <div class="row">
+            	<div class="col">
+                	<div class="review-form">
+                        <div class="list list_item">
+                          <label class="item-input item-floating-label">
+                          	<span class="icon-top"><img src="/comments.png" alt="" class=""></span>
+                            <span class="icon-wrap">
+                                <textarea ng-model="other.data.comment" placeholder="Comments"></textarea>
+                            </span>
+                          </label>
+                       </div>
+                   </div>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col">
+                	<div class="rate-box">
+                    	<ng-rate-it ng-model="other.data.rating" step="1" star-width="30" star-height="30"></ng-rate-it>
+                    </div>
+                </div>
+            </div>
+           <a href="javascript:void(0)" class="next-btn" ng-click="other.saveReview()">Next</a>
+           <a href="javascript:void(0)" class="next-btn" ng-click="other.closeTagModal()">Close</a>
+   		</div>
+	</ion-content>
+</ion-modal-view>

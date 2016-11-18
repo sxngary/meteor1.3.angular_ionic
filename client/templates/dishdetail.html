@@ -2,31 +2,35 @@
 	<ion-header-bar align-title="left" class="bar-positive">
 		<div class="bar bar-header bar-light head_bar">
         	 <div class="back_arrrow">
-        		<span class="sp2"><a ui-sref="tab.suggestion"><img src="./left-arrow.png" alt=""/></a></span>	
-               	<h2>Tasty chicken tacos with cheese</h2>
+        		<span class="sp2"><a ui-sref="tab.suggestion"><img src="/left-arrow.png" alt=""/></a></span>	
+               	<h2>{{dish.dishDetail.name}}</h2>
         	 </div>
 		</div>
 	</ion-header-bar>
 	<ion-content>
 		<div class="full_back suggest feed">
         	<div class="dish-image">
-            	<img src="./dish-view.png" alt="" />
+            	<img ng-if="dish.dishDetail.videoThumb" src="{{dish.rootUrl}}/{{dish.dishDetail.videoThumb}}"/>
+                <img ng-if="dish.dishDetail.imageId" src="{{dish.rootUrl}}/uploads/dishes/{{dish.dishDetail.imageId}}.jpeg"/>
             </div>
             <div class="resturant-detail">
             	<div class="row">
                 	<div class="mobi-50">
-                    	<h3><span class="locatio-pin"><i class="icon ion-location"></i></span>KFC Restaurant</h3>
-                        <p>2mi</p>
+                    	<h3><span class="locatio-pin"><i class="icon ion-location"></i></span>{{dish.dishDetail.restaurant.name}}</h3>
+                        <p>{{dish.miles}}mi</p>
                     </div>
                     <div class="mobi-50">
                     	<div class="resturant-rate text-right">
                         	<span>
                                 <span class="star-img">
-                                    <img src="/fill-star.png" alt=""/>
+                                    <!-- <img src="/fill-star.png" alt=""/>
                                     <img src="/fill-star.png" alt=""/>
                                     <img src="/fill-star.png" alt=""/>
                                     <img src="/half-star.png" alt=""/>
-                                    <img src="/empty-star.png" alt=""/>
+                                    <img src="/empty-star.png" alt=""/> -->
+                                    <img ng-repeat="i in dish.getNumber(dish.dishDetail.restaurant.rating) track by $index" src="/fill-star.png" alt=""/>
+                                    <img ng-if="dish.checkHalfStar(dish.dishDetail.restaurant.rating)" src="/half-star.png" alt=""/>
+                                    <img ng-repeat="i in dish.printEmptyStar(dish.dishDetail.restaurant.rating) track by $index" src="/empty-star.png" alt=""/>
                                 </span>
                            </span>
                         </div>
@@ -34,8 +38,9 @@
                 </div>
                 <div class="row">
                 	<div class="col">
-                    	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                    	<p>{{dish.dishDetail.restaurant.address}}</p>
                     </div>
+                    <a href="javascript:void(0);" ng-click="dish.addReview()">Add review to this Dish</a>
                 </div>
             </div>
 			<div class="row">
@@ -43,22 +48,22 @@
                 	<div class="row">
                     	<div class="col col-33">
                         	<div class="side-image-wrap">
-                            	<img src="./d1.png" alt=""/>
+                            	<img src="/d1.png" alt=""/>
                         	</div>
                              <span class="star-img">
-                                    <img src="/fill-star.png" alt=""/>
-                                    <img src="/fill-star.png" alt=""/>
-                                    <img src="/fill-star.png" alt=""/>
-                                    <img src="/half-star.png" alt=""/>
-                                    <img src="/empty-star.png" alt=""/>
-                               </span>
+                                <img src="/fill-star.png" alt=""/>
+                                <img src="/fill-star.png" alt=""/>
+                                <img src="/fill-star.png" alt=""/>
+                                <img src="/half-star.png" alt=""/>
+                                <img src="/empty-star.png" alt=""/>
+                           </span>
                     	</div>
                     	<div class="col col-67">
                         	<div class="user-rate">
                                
                                <span class="pull-right user-name">
                                     <span>Z. Ibrahimović</span>
-                                    <span class="user-img"><img src="./user1.png" alt=""/></span>
+                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
                                </span>
                         	</div>
                             <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>
@@ -73,7 +78,7 @@
                 	<div class="row">
                     	<div class="col col-33">
                         	<div class="side-image-wrap">
-                            	<img src="./d1.png" alt=""/>
+                            	<img src="/d1.png" alt=""/>
                         	</div>
                             <span class="star-img">
                                 <img src="/fill-star.png" alt=""/>
@@ -87,7 +92,7 @@
                         	<div class="user-rate">
                                <span class="pull-right user-name">
                                     <span>Z. Ibrahimović</span>
-                                    <span class="user-img"><img src="./user1.png" alt=""/></span>
+                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
                                </span>
                         	</div>
                             <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>
@@ -102,7 +107,7 @@
                 	<div class="row">
                     	<div class="col col-33">
                         	<div class="side-image-wrap">
-                            	<img src="./d1.png" alt=""/>
+                            	<img src="/d1.png" alt=""/>
                         	</div>
                             <span class="star-img">
                                 <img src="/fill-star.png" alt=""/>
@@ -116,7 +121,7 @@
                         	<div class="user-rate">
                                <span class="pull-right user-name">
                                     <span>Z. Ibrahimović</span>
-                                    <span class="user-img"><img src="./user1.png" alt=""/></span>
+                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
                                </span>
                         	</div>
                             <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>
@@ -131,7 +136,7 @@
                 	<div class="row">
                     	<div class="col col-33">
                         	<div class="side-image-wrap">
-                            	<img src="./d1.png" alt=""/>
+                            	<img src="/d1.png" alt=""/>
                         	</div>
                             <span class="star-img">
                                 <img src="/fill-star.png" alt=""/>
@@ -145,7 +150,7 @@
                         	<div class="user-rate">
                                <span class="pull-right user-name">
                                     <span>Z. Ibrahimović</span>
-                                    <span class="user-img"><img src="./user1.png" alt=""/></span>
+                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
                                </span>
                         	</div>
                             <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>
@@ -160,7 +165,7 @@
                 	<div class="row">
                     	<div class="col col-33">
                         	<div class="side-image-wrap">
-                            	<img src="./d1.png" alt=""/>
+                            	<img src="/d1.png" alt=""/>
                         	</div>
                             <span class="star-img">
                                 <img src="/fill-star.png" alt=""/>
@@ -174,7 +179,7 @@
                         	<div class="user-rate">
                                <span class="pull-right user-name">
                                     <span>Z. Ibrahimović</span>
-                                    <span class="user-img"><img src="./user1.png" alt=""/></span>
+                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
                                </span>
                         	</div>
                             <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>
@@ -189,7 +194,7 @@
                 	<div class="row">
                     	<div class="col col-33">
                         	<div class="side-image-wrap">
-                            	<img src="./d1.png" alt=""/>
+                            	<img src="/d1.png" alt=""/>
                         	</div>
                             <span class="star-img">
                                 <img src="/fill-star.png" alt=""/>
@@ -203,7 +208,7 @@
                         	<div class="user-rate">
                                <span class="pull-right user-name">
                                     <span>Z. Ibrahimović</span>
-                                    <span class="user-img"><img src="./user1.png" alt=""/></span>
+                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
                                </span>
                         	</div>
                             <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>

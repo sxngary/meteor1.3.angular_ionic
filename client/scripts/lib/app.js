@@ -22,7 +22,6 @@ import SignupCtrl from '../controllers/signup.controller';
 import LoginCtrl from '../controllers/login.controller';
 import ForgotCtrl from '../controllers/forgot.controller';
 import SuggestionCtrl from '../controllers/suggestion.controller';
-import TagCtrl from '../controllers/tag.controller';
 import SearchCtrl from '../controllers/search.controller';
 import ReviewCtrl from '../controllers/review.controller';
 import FeedCtrl from '../controllers/feed.controller';
@@ -33,6 +32,9 @@ import FilterCtrl from '../controllers/filter.controller';
 import LocationCtrl from '../controllers/location.controller';
 import PostReviewCtrl from '../controllers/post_review.controller';
 import ChangePasswordCtrl from '../controllers/change_password.controller';
+import RestaurantCtrl from '../controllers/restaurant.controller';
+import OtherReviewCtrl from '../controllers/othereview.controller';
+import ReviewService from '../services/review.service';
 
 import Routes from '../routes';
 
@@ -54,7 +56,6 @@ app = Angular.module(App, [
 
 //Load modules
 new Loader(App)
-  .load(TagCtrl)
   .load(SuggestionCtrl)
   .load(HomeCtrl)
   .load(LoginCtrl)
@@ -69,7 +70,10 @@ new Loader(App)
   .load(FilterCtrl)
   .load(LocationCtrl)
   .load(PostReviewCtrl)
-  .load(ChangePasswordCtrl) //.load(TagService)
+  .load(ChangePasswordCtrl)
+  .load(OtherReviewCtrl) 
+  .load(ReviewService)
+  .load(RestaurantCtrl)
   .load(Routes);
 
   // Using config phase to add Schema's to schemaProvider

@@ -25,7 +25,7 @@ export default class ProfileCtrl extends Controller {
   				return (this.currentUser.profile.following ? this.currentUser.profile.following.length : 0);
   			},
   			posts(){
-  				return Dishes.find({uploadedBy: this.currentUser._id},{ sort: { createdAt: 1 } }).fetch();
+  				return Dishes.find({uploadedBy: this.currentUser._id},{ sort: { createdAt: -1 } }).fetch();
   			},
   			rootUrl(){
   				return Meteor.absoluteUrl();
