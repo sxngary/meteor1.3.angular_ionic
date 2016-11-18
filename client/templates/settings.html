@@ -13,45 +13,47 @@
         <div class="col">
           <div class="center-img">
             <img src="./user_none.png" alt=""/>
-            <p><a href="javascipt:void(0)">Change Photo</a></p>
+            <p><a href="javascript:void(0)">Change Photo</a></p>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <div class="review-form edit-profile">
-            <div class="list list_item switch-notify">
-              <label class="item-input item-floating-label">
-                <span class="icon-top user"><img src="./user.png" alt="" ></span>
-                <span class="icon-wrap">
-                  <input type="text" placeholder="First Name">
-                </span>
-              </label>
-              <label class="item-input item-floating-label">
-                <span class="icon-top user"><img src="./user.png" alt="" ></span>
-                <span class="icon-wrap">
-                  <input type="text" placeholder="Last Name">
-                </span>
-              </label>
-              <label class="item-input item-floating-label">
-                <span class="icon-top user"><img src="./zip.png" alt="" class=""></span>
-                <span class="icon-wrap">
-                  <input type="text" placeholder="Zip Code">
-                </span>
-              </label>
+      <form name="Form" ng-submit="settings.update(Form)">
+        <div class="row">
+          <div class="col">
+            <div class="review-form edit-profile">
+              <div class="list list_item switch-notify">
+                <label class="item-input item-floating-label">
+                  <span class="icon-top user"><img src="./user.png" alt="" ></span>
+                  <span class="icon-wrap">
+                    <input type="text" placeholder="First Name" ng-model="settings.formData.firstname" required-error-message="This field is required!" validator="required, nameValidator">
+                  </span>
+                </label>
+                <label class="item-input item-floating-label">
+                  <span class="icon-top user"><img src="./user.png" alt="" ></span>
+                  <span class="icon-wrap">
+                    <input type="text" placeholder="Last Name" ng-model="settings.formData.lastname" required-error-message="This field is required!" validator="required, nameValidator">
+                  </span>
+                </label>
+                <label class="item-input item-floating-label">
+                  <span class="icon-top user"><img src="./zip.png" alt="" class=""></span>
+                  <span class="icon-wrap">
+                    <input type="text" placeholder="Zip Code" ng-model="settings.formData.zip_code" required-error-message="This field is required!" validator="required, zipValidator=6">
+                  </span>
+                </label>
 
-              <label class="toggle toggle-balanced">
-                <span class="icon-top user"><img src="./notify.png" alt="" class=""></span> 
-                <input type="checkbox">
-                <div class="track">
-                  <div class="handle"></div>
-                </div>
-              </label>
+                <label class="toggle toggle-balanced">
+                  <span class="icon-top user"><img src="./notify.png" alt="" class=""></span> 
+                  <input type="checkbox">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <a href="javascript:void(0)" class="next-btn">Update</a>
+        <a href="javascript:void(0)" class="next-btn" ng-click="settings.update(Form)">Update</a>
+      </form>
     </div>
     <div class="row">
       <div class="col text-center">
@@ -60,7 +62,7 @@
     </div>
     <div class="row">
       <div class="col text-center">
-        <a ng-click="settings.logout()" class="changepass">Logout</a>
+        <a href="javascript:void(0);" ng-click="settings.logout()" class="changepass">Logout</a>
       </div>
     </div>
   </ion-content>  
