@@ -41,9 +41,9 @@
               <img ng-if="search.searchList[$index].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index].imageId}}.jpeg"/>
               <div class="rating-value">
               	<span>
-                  <img ng-repeat="i in search.getNumber(search.searchList[$index].rating) track by $index" src="/fill-star.png" alt=""/>
-                  <img ng-if="search.checkHalfStar(search.searchList[$index].rating)" src="/half-star.png" alt=""/>
-                  <img ng-repeat="i in search.printEmptyStar(search.searchList[$index].rating) track by $index" src="/empty-star.png" alt=""/>
+                  <img ng-repeat="i in search.getNumber(search.searchList[$index].averageReview) track by $index" src="/fill-star.png" alt=""/>
+                  <img ng-if="search.checkHalfStar(search.searchList[$index].averageReview)" src="/half-star.png" alt=""/>
+                  <img ng-repeat="i in search.printEmptyStar(search.searchList[$index].averageReview) track by $index" src="/empty-star.png" alt=""/>
                 </span>
                 <span class="pull-right">
                  	{{search.uptoDecimal(search.searchList[$index].distance)}}mi
@@ -59,9 +59,9 @@
               <img ng-if="search.searchList[$index+1].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+1].imageId}}.jpeg"/>
               <div class="rating-value">
               	<span>
-                  <img ng-repeat="i in search.getNumber(search.searchList[$index+1].rating) track by $index" src="/fill-star.png" alt=""/>
-                  <img ng-if="search.checkHalfStar(search.searchList[$index+1].rating)" src="/half-star.png" alt=""/>
-                  <img ng-repeat="i in search.printEmptyStar(search.searchList[$index+1].rating) track by $index" src="/empty-star.png" alt=""/> 
+                  <img ng-repeat="i in search.getNumber(search.searchList[$index+1].averageReview) track by $index" src="/fill-star.png" alt=""/>
+                  <img ng-if="search.checkHalfStar(search.searchList[$index+1].averageReview)" src="/half-star.png" alt=""/>
+                  <img ng-repeat="i in search.printEmptyStar(search.searchList[$index+1].averageReview) track by $index" src="/empty-star.png" alt=""/> 
                 </span>
                 <span class="pull-right">
                 	{{search.uptoDecimal(search.searchList[$index+1].distance)}}mi
@@ -77,9 +77,9 @@
               <img ng-if="search.searchList[$index+2].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+2].imageId}}.jpeg"/>
               <div class="rating-value">
               	<span>
-                  <img ng-repeat="i in search.getNumber(search.searchList[$index+2].rating) track by $index" src="/fill-star.png" alt=""/>
-                  <img ng-if="search.checkHalfStar(search.searchList[$index+2].rating)" src="/half-star.png" alt=""/>
-                  <img ng-repeat="i in search.printEmptyStar(search.searchList[$index+2].rating) track by $index" src="/empty-star.png" alt=""/>
+                  <img ng-repeat="i in search.getNumber(search.searchList[$index+2].averageReview) track by $index" src="/fill-star.png" alt=""/>
+                  <img ng-if="search.checkHalfStar(search.searchList[$index+2].averageReview)" src="/half-star.png" alt=""/>
+                  <img ng-repeat="i in search.printEmptyStar(search.searchList[$index+2].averageReview) track by $index" src="/empty-star.png" alt=""/>
                 </span>
                 <span class="pull-right">
                  	{{search.uptoDecimal(search.searchList[$index+2].distance)}}mi

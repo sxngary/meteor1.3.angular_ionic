@@ -47,7 +47,7 @@
                 </div>
                 <div class="row">
                     <div class="col text-center">
-                        <a ng-if="dish.dishDetail.uploadedBy != currentUser._id" href="javascript:void(0);" class="next-btn" ng-click="dish.addReview()">Add Review</a>
+                        <a ng-if="dish.dishDetail.uploadedBy != currentUser._id && !dish.reviewGiven(dish.dishDetail.reviews)" href="javascript:void(0);" class="next-btn" ng-click="dish.addReview()">Add Review</a>
                     </div>
                 </div>
             </div>

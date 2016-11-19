@@ -103,7 +103,7 @@ Meteor.methods({
 			    { "$geoNear": {
 			        "near": {
 			            "type": "Point",
-			            "coordinates": [ lng, lat ]
+			            "coordinates": [ Number(lng), Number(lat) ]
 			        }, 
 			        "maxDistance": 20 * METERS_PER_MILE,
 			        "spherical": true,
@@ -126,12 +126,60 @@ Meteor.methods({
   		checkUser = _.where(checkDish.reviews, {userId: Meteor.userId()});
 	  	if(!checkUser.length){
 	  		if(checkDish.reviews){
-	  			return Dishes.update({_id:id}, { $push: { reviews: { userId: Meteor.userId(), rating: data.rating, comment: data.comment} } });
+	  			preReviews = checkDish.reviews;
+	  			updated = Dishes.update({_id:id}, { $push: { reviews: { userId: Meteor.userId(), rating: data.rating, comment: data.comment} } });
 	  		}else{
-	  			return Dishes.update({_id:id}, { $set: { reviews: [{ userId: Meteor.userId(), rating: data.rating, comment: data.comment}] } });
+	  			preReviews = [];
+	  			updated = Dishes.update({_id:id}, { $set: { reviews: [{ userId: Meteor.userId(), rating: data.rating, comment: data.comment}] } });
 	  		}
-  		}else{
-  			return Dishes.update({_id:id , 'reviews.userId': Meteor.userId()}, { $set: {'reviews.$.rating': data.rating, 'reviews.$.comment': data.comment} });
+  			if(updated && preReviews.length){
+  				revSum = Dishes.aggregate([
+  					{ $match: { _id: id } },
+				    { $unwind: "$reviews" },
+				    { $group: {
+				        _id: '$_id', 
+				        sum: { $sum: '$reviews.rating' }
+				    } } 
+				]);
+				if(revSum.length){
+					otherUsersRv = Dishes.findOne(id);
+					totalRv = Number(revSum[0].sum) + Number(checkDish.rating);
+					totalusr = Number(otherUsersRv.reviews.length)  + 1 ;
+					average = totalRv/totalusr;
+					if(average % 1 != 0){
+						toFix = average.toFixed(1);
+						NumberIs = roundAbout(toFix);
+					}else{
+						NumberIs = average;
+					}
+					return Dishes.update({_id: id}, {$set: {averageReview: Number(NumberIs)}});
+				}	
+  			}else{
+  				totalRv = Number(checkDish.rating) + Number(data.rating)
+				average = totalRv/2;
+				if(average % 1 != 0){
+					toFix = average.toFixed(1);
+					NumberIs = roundAbout(toFix);
+				}else{
+					NumberIs = average;
+				}
+  				return Dishes.update({_id: id}, {$set: {averageReview: Number(NumberIs)}});
+  			}
   		}
   	}
 });
+
+function roundAbout(num){
+	n = (num + "").split(".");
+	if(parseInt(n[1]) == 5){
+		NumberIs = num;
+	}else{
+		roundAb = Math.round(num);
+		if(roundAb > num){
+			NumberIs = roundAb;
+		}else{
+			NumberIs = roundAb + 0.5;
+		}
+	}	
+	return NumberIs;
+}

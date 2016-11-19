@@ -35,6 +35,7 @@ import ChangePasswordCtrl from '../controllers/change_password.controller';
 import RestaurantCtrl from '../controllers/restaurant.controller';
 import OtherReviewCtrl from '../controllers/othereview.controller';
 import ReviewService from '../services/review.service';
+import RatingService from '../services/rating.service';
 
 import Routes from '../routes';
 
@@ -56,6 +57,7 @@ app = Angular.module(App, [
 
 //Load modules
 new Loader(App)
+  .load(RatingService)
   .load(SuggestionCtrl)
   .load(HomeCtrl)
   .load(LoginCtrl)

@@ -15,6 +15,7 @@ export default class SuggestionCtrl extends Controller {
 		      		Session.set('suggestions', data);
 		      		_this.$ionicLoading.hide();
 		      	}else{
+		      		alert(err.reason);
 		      		console.log(err);
 		      	}
 		    });
@@ -40,41 +41,19 @@ export default class SuggestionCtrl extends Controller {
   	}
   	
 	getNumber(num) {
-		if(num){
-			if(num % 1 != 0){
-				num = parseInt(num);
-			}
-			return new Array(num); 
-		}
+		return this.Rating.getNumber(num);
 	}
 
 	checkHalfStar(num){
-		if(num != 5){
-			if(num % 1 != 0){
-				return true;
-			}
-		}
+		return this.Rating.checkHalfStar(num);
 	}
 
 	printEmptyStar(num){
-		if(num % 1 != 0){			
-			num = parseInt(5 - num);
-		}else{
-			num = 5 - num; 
-		}
-		if(!num){
-			return [];
-		}else{
-			return new Array(num); 
-		}
+		return this.Rating.printEmptyStar(num);
 	}
 
 	uptoDecimal(value){
-		if(value % 1 != 0){
-			return value.toFixed(1);
-		}else{
-			return value;
-		}
+		return this.Rating.uptoDecimal(value);
 	}
 
   	redirectToDish(dishId, mile){
@@ -82,6 +61,6 @@ export default class SuggestionCtrl extends Controller {
   	}
 }
 
-SuggestionCtrl.$inject = ['$state', '$ionicLoading', '$location'];
+SuggestionCtrl.$inject = ['$state', 'Rating', '$ionicLoading', '$location'];
 
 

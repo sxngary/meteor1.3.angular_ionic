@@ -10,7 +10,9 @@ export default class SettingsCtrl extends Controller {
 		this.formData = {
 			firstname: profile.firstname,
 			lastname: profile.lastname,
-			zip_code: profile.zip_code
+			username: (this.currentUser.username ? this.currentUser.username : ''),
+			bio: (this.profile.bio ? this.profile.bio : ''),
+			zip_code: profile.zip_code,
 		}
 
 		//Add custom validation function for zip code.
@@ -59,6 +61,7 @@ export default class SettingsCtrl extends Controller {
 			Meteor.users.update({_id: currentUser._id}, {$set: {
 				"profile.firstname": formData.firstname,
 				"profile.lastname": formData.lastname,
+				"profile.bio": formData.bio,
 				"profile.zip_code": formData.zip_code
 			}});
 			$ionicLoading.show({ template: 'Profile updated successfully.', noBackdrop: true });

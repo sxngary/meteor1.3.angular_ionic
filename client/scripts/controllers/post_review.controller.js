@@ -38,6 +38,7 @@ export default class PostReviewCtrl extends Controller {
 	  		dishData['video'] = Session.get('videoPath').server;
 	  	}
 	  	dishData['uploadedBy'] = this.currentUser._id;
+	  	dishData['averageReview'] = Session.get('dishData').rating;
   		dishData['dateMillisecond'] = new Date().getTime();
   		dishData['offset'] = new Date().getTimezoneOffset()/ 60;
   		dishData['createdAt'] = new Date();
