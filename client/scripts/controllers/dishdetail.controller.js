@@ -59,6 +59,19 @@ export default class DishDetailCtrl extends Controller {
 	addReview(){
 		this.OtherReview.showModal();
 	}
+
+	reviewGiven(reviews){
+		if(reviews){
+			reviewGiven = _.where(reviews, {userId: this.currentUserId});
+			if(reviewGiven.length){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
 }
 
 DishDetailCtrl.$inject = ['$state', 'OtherReview', '$stateParams', '$location'];

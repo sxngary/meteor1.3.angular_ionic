@@ -55,7 +55,7 @@ export default class ChangePasswordCtrl extends Controller {
 
         Accounts.changePassword(formData.curr_passwd, formData.new_passwd, function(err) {
           if (err) {
-            //console.log("err:", err);
+            _this.$ionicLoading.show({ template: 'Incorrect current password.', noBackdrop: true , duration: 1500});
             return;
           }
           _this.$ionicLoading.show({ template: 'Password updated successfully.', noBackdrop: true });

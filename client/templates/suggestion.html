@@ -17,9 +17,9 @@
             <img ng-if="suggestion.suggestions[$index].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index].imageId}}.jpeg"/>
             <div class="rating-value">
             	<span >
-                <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index].rating) track by $index" src="/fill-star.png" alt=""/>
-                <img ng-if="suggestion.checkHalfStar(suggestion.suggestions[$index].rating)" src="/half-star.png" alt=""/>
-                <img ng-repeat="i in suggestion.printEmptyStar(suggestion.suggestions[$index].rating) track by $index" src="/empty-star.png" alt=""/>
+                <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index].averageReview) track by $index" src="/fill-star.png" alt=""/>
+                <img ng-if="suggestion.checkHalfStar(suggestion.suggestions[$index].averageReview)" src="/half-star.png" alt=""/>
+                <img ng-repeat="i in suggestion.printEmptyStar(suggestion.suggestions[$index].averageReview) track by $index" src="/empty-star.png" alt=""/>
               </span>
               <span class="pull-right">
               	{{suggestion.uptoDecimal(suggestion.suggestions[$index].distance)}}mi
@@ -35,9 +35,9 @@
             <img ng-if="suggestion.suggestions[$index+1].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+1].imageId}}.jpeg"/>
             <div class="rating-value">
             	<span>
-                <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index+1].rating) track by $index" src="/fill-star.png" alt=""/>
-                <img ng-if="suggestion.checkHalfStar(suggestion.suggestions[$index+1].rating)" src="/half-star.png" alt=""/>
-                <img ng-repeat="i in suggestion.printEmptyStar(suggestion.suggestions[$index+1].rating) track by $index" src="/empty-star.png" alt=""/>                
+                <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index+1].averageReview) track by $index" src="/fill-star.png" alt=""/>
+                <img ng-if="suggestion.checkHalfStar(suggestion.suggestions[$index+1].averageReview)" src="/half-star.png" alt=""/>
+                <img ng-repeat="i in suggestion.printEmptyStar(suggestion.suggestions[$index+1].averageReview) track by $index" src="/empty-star.png" alt=""/>                
               </span>
               <span class="pull-right">
                	{{suggestion.uptoDecimal(suggestion.suggestions[$index+1].distance)}}mi
@@ -53,9 +53,9 @@
             <img ng-if="suggestion.suggestions[$index+2].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+2].imageId}}.jpeg"/>
             <div class="rating-value">
             	<span>
-                <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index+2].rating) track by $index" src="/fill-star.png" alt=""/>
-                <img ng-if="suggestion.checkHalfStar(suggestion.suggestions[$index+2].rating)" src="/half-star.png" alt=""/>
-                <img ng-repeat="i in suggestion.printEmptyStar(suggestion.suggestions[$index+2].rating) track by $index" src="/empty-star.png" alt=""/> 
+                <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index+2].averageReview) track by $index" src="/fill-star.png" alt=""/>
+                <img ng-if="suggestion.checkHalfStar(suggestion.suggestions[$index+2].averageReview)" src="/half-star.png" alt=""/>
+                <img ng-repeat="i in suggestion.printEmptyStar(suggestion.suggestions[$index+2].averageReview) track by $index" src="/empty-star.png" alt=""/> 
                 <!--<img src="/fill-star.png" alt=""/>
                 <img src="/fill-star.png" alt=""/>
                 <img src="/half-star.png" alt=""/>

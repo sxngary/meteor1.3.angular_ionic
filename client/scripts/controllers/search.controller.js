@@ -53,43 +53,19 @@ export default class SearchCtrl extends Controller {
     }
 
     uptoDecimal(value){
-		if(value){
-			if(value % 1 != 0){
-				return value.toFixed(1);
-			}else{
-				return value;
-			}
-		}
+    	return this.Rating.uptoDecimal(value);
 	}
 
 	getNumber(num) {
-		if(num){
-			if(num % 1 != 0){
-				num = parseInt(num);
-			}
-			return new Array(num); 
-		}
+		return this.Rating.getNumber(num);
 	}
 
 	checkHalfStar(num){
-		if(num != 5){
-			if(num % 1 != 0){
-				return true;
-			}
-		}
+		return this.Rating.checkHalfStar(num);
 	}
 
 	printEmptyStar(num){
-		if(num % 1 != 0){			
-			num = parseInt(5 - num);
-		}else{
-			num = 5 - num; 
-		}
-		if(!num){
-			return [];
-		}else{
-			return new Array(num); 
-		}
+		return this.Rating.printEmptyStar(num);
 	}
 
 	redirectToDish(placeId){
@@ -97,4 +73,4 @@ export default class SearchCtrl extends Controller {
 	}
 }
 
-SearchCtrl.$inject = ['$state', '$ionicLoading', '$location'];
+SearchCtrl.$inject = ['$state', 'Rating', '$ionicLoading', '$location'];
