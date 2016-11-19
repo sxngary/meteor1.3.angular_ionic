@@ -12,8 +12,9 @@
       <div class="row">
         <div class="col">
           <div class="center-img">
-            <img src="./user_none.png" alt=""/>
-            <p><a href="javascript:void(0)">Change Photo</a></p>
+            <img ng-if="!settings.avatar" src="./user_none.png" alt=""/>
+            <img ng-if="settings.avatar" src="{{settings.avatar}}" alt=""/>
+            <p><a ng-click="settings.uploadPhoto()">Change Photo</a></p>
           </div>
         </div>
       </div>
