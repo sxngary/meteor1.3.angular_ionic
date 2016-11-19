@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+import { Accounts } from 'meteor/accounts-base';
 import { Dishes, Restaurants } from '../../lib/collections';
 
 Dishes._ensureIndex({'restaurant.location':'2dsphere'});
@@ -165,6 +166,47 @@ Meteor.methods({
 				}
   				return Dishes.update({_id: id}, {$set: {averageReview: Number(NumberIs)}});
   			}
+  		}
+  	},
+  	uploadUserImage(base64String){
+  		var _dirPath  = base + 'media/uploads/user';
+  		var myFuture = new Future();
+  		// declare a regexp to match the non base64 first characters
+		var dataUrlRegExp = /^data:image\/\w+;base64,/;
+		// remove the "header" of the data URL via the regexp
+		var base64Data = base64String.replace(dataUrlRegExp, "");
+		// declare a binary buffer to hold decoded base64 data
+		var imageBuffer = new Buffer(base64Data, "base64");
+		userId = Meteor.userId();
+		if(!fs.existsSync(_dirPath)){	
+			fs.mkdir(_dirPath, 0766, function(error){
+				if(!error){
+					Fiber(function() {
+						fs.writeFile(_dirPath + '/' + userId + '.jpeg', imageBuffer, function(err) {
+						    if (!err) {
+						        updated = Accounts.users.update({_id: userId}, {$set: {'profile.avatar': 'uploads/user/' + userId + '.jpeg'}});
+						        return myFuture.return(updated);
+						    } else {
+						        myFuture.throw(err);
+						    }
+						});
+					}).run();
+  				}
+  			});
+			
+  		}else{
+  			fs.writeFile(_dirPath + '/' + userId + '.jpeg', imageBuffer, function(err) {
+			    if (!err) {
+			    	Fiber(function() {
+				    	updated = Accounts.users.update({_id: userId}, {$set: {'profile.avatar': 'uploads/user/' + userId + '.jpeg'}});
+				        console.log(updated)
+				        return myFuture.return(updated);
+			    	}).run();
+			    } else {
+			        myFuture.throw(err);
+			    }
+			});
+
   		}
   	}
 });

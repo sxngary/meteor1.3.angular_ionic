@@ -48,6 +48,13 @@ export default class SettingsCtrl extends Controller {
                     success: ''
                 }
             });
+  		this.helpers({
+  			avatar(){
+  				if(this.profile.avatar){
+  					return Meteor.absoluteUrl() + this.profile.avatar;
+  				}
+  			}
+  		})
   	}
 
 	update(form) {
@@ -76,6 +83,26 @@ export default class SettingsCtrl extends Controller {
 			_this.$ionicLoading.hide();
 			}, 1000);
 		});
+	}
+
+	uploadPhoto(){
+		if(Meteor.isCordova){
+			let _this = this;
+			MeteorCameraUI.getPicture({correctOrientation: true, quality: 75, width: 150, height: 150, cancel:'Cancel', takeImage:'Take photo', imageLibrary:'Image Library'}, (err, data) => {
+		      	if (!err) {
+			      	if(data){
+			      		_this.$ionicLoading.show({ template: 'Uploading ...', noBackdrop: true});
+				    	Meteor.call('uploadUserImage', data, function(err, res){
+				    		if(!err){
+				    			_this.$ionicLoading.hide();
+				    		}
+				    	});
+				    }
+			  	}else{
+			  		_this.$ionicLoading.show({ template: err.reason, duration:2000, noBackdrop: true});
+			  	}
+		    });
+		}
 	}
 
 	logout() {

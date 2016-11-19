@@ -68,6 +68,7 @@ npm-mongo@1.4.41
 oauth@1.1.8
 oauth2@1.1.7
 observe-sequence@1.0.9
+okland:camera-ui@0.0.2
 ordered-dict@1.0.5
 pagebakers:ionicons@2.0.1_1
 promise@0.6.5

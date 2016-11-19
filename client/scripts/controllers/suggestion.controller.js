@@ -15,7 +15,6 @@ export default class SuggestionCtrl extends Controller {
 		      		Session.set('suggestions', data);
 		      		_this.$ionicLoading.hide();
 		      	}else{
-		      		alert(err.reason);
 		      		console.log(err);
 		      	}
 		    });
