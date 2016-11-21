@@ -127,4 +127,4 @@ export default class SettingsCtrl extends Controller {
 	}
 }
 
-SettingsCtrl.$inject = ['$ionicLoading', '$validation'];
+SettingsCtrl.$inject = ['$state', '$ionicLoading', '$validation'];
