@@ -6,7 +6,11 @@ export default class SettingsCtrl extends Controller {
 
 		const profile = this.currentUser && this.currentUser.profile;
 	    this.profile = profile;
-
+	    if(profile.avatar){
+	    	Session.set('userImage', profile.avatar);
+	    }else{
+	    	Session.set('userImage', '');
+	    }
 		this.formData = {
 			firstname: profile.firstname,
 			lastname: profile.lastname,
@@ -48,10 +52,11 @@ export default class SettingsCtrl extends Controller {
                     success: ''
                 }
             });
+  		
   		this.helpers({
   			avatar(){
-  				if(this.profile.avatar){
-  					return Meteor.absoluteUrl() + this.profile.avatar;
+  				if(Session.get('userImage')){
+  					return Meteor.absoluteUrl() + Session.get('userImage');
   				}
   			}
   		})
@@ -88,18 +93,21 @@ export default class SettingsCtrl extends Controller {
 	uploadPhoto(){
 		if(Meteor.isCordova){
 			let _this = this;
-			MeteorCameraUI.getPicture({correctOrientation: true, quality: 75, width: 150, height: 150, cancel:'Cancel', takeImage:'Take photo', imageLibrary:'Image Library'}, (err, data) => {
+			MeteorCameraUI.getPicture({correctOrientation: true, quality: 75, cancel:'Cancel', takeImage:'Take photo', imageLibrary:'Image Library'}, (err, data) => {
 		      	if (!err) {
 			      	if(data){
 			      		_this.$ionicLoading.show({ template: 'Uploading ...', noBackdrop: true});
 				    	Meteor.call('uploadUserImage', data, function(err, res){
 				    		if(!err){
-				    			_this.$ionicLoading.hide();
+				    			if(res){
+				    				_this.$ionicLoading.hide();
+				    				Session.set('userImage', res);
+				    			}
 				    		}
 				    	});
 				    }
 			  	}else{
-			  		_this.$ionicLoading.show({ template: err.reason, duration:2000, noBackdrop: true});
+			  		_this.$ionicLoading.show({ template: err.reason, duration:1500, noBackdrop: true});
 			  	}
 		    });
 		}
@@ -119,4 +127,4 @@ export default class SettingsCtrl extends Controller {
 	}
 }
 
-SettingsCtrl.$inject = ['$state', '$ionicLoading', '$validation'];
+SettingsCtrl.$inject = ['$ionicLoading', '$validation'];
