@@ -177,39 +177,77 @@ Meteor.methods({
 		var base64Data = base64String.replace(dataUrlRegExp, "");
 		// declare a binary buffer to hold decoded base64 data
 		var imageBuffer = new Buffer(base64Data, "base64");
-		userId = Meteor.userId();
+		userId = new Meteor.Collection.ObjectID()._str;
+		uId = Meteor.userId();
 		if(!fs.existsSync(_dirPath)){	
 			fs.mkdir(_dirPath, 0766, function(error){
 				if(!error){
-					Fiber(function() {
-						fs.writeFile(_dirPath + '/' + userId + '.jpeg', imageBuffer, function(err) {
-						    if (!err) {
-						        updated = Accounts.users.update({_id: userId}, {$set: {'profile.avatar': 'uploads/user/' + userId + '.jpeg'}});
-						        return myFuture.return(updated);
-						    } else {
-						        myFuture.throw(err);
-						    }
-						});
-					}).run();
+					fs.writeFile(_dirPath + '/' + userId + '.jpeg', imageBuffer, function(err) {
+					    if (!err) {
+					        gm(_dirPath + '/' + userId + '.jpeg')
+					            .resize(150, 150, '^')
+					            .gravity('Center')
+					            .crop(150, 150)
+					            .quality(100)
+					            .write(_dirPath + '/' + userId + '_resize.jpeg', function(err) {
+					                if (!err) {
+					                	Fiber(function() {
+						               		updated = Accounts.users.update({_id: uId}, {$set: {'profile.avatar': 'uploads/user/' + userId + '_resize.jpeg', 'profile.avatarId': userId}});
+						        			return myFuture.return('uploads/user/'+ userId + '_resize.jpeg'); 	
+					            		}).run();
+					            	}
+					            });
+					    } else {
+					        myFuture.throw(err);
+					    }
+					});
   				}
   			});
 			
   		}else{
-  			fs.writeFile(_dirPath + '/' + userId + '.jpeg', imageBuffer, function(err) {
-			    if (!err) {
-			    	Fiber(function() {
-				    	updated = Accounts.users.update({_id: userId}, {$set: {'profile.avatar': 'uploads/user/' + userId + '.jpeg'}});
-				        console.log(updated)
-				        return myFuture.return(updated);
-			    	}).run();
-			    } else {
-			        myFuture.throw(err);
-			    }
-			});
-
+  			var files = [base + 'media/uploads/user/' + Meteor.user().profile.avatarId + '.jpeg', base + '/media/' + Meteor.user().profile.avatar];
+  			deleteFiles(files, function(err) {
+		        if(err) return console.log(err);
+		      	
+		      	fs.writeFile(_dirPath + '/' + userId + '.jpeg', imageBuffer, function(err) {
+				    if (!err) {
+				    	gm(_dirPath + '/' + userId + '.jpeg')
+				            .resize(150, 150, '^')
+				            .gravity('Center')
+				            .crop(150, 150)
+				            .quality(100)
+				            .write(_dirPath + '/' + userId + '_resize.jpeg', function(err) {
+				                if (!err) {
+				                	Fiber(function() {
+					               		updated = Accounts.users.update({_id: uId}, {$set: {'profile.avatar': 'uploads/user/' + userId + '_resize.jpeg', 'profile.avatarId': userId}});
+					        			return myFuture.return('uploads/user/'+ userId + '_resize.jpeg'); 
+				            		}).run();
+				            	}
+				            });
+				    } else {
+				        myFuture.throw(err);
+				    }
+				});  
+		   });
   		}
+  		return myFuture.wait();
   	}
 });
+
+function deleteFiles(files, callback){
+  var i = files.length;
+  files.forEach(function(filepath){
+    fs.unlink(filepath, function(err) {
+      i--;
+      if (err) {
+        callback(err);
+        return;
+      } else if (i <= 0) {
+        callback(null);
+      }
+    });
+  });
+}
 
 function roundAbout(num){
 	n = (num + "").split(".");
