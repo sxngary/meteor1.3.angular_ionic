@@ -9,11 +9,16 @@ export default class LocationCtrl extends Controller {
     	r1 = $('.r-one').outerHeight();
     	r2 = $('.r-two').outerHeight();
     	link = $('.r-button').outerHeight();
-    	console.log(r1, r2, link, header);
+    	//console.log(r1, r2, link, header);
 
+    	//Set autocomplete option.
         this.autocompleteOptions = {
             types: ['establishment']
         };
+        //On select event.
+        this.$scope.$on('g-places-autocomplete:select', function (event, param) {
+			console.log(param);
+		});
     	
     	this.helpers({
 	   		image(){
@@ -31,6 +36,17 @@ export default class LocationCtrl extends Controller {
   	dishData(){
   		if(this.data){
   			if(this.data.name && this.data.rating && this.rt.restaurantdata){
+				let tagslistarr = this.data.comment.split(' ');
+				let arr=[];
+				$.each(tagslistarr,function(i,val){
+				    if(tagslistarr[i].indexOf('#') == 0){
+				      arr.push(tagslistarr[i]);  
+				    }
+				});
+				if(arr.length){
+					this.data.tags = arr;
+				}
+				
 	  			var restaurant = this.rt.restaurantdata;
 	  			if(_.contains(restaurant.types, 'restaurant')){
 	  				var country = '', city = '', postal_code= '';
@@ -53,6 +69,7 @@ export default class LocationCtrl extends Controller {
 		                  	}          
 		                }
 	  				}
+	  				console.log(restaurant.photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}));
 	  				photo = (restaurant.photos ? restaurant.photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}) : '');
 					var restauData = 
 						{

@@ -16,12 +16,12 @@
             <div class="resturant-detail">
                 <div class="row">
                     <div class="col">
-                        <h5 class="dish-title">Pizza</h5>
+                        <h5 class="dish-title">{{dish.dishDetail.name}}</h5>
                     </div>
                 </div>
             	<div class="row">
                 	<div class="mobi-50-dish">
-                    	<h3>{{dish.dishDetail.restaurant.name}}</h3>
+                    	<h3 ng-click="dish.redirestTo(dish.dishDetail.restaurant.placeId)">{{dish.dishDetail.restaurant.name}}</h3>
                         
                     </div>
                     <div class="mobi-50-rates">
@@ -45,11 +45,11 @@
                     	<p>{{dish.dishDetail.restaurant.address}}</p>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col text-center">
                         <a ng-if="dish.dishDetail.uploadedBy != currentUser._id && !dish.reviewGiven(dish.dishDetail.reviews)" href="javascript:void(0);" class="next-btn" ng-click="dish.addReview()">Add Review</a>
                     </div>
-                </div>
+                </div> -->
             </div>
 			<div class="row">
             	<div class="col div1">

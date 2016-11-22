@@ -35,7 +35,7 @@
 		<div class="full_back suggest suggest-wrap">
   		<div ng-if="search.searchList.length">
       	<div class="row" ng-repeat="result in search.searchList" ng-if="$index % 3 == 0">
-      		<div class="col col-33" ng-if="search.searchList[$index]" ng-click="search.redirectToDish(search.searchList[$index].restaurant.placeId)">
+      		<div class="col col-33" ng-if="search.searchList[$index]" ng-click="search.redirectToDish(search.searchList[$index]._id, search.uptoDecimal(search.searchList[$index].distance))">
             <div class="div1">
               <img ng-if="search.searchList[$index].videoThumb" src="{{search.rootUrl}}/{{search.searchList[$index].videoThumb}}"/>
               <img ng-if="search.searchList[$index].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index].imageId}}.jpeg"/>
@@ -53,7 +53,7 @@
               <p class="resturant-name">{{search.searchList[$index].restaurant.name}}</p>
             </div>
       		</div>
-          <div class="col col-33" ng-if="search.searchList[$index +1]" ng-click="search.redirectToDish(search.searchList[$index+1].restaurant.placeId)">
+          <div class="col col-33" ng-if="search.searchList[$index +1]" ng-click="search.redirectToDish(search.searchList[$index+1]._id, search.uptoDecimal(search.searchList[$index+1].distance))">
             <div class="div1">
               <img ng-if="search.searchList[$index+1].videoThumb" src="{{search.rootUrl}}/{{search.searchList[$index+1].videoThumb}}"/>
               <img ng-if="search.searchList[$index+1].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+1].imageId}}.jpeg"/>
@@ -71,7 +71,7 @@
               <p class="resturant-name">{{search.searchList[$index+1].restaurant.name}}</p>
             </div>
           </div>
-          <div class="col col-33" ng-if="search.searchList[$index +2]" ng-click="search.redirectToDish(search.searchList[$index+2].restaurant.placeId)">
+          <div class="col col-33" ng-if="search.searchList[$index +2]" ng-click="search.redirectToDish(search.searchList[$index+2]._id, search.uptoDecimal(search.searchList[$index+2].distance))">
           	<div class="div1">
               <img ng-if="search.searchList[$index+2].videoThumb" src="{{search.rootUrl}}/{{search.searchList[$index+2].videoThumb}}"/>
               <img ng-if="search.searchList[$index+2].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+2].imageId}}.jpeg"/>

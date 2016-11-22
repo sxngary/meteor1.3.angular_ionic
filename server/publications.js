@@ -6,6 +6,24 @@ Meteor.publish('dishes', function() {
   	return Dishes.find({uploadedBy: this.userId},{ sort: { createdAt: -1 } });
 });
 
+//Publish user posts.
+Meteor.publish('feed', function() {
+  	return Dishes.find({},{ sort: { createdAt: -1 } });
+});
+
+Meteor.publishComposite('users-feed', function () {
+  return {
+    find: function () {
+      return Dishes.find({},{ sort: { createdAt: -1 } });
+    },
+    children: [{
+      	find: function (dish) {
+        	return Meteor.users.find({_id: dish.uploadedBy}, { fields: { profile: 1} });
+      	}
+    }]
+  }
+});
+
 //Publish nearest dishes and restairant based data for user.
 Meteor.publish('nearest-locations-data', function (longitude, latitude, searchText, searchFrom ) {
   	var parts = searchText.trim().split(/[ \-\:]+/);

@@ -52,6 +52,35 @@ export default class SettingsCtrl extends Controller {
                     success: ''
                 }
             });
+
+        //Add custom validation function for username.
+        this.$validation
+            .setExpression({
+                usernameValidate: function (value, scope, element, attrs, param) {
+                    if(value){
+                        var illegalChars = /\W/; // allow letters, numbers, and underscores
+                        startWith = /[a-zA-Z]/
+                        doubleUnder = value.indexOf('__');
+                        if ((value.length < 4) || (value.length > 15)) {
+                            return false;
+                        } else if (illegalChars.test(value)) {
+                            return false;                     
+                        }else if(!startWith.test(value)){
+                            return false;
+                        }else if(doubleUnder > -1){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    }
+                }
+            })
+            .setDefaultMsg({
+                usernameValidate: {
+                    error: "Username should start with letter, min length 4 and max length 15",
+                    success: ''
+                }
+            });
   		
   		this.helpers({
   			avatar(){
@@ -70,19 +99,16 @@ export default class SettingsCtrl extends Controller {
 		_this = this;
 		_this.$validation.validate(form)
 		.success(function(){
-			Meteor.users.update({_id: currentUser._id}, {$set: {
-				"profile.firstname": formData.firstname,
-				"profile.lastname": formData.lastname,
-				"profile.bio": formData.bio,
-				"profile.zip_code": formData.zip_code
-			}});
-			$ionicLoading.show({ template: 'Profile updated successfully.', noBackdrop: true });
-			Meteor.setTimeout(function(){
-				$ionicLoading.hide();
-			}, 1000);
+			_this.callMethod('updateUsername', formData, (err, data) => {
+		      	if (!err){
+		      		$ionicLoading.show({ template: 'Profile updated successfully.', noBackdrop: true, duration:1000 });
+		      	}else{
+		      		_this.formData.username = _this.currentUser.username;
+		      		$ionicLoading.show({ template: err.reason, noBackdrop: true, duration:1000 });
+		      	}
+		    });
 		})
 		.error(function(err){
-			//console.log("validation " + err);
 			_this.$ionicLoading.show({ template: 'Invalid form data.', noBackdrop: true });
 			Meteor.setTimeout(function(){
 			_this.$ionicLoading.hide();

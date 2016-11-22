@@ -120,7 +120,7 @@ Meteor.methods({
   		return Dishes.findOne(dishId);
   	},
   	dishWithRestaurant(placeId){
-  		return Dishes.find({'restaurant.placeId': placeId}).fetch();
+  		return Dishes.find({'restaurant.placeId': placeId},{ sort: { createdAt: -1 } }).fetch();
   	},
   	saveOtherUserReview(id, data){
   		checkDish = Dishes.findOne(id);
@@ -253,6 +253,20 @@ Meteor.methods({
   			}
   		}
   		return myFuture.wait();
+  	},
+  	updateUsername(data){
+  		let user = Meteor.users.findOne({username: data.username, _id: { $ne: Meteor.userId()}});
+  		if(!user){
+	  		return Meteor.users.update({_id: Meteor.userId()}, {$set: {
+				"username": data.username,
+				"profile.firstname": data.firstname,
+				"profile.lastname": data.lastname,
+				"profile.bio": data.bio,
+				"profile.zip_code": data.zip_code
+			}});
+  		}else{
+  			throw new Meteor.Error( 404, 'Username already exists.' );
+  		}
   	}
 });
 

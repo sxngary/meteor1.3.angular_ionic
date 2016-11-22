@@ -2,7 +2,6 @@
 import 'angular-animate';
 import 'angular-meteor';
 import 'angular-meteor-auth';
-import 'angular-moment';
 import 'angular-sanitize';
 import 'angular-ui-router';
 import 'ionic-scripts';
@@ -45,7 +44,6 @@ const App = 'The Dish';
 app = Angular.module(App, [
   'angular-meteor',
   'angular-meteor.auth',
-  'angularMoment',
   'ionic',
   'validation', 
   'validation.rule',
@@ -96,6 +94,19 @@ new Loader(App)
       }
     };
     validationSchemaProvider.set("Register", Register);
+  });
+
+  //Add directive for image not found.
+  app.directive('errSrc', function() {
+    return {
+      link: function(scope, element, attrs) {
+        element.bind('error', function() {
+          if (attrs.src != attrs.errSrc) {
+            attrs.$set('src', attrs.errSrc);
+          }
+        });
+      }
+    }
   });
 
 // Startup
