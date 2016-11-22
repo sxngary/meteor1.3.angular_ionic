@@ -55,7 +55,7 @@ export default class SignupCtrl extends Controller {
                 }
             });
 
-         //Add custom validation function for first & last name.
+        //Add custom validation function for first & last name.
         this.$validation
             .setExpression({
                 nameValidate: function (value, scope, element, attrs, param) {
@@ -71,6 +71,48 @@ export default class SignupCtrl extends Controller {
             .setDefaultMsg({
                 nameValidate: {
                     error: "This should be valid",
+                    success: ''
+                }
+            });
+                //Add custom validation function for confirm password.
+        this.$validation
+            .setExpression({
+                isconfirm: function (value, scope, element, attrs, param) {
+                    if(value) return (value === scope.data.password);
+                }
+            })
+            .setDefaultMsg({
+                isconfirm: {
+                    error: "Passwords don't match",
+                    success: ''
+                }
+            });
+
+        //Add custom validation function for username.
+        this.$validation
+            .setExpression({
+                usernameValidate: function (value, scope, element, attrs, param) {
+                    if(value){
+                        var illegalChars = /\W/; // allow letters, numbers, and underscores
+                        startWith = /[a-zA-Z]/
+                        doubleUnder = value.indexOf('__');
+                        if ((value.length < 4) || (value.length > 15)) {
+                            return false;
+                        } else if (illegalChars.test(value)) {
+                            return false;                     
+                        }else if(!startWith.test(value)){
+                            return false;
+                        }else if(doubleUnder > -1){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    }
+                }
+            })
+            .setDefaultMsg({
+                usernameValidate: {
+                    error: "Username should start with letter, min length 4 and max length 15",
                     success: ''
                 }
             });

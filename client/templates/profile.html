@@ -10,7 +10,8 @@
       <div class="user-profile">
           <div class="row">
               <div class="user-image">
-                  <img src="/user_none.png" alt="" />
+                  <img ng-if="!profile.profile.avatar" src="/user_none.png" alt="" />
+                  <img ng-if="profile.profile.avatar" src="{{profile.rootUrl}}{{profile.profile.avatar}}" alt="" />
                 </div>
                 <div class="content-wrap">
                     <div class="user-detail user-review">

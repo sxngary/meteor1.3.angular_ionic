@@ -1,4 +1,3 @@
-import { Accounts } from 'meteor/accounts-base';
 import { Controller } from 'angular-ecmascript/module-helpers';
 import { Dishes } from '../../../lib/collections';
 
@@ -68,8 +67,8 @@ export default class SearchCtrl extends Controller {
 		return this.Rating.printEmptyStar(num);
 	}
 
-	redirectToDish(placeId){
-		this.$location.url('/restaurant/' + placeId);
+	redirectToDish(dishId, mile){
+		this.$location.url('/dish_detail/' + dishId + '/' + mile);
 	}
 }
 

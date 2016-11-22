@@ -72,6 +72,10 @@ export default class DishDetailCtrl extends Controller {
 			return false;
 		}
 	}
+
+	redirestTo(placeId){
+		this.$location.url('/restaurant/' + placeId);
+	}
 }
 
 DishDetailCtrl.$inject = ['$state', 'OtherReview', '$stateParams', '$location'];

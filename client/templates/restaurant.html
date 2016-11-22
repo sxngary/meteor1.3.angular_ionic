@@ -10,103 +10,35 @@
 	<ion-content>
 		<div class="full_back suggest restro-detail">
         	<div class="dish-image">
-            	<img ng-if="restaurant.restaurantDishes[0].restaurant.image" src="{{restaurant.restaurantDishes[0].restaurant.image}}" alt="">
+            	<!--<img ng-if="restaurant.restaurantDishes[0].restaurant.image" src="{{restaurant.restaurantDishes[0].restaurant.image}}" alt="">-->
+                <img ng-src="{{restaurant.restaurantDishes[0].restaurant.image}}" err-SRC="/no-picture.gif" />
             </div>
             <div class="resturant-detail">
             	<div class="row">
                 	<div class="col">
                     	<h3><span class="locatio-pin"><i class="icon ion-location"></i></span>{{restaurant.restaurantDishes[0].restaurant.address}}</h3>
                     </div>
-                    
                 </div>
                 
             </div>
-			<div class="row">
+			<div class="row" ng-repeat="dish in restaurant.restaurantDishes">
             	<div class="col div1">
                 	<div class="row">
                     	<div class="col col-33">
                         	<div class="side-image-wrap">
-                            	<img src="/d1.png" alt=""/>
+                            	<img ng-if="dish.videoThumb" src="{{restaurant.rootUrl}}/  {{dish.videoThumb}}"/>
+                                <img ng-if="dish.imageId" src="{{restaurant.rootUrl}}uploads/dishes/{{dish.imageId}}.jpeg"/>
                         	</div>
                             <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
+                                <img ng-repeat="i in restaurant.getNumber(dish.averageReview) track by $index" src="/fill-star.png" alt=""/>
+                                <img ng-if="restaurant.checkHalfStar(dish.averageReview)" src="/half-star.png" alt=""/>
+                                <img ng-repeat="i in restaurant.printEmptyStar(dish.averageReview) track by $index" src="/empty-star.png" alt=""/>
                            </span>
                     	</div>
                     	<div class="col col-67">
-                        	
-                            <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
-                    	</div>
-                    </div>
-                </div>
-			</div>
-        	<div class="row">
-            	<div class="col div1">
-                	<div class="row">
-                    	<div class="col col-33">
-                        	<div class="side-image-wrap">
-                            	<img src="/d1.png" alt=""/>
-                        	</div>
-                            <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
-                            </span>
-                    	</div>
-                    	<div class="col col-67">
-                        	
-                            <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
-                    	</div>
-                    </div>
-                </div>
-			</div><div class="row">
-            	<div class="col div1">
-                	<div class="row">
-                    	<div class="col col-33">
-                        	<div class="side-image-wrap">
-                            	<img src="/d1.png" alt=""/>
-                        	</div>
-                            <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
-                           </span>
-                    	</div>
-                    	<div class="col col-67">
-                        	
-                            <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
-                    	</div>
-                    </div>
-                </div>
-			</div><div class="row">
-            	<div class="col div1">
-                	<div class="row">
-                    	<div class="col col-33">
-                        	<div class="side-image-wrap">
-                            	<img src="/d1.png" alt=""/>
-                        	</div>
-                            <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
-                           </span>
-                    	</div>
-                    	<div class="col col-67">
-                        	
-                            <p class="dish-name">Tasty chicken tacos, KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
+                            <p class="dish-name">{{dish.name}}</p>
+                            <p class="resturant-name">{{dish.comment}}</p>
+                            <p class="post-date">Posted: {{restaurant.postedTime(dish.dateMillisecond)}}</p>
                     	</div>
                     </div>
                 </div>

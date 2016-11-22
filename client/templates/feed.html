@@ -8,190 +8,43 @@
     </ion-header-bar>
     <ion-content>
         <div class="full_back suggest feed">
-            <div class="row">
+            <div class="row" ng-repeat="post in feed.posts">
                 <div class="col div1">
                     <div class="row">
                         <div class="col col-33">
                             <div class="side-image-wrap">
-                                <img src="/d1.png" alt=""/>
+                                <img ng-if="post.videoThumb" src="{{feed.rootUrl}}/  {{post.videoThumb}}"/>
+                                <img ng-if="post.imageId" src="{{feed.rootUrl}}uploads/dishes/{{post.imageId}}.jpeg"/>
                             </div>
                             <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
+                                <img ng-repeat="i in feed.getNumber(post.averageReview) track by $index" src="/fill-star.png" alt=""/>
+                                <img ng-if="feed.checkHalfStar(post.averageReview)" src="/half-star.png" alt=""/>
+                                <img ng-repeat="i in feed.printEmptyStar(post.averageReview) track by $index" src="/empty-star.png" alt=""/>
                            </span>
                         </div>
                         <div class="col col-67">
                             <div class="user-rate">
                                
                                <span class="pull-right user-name">
-                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
-                                    <span class="user-title">Z. Ibrahimović</span>
+                                    <span class="user-img">
+                                        <img ng-if="!feed.userName(post.uploadedBy).avatar" src="/user_none.png" alt="" />
+                                        <img ng-if="feed.userName(post.uploadedBy).avatar" src="{{feed.rootUrl}}{{feed.userName(post.uploadedBy).avatar}}" alt="" />
+                                    </span>
+
+                                    <span class="user-title">{{feed.userName(post.uploadedBy).fname}}. {{feed.userName(post.uploadedBy).lname}}</span>
                                </span>
                             </div>
-                            <p class="dish-name">Tasty chicken tacos</p>
-                            <p class="res-nam"> KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
-                            <p class="post-date">Posted: Just now</p>
+                            <p class="dish-name">{{post.name}}</p>
+                            <p class="res-nam">{{post.restaurant.name}}</p>
+                            <p class="resturant-name">{{post.comment}}</p>
+                            <p class="post-date">Posted: {{feed.postedTime(post.dateMillisecond)}}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col div1">
-                    <div class="row">
-                        <div class="col col-33">
-                            <div class="side-image-wrap">
-                                <img src="/d1.png" alt=""/>
-                            </div>
-                            <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
-                           </span>
-                        </div>
-                        <div class="col col-67">
-                            <div class="user-rate">
-                               
-                               <span class="pull-right user-name">
-                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
-                                    <span class="user-title">Z. Ibrahimović</span>
-                               </span>
-                            </div>
-                            <p class="dish-name">Tasty chicken tacos</p>
-                            <p class="res-nam"> KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
-                            <p class="post-date">Posted: 1m ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col div1">
-                    <div class="row">
-                        <div class="col col-33">
-                            <div class="side-image-wrap">
-                                <img src="/d1.png" alt=""/>
-                            </div>
-                            <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
-                           </span>
-                        </div>
-                        <div class="col col-67">
-                            <div class="user-rate">
-                               
-                               <span class="pull-right user-name">
-                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
-                                    <span class="user-title">Z. Ibrahimović</span>
-                               </span>
-                            </div>
-                            <p class="dish-name">Tasty chicken tacos</p>
-                            <p class="res-nam"> KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
-                            <p class="post-date">Posted: 2m ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col div1">
-                    <div class="row">
-                        <div class="col col-33">
-                            <div class="side-image-wrap">
-                                <img src="/d1.png" alt=""/>
-                            </div>
-                            <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
-                           </span>
-                        </div>
-                        <div class="col col-67">
-                            <div class="user-rate">
-                               
-                               <span class="pull-right user-name">
-                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
-                                    <span class="user-title">Z. Ibrahimović</span>
-                               </span>
-                            </div>
-                            <p class="dish-name">Tasty chicken tacos</p>
-                            <p class="res-nam"> KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
-                            <p class="post-date">Posted: 3m ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col div1">
-                    <div class="row">
-                        <div class="col col-33">
-                            <div class="side-image-wrap">
-                                <img src="/d1.png" alt=""/>
-                            </div>
-                            <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
-                           </span>
-                        </div>
-                        <div class="col col-67">
-                            <div class="user-rate">
-                               
-                               <span class="pull-right user-name">
-                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
-                                    <span class="user-title">Z. Ibrahimović</span>
-                               </span>
-                            </div>
-                            <p class="dish-name">Tasty chicken tacos</p>
-                            <p class="res-nam"> KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
-                            <p class="post-date">Posted: 4m ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col div1">
-                    <div class="row">
-                        <div class="col col-33">
-                            <div class="side-image-wrap">
-                                <img src="/d1.png" alt=""/>
-                            </div>
-                            <span class="star-img">
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/>
-                           </span>
-                        </div>
-                        <div class="col col-67">
-                            <div class="user-rate">
-                               
-                               <span class="pull-right user-name">
-                                    <span class="user-img"><img src="/user1.png" alt=""/></span>
-                                    <span class="user-title">Z. Ibrahimović</span>
-                               </span>
-                            </div>
-                            <p class="dish-name">Tasty chicken tacos</p>
-                            <p class="res-nam"> KFC Restaurant</p>
-                            <p class="resturant-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indu.</p>
-                            <p class="post-date">Posted: 2 days ago</p>
-                        </div>
-                    </div>
+            <div class="no-suggestion" ng-if="feed.posts.length == 0">
+                <div class="no-content">
+                    <h4>No posts currently available</h4>
                 </div>
             </div>
         </div>
