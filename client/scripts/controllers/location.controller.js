@@ -1,23 +1,27 @@
 import { Controller } from 'angular-ecmascript/module-helpers';
+import { Dishes } from '../../../lib/collections';
 
 export default class LocationCtrl extends Controller {
   	constructor() {
     	super(...arguments);
 
+    	http = this.$http;
     	//Calculate image dimension according to screen.
     	header = $('.bar-positive').outerHeight();
     	r1 = $('.r-one').outerHeight();
     	r2 = $('.r-two').outerHeight();
     	link = $('.r-button').outerHeight();
-    	//console.log(r1, r2, link, header);
-
+    	//console.log(r1, r2, link, header)
+    	//clear sessions
+    	Session.set('placeId', '');
+    	//Session.set('dishName', '');
     	//Set autocomplete option.
         this.autocompleteOptions = {
             types: ['establishment']
         };
         //On select event.
         this.$scope.$on('g-places-autocomplete:select', function (event, param) {
-			console.log(param);
+			Session.set('placeId', param.place_id);
 		});
     	
     	this.helpers({
@@ -28,25 +32,31 @@ export default class LocationCtrl extends Controller {
 	   		videoImage(){
 	          if(Session.get('videoImagePath'))
 	            return Meteor.absoluteUrl() + Session.get('videoImagePath');
+	        },
+	        suggestion(){
+	        	
 	        }
 	   	});
 
   	}
 
   	dishData(){
-  		if(this.data){
+  		if(this.data && this.rt){
+  			//Session.get('dishName')
   			if(this.data.name && this.data.rating && this.rt.restaurantdata){
-				let tagslistarr = this.data.comment.split(' ');
-				let arr=[];
-				$.each(tagslistarr,function(i,val){
-				    if(tagslistarr[i].indexOf('#') == 0){
-				      arr.push(tagslistarr[i]);  
-				    }
-				});
-				if(arr.length){
-					this.data.tags = arr;
+				//this.data['name'] = Session.get('dishName');
+ 				if(this.data.comment){
+	 				let tagslistarr = this.data.comment.split(' ');
+					let arr=[];
+					$.each(tagslistarr,function(i,val){
+					    if(tagslistarr[i].indexOf('#') == 0){
+					      arr.push(tagslistarr[i]);  
+					    }
+					});
+					if(arr.length){
+						this.data.tags = arr;
+					}
 				}
-				
 	  			var restaurant = this.rt.restaurantdata;
 	  			if(_.contains(restaurant.types, 'restaurant')){
 	  				var country = '', city = '', postal_code= '';
@@ -87,10 +97,14 @@ export default class LocationCtrl extends Controller {
 	  				Session.set('dishData', this.data);
 	  				this.$state.go('post_review');
   				}else{
-  					this.$ionicLoading.show({ template: 'Add restaurant only', noBackdrop: true, duration:2000});
+  					this.$ionicLoading.show({ template: 'Add restaurant only', noBackdrop: true, duration:1500});
   					delete this.rt.restaurantdata;
   				}
+  			}else{
+  				this.$ionicLoading.show({ template: 'All fields are required except comment!', noBackdrop: true, duration:1000});
   			}
+  		}else{
+  			this.$ionicLoading.show({ template: 'All fields are required except comment!', noBackdrop: true, duration:1000});
   		}
   	}
 
@@ -104,6 +118,21 @@ export default class LocationCtrl extends Controller {
       }
     }
 
+    dishSelected(selected) {
+      	if (selected) {
+      		if(typeof selected.originalObject === 'string'){
+      			//Session.set('dishName', selected.originalObject);
+      		}
+      	} else {
+        	//console.log('cleared');
+      	}
+    }
+
+    searchAPI(userInputString, timeoutPromise) {
+    	if(userInputString){
+	  		return http.post('/api/search?q='+ userInputString + '&place=' + Session.get('placeId'), { q: userInputString}, {timeout: timeoutPromise});
+		}
+	}
 }
 
-LocationCtrl.$inject = ['$state', '$scope', '$ionicLoading'];
+LocationCtrl.$inject = ['$state', '$scope', '$ionicLoading', '$http'];

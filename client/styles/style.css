@@ -304,7 +304,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .review-form .icon-wrap{width:87%;display:block;float:left;}
 .review-form .location{top:12px;height:27px}
 .review-form input{border-bottom:1px solid;border-color:rgba(0, 0, 0, 0.4)}
-.review-form .icon-wrap input{margin-left: 10px;padding-left: 3px;}
+.review-form .icon-wrap input{margin-left: 10px;padding-left: 3px;padding-bottom: 10px;}
 .rate-box {text-align:center;margin-bottom:25px}
 .rate-box a{display:inline-block;float:none;text-align:center;}
 .rate-box a img{height:100%;width:auto}
@@ -440,6 +440,86 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .fbicon{max-width:100%; height:18px;width:10px;vertical-align: middle;margin-right:10px;margin-top: -5px}
 .reviews-final .checkbox-icon{margin-top:-2px;}
 .logo-ig img{height: 100%;width: 99px;margin-top: 2px}
+.display-list{overflow: visible;float: left;width: 100%;}
+.lst_lbl{float: left;width: 100%;}
+.user-image.unfollow-image{float: none;margin: auto;}
+.unfollow-text{display: block;text-align: center;}
+.popup-container .popup{background-color : #f9f9f9 !important;}
+.popup-container .popup-head{ border-bottom: none !important; } 
+/* autocomplete css*/
+.angucomplete-holder {
+    position: relative;
+}
+
+.angucomplete-dropdown {
+    border-color: #ececec;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    width: 100%;
+    padding: 6px;
+    cursor: pointer;
+    z-index: 9999;
+    position: absolute;
+    left: 9px;
+    margin-top: -1px;
+    background-color: #ffffff;
+}
+
+.angucomplete-searching {
+    color: #acacac;
+    font-size: 14px;
+}
+
+.angucomplete-description {
+    font-size: 14px;
+}
+
+.angucomplete-row {
+  padding: 6px;
+  color: #000000;
+  margin-bottom: 0px;
+  clear: both;
+  border-bottom-color: rgba(0, 0, 0, 0.4);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+#ex1_dropdown{padding: 0px;box-shadow: -webkit-box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
+-moz-box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
+box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
+max-height:150px;overflow-y: auto;
+}
+
+.angucomplete-selected-row {
+  background-color: #f9f9f9;
+  color: #ffffff;
+}
+
+.angucomplete-image-holder {
+  padding-top: 2px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+.angucomplete-image {
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  border-color: #ececec;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.angucomplete-image-default {
+  /* Add your own default image here
+   background-image: url('/assets/default.png');
+  */
+  background-position: center;
+  background-size: contain;
+  height: 34px;
+  width: 34px;
+}
 
 /*---------media-------*/
 @media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx){

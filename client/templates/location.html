@@ -1,57 +1,64 @@
 <ion-view view-title="signIn">
-    <ion-header-bar align-title="left" class="bar-positive">
-	    <div class="bar bar-header bar-light head_bar">
-		    <div class="back_arrrow next-bar">
-		    	<span class="sp2"><a ui-sref="filter"><img src="./left-arrow.png" alt=""/></a></span>	
-		    	<h2 class="logo-ig"><img src="./thedish.png"></h2>
-		    </div>
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="bar bar-header bar-light head_bar">
+	    <div class="back_arrrow next-bar">
+	    	<span class="sp2"><a ui-sref="filter"><img src="./left-arrow.png" alt=""/></a></span>	
+	    	<h2 class="logo-ig"><img src="./thedish.png"></h2>
 	    </div>
-    </ion-header-bar>
+    </div>
+  </ion-header-bar>
 	<ion-content>
 		<div class="full_back suggest reviews">
-            <div class="dsh-img" ng-if="location.image">
-              <img src="{{location.image}}" alt="" />
+      <div class="dsh-img" ng-if="location.image">
+        <img src="{{location.image}}" alt="" />
+      </div>
+      <div ng-if="location.videoImage" class="dsh-img dish-image play-video" ng-click="location.playVideo()">
+        <img id="clickedImage" src="{{location.videoImage}}" alt=""/>
+        <a href="javascript:void(0)"><img src="./play.png" alt=""/></a>
+      </div>
+      <div class="row r-one">
+      	<div class="col">
+        	<div class="review-form">
+            <div class="list list_item">
+              <label class="item-input item-floating-label">
+                <span class="icon-top location"><img src="./location.png" alt="" class=""></span>
+                <span class="icon-wrap">
+                  <input type="text" g-places-autocomplete options="location.autocompleteOptions" ng-model="location.rt.restaurantdata" placeholder="Add Restaurant" />
+                </span>
+              </label>
+              <label class="item-input item-floating-label display-list">
+              	<span class="icon-top zip"><img src="./dish-name.png" alt="" class=""></span>
+                <span class="icon-wrap">
+                  <input type="text" ng-model="location.data.name" placeholder="Dish Name">
+                  <!-- <angucomplete-alt id="ex1"
+                    ng-model="name"
+                    placeholder="Dish Name"
+                    pause="100"
+                    selected-object="location.dishSelected"
+                    remote-api-handler="location.searchAPI" 
+                    search-fields="name"
+                    title-field="name"
+                    minlength="1" override-suggestions="true" text-no-results="false"></angucomplete-alt> -->
+                </span>
+              </label>
+              <label class="item-input item-floating-label lst_lbl">
+              	<span class="icon-top"><img src="./comments.png" alt="" class=""></span>
+                <span class="icon-wrap">
+                  <textarea  ng-model="location.data.comment" placeholder="Comments"></textarea>
+                </span>
+              </label>
             </div>
-            <div ng-if="location.videoImage" class="dsh-img dish-image play-video" ng-click="location.playVideo()">
-              <img id="clickedImage" src="{{location.videoImage}}" alt=""/>
-              <a href="javascript:void(0)"><img src="./play.png" alt=""/></a>
-            </div>
-            <div class="row r-one">
-            	<div class="col">
-                	<div class="review-form">
-                        <div class="list list_item">
-                           <label class="item-input item-floating-label">
-                           <span class="icon-top location"><img src="./location.png" alt="" class=""></span>
-                            <span class="icon-wrap">
-                              <input  type="text" g-places-autocomplete options="location.autocompleteOptions" ng-model="location.rt.restaurantdata" placeholder="Add Restaurant" />
-                            </span>
-                          </label>
-                          <label class="item-input item-floating-label">
-                          	<span class="icon-top zip"><img src="./dish-name.png" alt="" class=""></span>
-                            <span class="icon-wrap">
-                                <input type="text" ng-model="location.data.name" placeholder="Dish Name">
-                            </span>
-                          </label>
-                          <label class="item-input item-floating-label">
-                          	<span class="icon-top"><img src="./comments.png" alt="" class=""></span>
-                            <span class="icon-wrap">
-                                <textarea  ng-model="location.data.comment" placeholder="Comments"></textarea>
-                            </span>
-                          </label>
-                       </div>
-                   </div>
-                </div>
-            </div>
-            <div class="row r-two">
-            	<div class="col">
-                	<div class="rate-box">
-                    	<ng-rate-it ng-model="location.data.rating" step="1" star-width="25" star-height="25"></ng-rate-it>
-                    </div>
-                </div>
-            </div>
-           <a href="javascript:void(0)" class="next-btn r-button" ng-click="location.dishData(data, rt)">Next</a>
-   		</div>
-       
+          </div>
+        </div>
+      </div>
+      <div class="row r-two">
+      	<div class="col">
+        	<div class="rate-box">
+          	<ng-rate-it ng-model="location.data.rating" step="1" star-width="25" star-height="25"></ng-rate-it>
+          </div>
+        </div>
+      </div>
+      <a href="javascript:void(0)" class="next-btn r-button" ng-click="location.dishData(data, rt)">Next</a>
+   	</div>
 	</ion-content>
-    
 </ion-view>

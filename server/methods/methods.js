@@ -117,7 +117,19 @@ Meteor.methods({
   		}
   	},
   	getDish(dishId){
-  		return Dishes.findOne(dishId);
+  		let dish = Dishes.findOne(dishId);
+  		if(dish){
+  			reviews = Dishes.find({name: dish.name, 'restaurant.placeId': dish.restaurant.placeId}).fetch();
+  			if(reviews.length > 0){
+  				reviews.map(function(review, index){
+  					userData = Meteor.users.findOne(review.uploadedBy);
+  					reviews[index]['firstname'] = userData.profile.firstname.charAt(0).toUpperCase();
+  					reviews[index]['lastname'] = userData.profile.lastname.charAt(0).toUpperCase() + userData.profile.lastname.slice(1).toLowerCase();
+  					reviews[index]['avatar'] = (userData.profile.avatar ? userData.profile.avatar : '');
+  				});
+  			}
+  			return { dish:dish, reviews: reviews};
+  		}
   	},
   	dishWithRestaurant(placeId){
   		return Dishes.find({'restaurant.placeId': placeId},{ sort: { createdAt: -1 } }).fetch();
@@ -266,6 +278,51 @@ Meteor.methods({
 			}});
   		}else{
   			throw new Meteor.Error( 404, 'Username already exists.' );
+  		}
+  	},
+  	getLength(){
+  		return Dishes.find().count();
+  	},
+  	followUser(otherUserId){
+		if(!Meteor.user().profile.following){
+			updateMe = Meteor.users.update({_id: Meteor.userId()}, {$set:{ 'profile.following': [{userId: otherUserId}]}});
+		}else{
+			updateMe = Meteor.users.update({_id: Meteor.userId()}, { $push: { 'profile.following': { userId: otherUserId }}});
+		}
+		if(updateMe){
+			otherUser = Meteor.users.findOne({_id: otherUserId});
+			if(!otherUser.profile.followers){
+	  			updateOther = Meteor.users.update({_id: otherUser._id}, {$set:{ 'profile.followers': [{userId: Meteor.userId()}]}});
+	  		}else{
+	  			updateOther = Meteor.users.update({_id: otherUser._id}, { $push: { 'profile.followers': { userId: Meteor.userId()}}});
+	  		}
+			return updateOther;
+		}
+  	},
+  	UnFollowUser(otherUserId){
+  		if(Meteor.user().profile.following){
+  			checkFollowing = Meteor.user().profile.following;
+  			if(checkFollowing.length == 1){
+  				checkUserId = _.where(checkFollowing, { userId: otherUserId});
+  				if(checkUserId.length){
+  					updateMe = Meteor.users.update({_id: Meteor.userId()}, {$unset:{ 'profile.following': 1}}, false, true);
+  				}
+  			}else if(checkFollowing.length > 1){
+  				updateMe = Meteor.users.update({ _id: Meteor.userId()}, {$pull : { "profile.following" : { "userId": otherUserId}}});
+  			}
+  			if(updateMe){
+  				otherUser = Meteor.users.findOne({_id: otherUserId});
+  				checkFollowers = otherUser.profile.followers;
+				if(checkFollowers.length == 1){
+					checkUser = _.where(checkFollowers, { userId: Meteor.userId()});
+		  			if(checkUser.length){
+		  				updateOther = Meteor.users.update({_id: otherUserId}, {$unset:{ 'profile.followers': 1}}, false, true);
+		  			}
+		  		}else if(checkFollowers.length > 1){
+		  			updateOther = Meteor.users.update({_id: otherUserId}, {$pull : { "profile.followers" : { "userId": Meteor.userId()}}});
+		  		}
+				return updateOther;
+  			}
   		}
   	}
 });

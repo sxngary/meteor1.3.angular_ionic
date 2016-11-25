@@ -5,6 +5,8 @@ import 'angular-meteor-auth';
 import 'angular-sanitize';
 import 'angular-ui-router';
 import 'ionic-scripts';
+import 'ng-infinite-scroll';
+import 'angucomplete-alt'
 import 'angular-validation/dist/angular-validation';
 import 'angular-validation/dist/angular-validation-rule';
 import './angular-validation-schema.min';
@@ -33,6 +35,7 @@ import PostReviewCtrl from '../controllers/post_review.controller';
 import ChangePasswordCtrl from '../controllers/change_password.controller';
 import RestaurantCtrl from '../controllers/restaurant.controller';
 import OtherReviewCtrl from '../controllers/othereview.controller';
+import OtherUserCtrl from '../controllers/otheruser.controller';
 import ReviewService from '../services/review.service';
 import RatingService from '../services/rating.service';
 
@@ -50,8 +53,13 @@ app = Angular.module(App, [
   'validation.schema',
   'vintagejs',
   'ngRateIt',
-  'google.places'
+  'google.places',
+  'infinite-scroll',
+  'angucomplete-alt'
 ]);
+
+// you might call this after your module initalization
+angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 250)
 
 //Load modules
 new Loader(App)
@@ -72,6 +80,7 @@ new Loader(App)
   .load(PostReviewCtrl)
   .load(ChangePasswordCtrl)
   .load(OtherReviewCtrl) 
+  .load(OtherUserCtrl)
   .load(ReviewService)
   .load(RestaurantCtrl)
   .load(Routes);

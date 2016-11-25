@@ -5,27 +5,45 @@ export default class FeedCtrl extends Controller {
   	constructor() {
     	super(...arguments);
 
-    	this.subscribe('users-feed');
+    	this.$reactive(this).attach(this.$scope);
+   		this.$scope.moredata = false;
+   		_this = this;
+    	this.call('getLength', function(err, totalLength){
+    		if(!err){
+    			_this.$scope.total = totalLength;
+    		}
+    	});
+
+    	this.limit = 5;
+    	this.skip = 0;
+		this.subscribe('users-feed', () => [this.limit, this.skip], {
+		    onStart: function () {
+		      	//console.log("New subscribtion has been started");
+		    },
+		    onReady: function () {
+		      	//console.log("onReady And the Items actually Arrive");
+		    }
+		});
+
 		this.helpers({
 			posts(){
-				return Dishes.find({}).fetch();
+				return Dishes.find({},{ sort: { createdAt: -1 } }).fetch();
 			},
 	  		rootUrl(){
   				return Meteor.absoluteUrl();
   			}
 		});
   	}
-  	getUser(uploadedBy){
-  		user = Meteor.users.find({_id: uploadedBy}).fetch();
-  		console.log(user)
-  	}
+
 	userName(uploadedBy){
 		user = Meteor.users.findOne({_id: uploadedBy});
-		return { 
-					fname: user.profile.firstname.charAt(0).toUpperCase(), 
-					lname: user.profile.lastname.charAt(0).toUpperCase() + user.profile.lastname.slice(1).toLowerCase(),
-					avatar: (user.profile.avatar ? user.profile.avatar : '')
-				};
+		if(user){
+			return { 
+				fname: user.profile.firstname.charAt(0).toUpperCase(), 
+				lname: user.profile.lastname.charAt(0).toUpperCase() + user.profile.lastname.slice(1).toLowerCase(),
+				avatar: (user.profile.avatar ? user.profile.avatar : '')
+			};
+		}
 	}
 
 	getNumber(num) {
@@ -43,6 +61,25 @@ export default class FeedCtrl extends Controller {
 	postedTime(date){
     	return this.Rating.postedDate(date);
   	}
+
+  	redirectTo(id){
+  		if(this.currentUser._id == id)
+  			this.$location.url('/tab/profile');
+  		else
+  			this.$location.url('/user/' + id);
+  	}
+  	
+  	loadMore(){
+  		prevCount = Dishes.find().count();
+  		if(this.$scope.total == prevCount){
+            this.$scope.moredata=true;
+        }
+        this.subscribe('users-feed', () => [this.limit, prevCount], {});
+        _this = this;
+        _this.$timeout(function() {
+        	_this.$scope.$broadcast('scroll.infiniteScrollComplete');
+		}, 1500);
+  	}
 }
 
-FeedCtrl.$inject = ['$state', 'Rating', '$log'];
+FeedCtrl.$inject = ['$state', '$scope', 'Rating', '$timeout', '$reactive', '$location'];

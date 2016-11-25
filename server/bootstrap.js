@@ -111,4 +111,18 @@ Meteor.startup(function() {
 			res.end(JSON.stringify({result: true, items: []}));
 		}
 	});*/
+
+	Picker.route('/api/search', function(params, req, res, next) {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		searchText = params.query.q, placeId = params.query.place;
+		if(searchText && placeId){
+			var parts = searchText.trim().split(/[ \-\:]+/);
+			exp = new RegExp("(" + parts.join('|') + ")", "ig");
+			data = Dishes.find({name: { $regex: exp, $options: 'i' }, 'restaurant.placeId': placeId}).fetch();
+			//data = [{name : 'Dinesh'},{name : 'Dinesh'},{name : 'Dinesh'},{name : 'Dinesh'},{name : 'Dinesh'},{name : 'Dinesh'},{name : 'Dinesh'}]
+			res.end(JSON.stringify(data));;
+		}else{
+			res.end(JSON.stringify([]));;
+		}
+	});
 });

@@ -2,23 +2,34 @@ import { Meteor } from 'meteor/meteor';
 import { Dishes } from '../lib/collections';
 
 //Publish user posts.
-Meteor.publish('dishes', function() {
-  	return Dishes.find({uploadedBy: this.userId},{ sort: { createdAt: -1 } });
+Meteor.publish("dishes", function(){
+    Mongo.Collection._publishCursor( Dishes.find({uploadedBy: this.userId},{ sort: { createdAt: -1 } }), this, 'userDishes'); 
+    this.ready();
 });
 
 //Publish user posts.
-Meteor.publish('feed', function() {
-  	return Dishes.find({},{ sort: { createdAt: -1 } });
-});
-
-Meteor.publishComposite('users-feed', function () {
+Meteor.publishComposite('users-feed', function (limit, skip) {
   return {
     find: function () {
-      return Dishes.find({},{ sort: { createdAt: -1 } });
+      return Dishes.find({},{ skip: skip, limit: limit, sort: { createdAt: -1 } });
     },
     children: [{
       	find: function (dish) {
         	return Meteor.users.find({_id: dish.uploadedBy}, { fields: { profile: 1} });
+      	}
+    }]
+  }
+});
+
+//Publish other users post with profile data.
+Meteor.publishComposite('other-user', function (userId) {
+  return {
+    find: function () {
+      return Dishes.find({uploadedBy: userId},{ sort: { createdAt: -1 } });
+    },
+    children: [{
+      	find: function (dish) {
+        	return Meteor.users.find({_id: userId}, { fields: { profile: 1} });
       	}
     }]
   }
