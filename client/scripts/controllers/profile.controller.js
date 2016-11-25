@@ -1,6 +1,6 @@
 import { _ } from 'meteor/underscore';
 import { Controller } from 'angular-ecmascript/module-helpers';
-import { Dishes } from '../../../lib/collections';
+import { Dishes, userDishes } from '../../../lib/collections';
 
 export default class ProfileCtrl extends Controller {
 	constructor() {
@@ -15,7 +15,7 @@ export default class ProfileCtrl extends Controller {
     this.email = (profile.bio ? profile.bio : '');
 		this.helpers({
 			reviews(){
-				data =  Dishes.find({uploadedBy: this.currentUser._id}).fetch();
+				data =  userDishes.find({uploadedBy: this.currentUser._id}).fetch();
 				return data.length;
 			},
 			followers(){
@@ -25,7 +25,7 @@ export default class ProfileCtrl extends Controller {
 				return (this.currentUser.profile.following ? this.currentUser.profile.following.length : 0);
 			},
 			posts(){
-				return Dishes.find({uploadedBy: this.currentUser._id},{ sort: { createdAt: -1 } }).fetch();
+				return userDishes.find({uploadedBy: this.currentUser._id},{ sort: { createdAt: -1 } }).fetch();
 			},
 			rootUrl(){
 				return Meteor.absoluteUrl();
@@ -46,4 +46,4 @@ export default class ProfileCtrl extends Controller {
   }
 }
 
-ProfileCtrl.$inject = ['$state', 'Rating'];
+ProfileCtrl.$inject = ['$state', 'Rating', '$location'];

@@ -68,6 +68,14 @@ class RoutesConfig extends Config {
           }
         }
       })
+      .state('otheruser', {
+        url: '/user/:id',
+        templateUrl: 'client/templates/other_userprofile.html',
+        controller: 'OtherUserCtrl as otheruser',
+        resolve: {
+          user: this.isAuthorized
+        }
+      })
       .state('settings', {
         url: '/settings',
         templateUrl: 'client/templates/settings.html',

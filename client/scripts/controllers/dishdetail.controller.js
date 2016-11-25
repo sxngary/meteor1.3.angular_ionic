@@ -6,9 +6,11 @@ export default class DishDetailCtrl extends Controller {
 
     	this.dishId = this.$stateParams.dishId;
     	this.miles = this.$stateParams.mile;
+    	console.log('fdfd')
     	this.callMethod('getDish', this.dishId, (err, data) => {
 	      	if (!err){
-	      		Session.set('dishData', data);
+	      		Session.set('dishData', data.dish);
+	      		Session.set('dishReviews', data.reviews);
 	      	}else{
 	      		console.log(err);
 	      	}
@@ -22,6 +24,9 @@ export default class DishDetailCtrl extends Controller {
   			},
 	  		rootUrl(){
   				return Meteor.absoluteUrl();
+  			},
+  			reviews(){
+  				return Session.get('dishReviews');
   			}
   		});
   	}
@@ -56,7 +61,7 @@ export default class DishDetailCtrl extends Controller {
 		}
 	}
 
-	addReview(){
+	/*addReview(){
 		this.OtherReview.showModal();
 	}
 
@@ -71,11 +76,27 @@ export default class DishDetailCtrl extends Controller {
 		}else{
 			return false;
 		}
-	}
+	}*/
 
-	redirestTo(placeId){
+	redirectTo(placeId){
 		this.$location.url('/restaurant/' + placeId);
 	}
+
+	cardNumber(num) {
+		return this.Rating.getNumber(num);
+	}
+
+	cardCheckHalfStar(num){
+		return this.Rating.checkHalfStar(num);
+	}
+
+	cardPrintEmptyStar(num){
+		return this.Rating.printEmptyStar(num);
+	}
+
+	postedTime(date){
+    	return this.Rating.postedDate(date);
+  	}
 }
 
-DishDetailCtrl.$inject = ['$state', 'OtherReview', '$stateParams', '$location'];
+DishDetailCtrl.$inject = ['$state', 'OtherReview', 'Rating', '$stateParams', '$location'];

@@ -25,7 +25,7 @@
                         <div class="col col-67">
                             <div class="user-rate">
                                
-                               <span class="pull-right user-name">
+                               <span class="pull-right user-name" ng-click="feed.redirectTo(post.uploadedBy)">
                                     <span class="user-img">
                                         <img ng-if="!feed.userName(post.uploadedBy).avatar" src="/user_none.png" alt="" />
                                         <img ng-if="feed.userName(post.uploadedBy).avatar" src="{{feed.rootUrl}}{{feed.userName(post.uploadedBy).avatar}}" alt="" />
@@ -42,6 +42,10 @@
                     </div>
                 </div>
             </div>
+            <ion-infinite-scroll distance="1"
+                on-infinite="feed.loadMore()"
+                ng-if="!moredata">
+            </ion-infinite-scroll>
             <div class="no-suggestion" ng-if="feed.posts.length == 0">
                 <div class="no-content">
                     <h4>No posts currently available</h4>

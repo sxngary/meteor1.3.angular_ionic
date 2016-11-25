@@ -1,0 +1,105 @@
+<ion-view view-title="signIn">
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="bar bar-header bar-light head_bar">
+           <div class="back_arrrow">
+           		<span class="sp2"><a ng-click="otheruser.previousView()"><img src="/left-arrow.png" alt=""/></a></span>
+                <h2>{{otheruser.userData.halfFirstname}}.  {{otheruser.userData.lastname}}</h2>
+           </div>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+      <div class="user-profile">
+          <div class="row">
+              <div class="user-image">
+                  <img ng-if="!otheruser.userData.avatar" src="/user_none.png" alt="" />
+                  <img ng-if="otheruser.userData.avatar" src="{{otheruser.rootUrl}}{{otheruser.userData.avatar}}" alt="" />
+                </div>
+                <div class="content-wrap">
+                    <div class="user-detail user-review">
+                      <h3>{{otheruser.reviews}}</h3>
+                      <p>Reviews</p>
+                    </div>
+                    <div class="user-detail user-followes">
+                      <h3>{{otheruser.userData.followers}}</h3>
+                      <p>Followers</p>
+                    </div>
+                    <div class="user-detail user-following">
+                      <h3>{{otheruser.userData.following}}</h3>
+                      <p>Following</p>
+                    </div>
+                    
+                    <div class="bttn-wrap">
+                      <a class="button button-light edit-btn" ng-click="otheruser.followUser()">
+                          <span class="edit-text">{{otheruser.userData.followingText}}</span>
+                      </a>
+                    </div>
+                   
+                </div>
+                
+            </div>
+            <div class="row">
+              <div class="col user-del">
+                  <div class="user-name">
+                    <h5>{{otheruser.userData.firstname}} {{otheruser.userData.lastname}}</h5>
+                  </div>
+                    <p ng-if="otheruser.userData.bio">{{otheruser.userData.bio}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="full_back profile-posts suggest" ng-class="otheruser.posts.length==0 ? 'no-cnt' : ''"> <!-- Add no-cnt class when there is no record in posts -->
+          <div class="row">
+            <div class="col">
+              <h4 class="your-post">Post</h4>
+            </div>
+          </div>
+            <div class="row" ng-repeat="post in otheruser.posts" ng-if="$index % 3 == 0">
+              <div class="col col-33" ng-if="otheruser.posts[$index]">
+                    <div class="div1 image-box">
+                        <img ng-if="otheruser.posts[$index].videoThumb" src="{{otheruser.rootUrl}}/{{otheruser.posts[$index].videoThumb}}"/>
+                        <img ng-if="otheruser.posts[$index].imageId" src="{{otheruser.rootUrl}}/uploads/dishes/{{otheruser.posts[$index].imageId}}.jpeg"/>
+                        <!--<img src="/no-image.png"> -->
+                        <div class="star-img star-wrap">
+                          <!-- <img src="/fill-star.png" alt=""/>
+                          <img src="/fill-star.png" alt=""/>
+                          <img src="/fill-star.png" alt=""/>
+                          <img src="/half-star.png" alt=""/>
+                          <img src="/empty-star.png" alt=""/> -->
+                          <img ng-repeat="i in otheruser.getNumber(otheruser.posts[$index].rating) track by $index" src="/fill-star.png" alt=""/>
+                          <img ng-if="otheruser.checkHalfStar(otheruser.posts[$index].rating)" src="/half-star.png" alt=""/>
+                          <img ng-repeat="i in otheruser.printEmptyStar(otheruser.posts[$index].rating) track by $index" src="/empty-star.png" alt=""/>
+                        </div>
+                        <p class="resturant-name">{{otheruser.posts[$index].name}}</p>
+                        <p class="resturant-name">{{otheruser.posts[$index].restaurant.name}}</p>
+                    </div>
+              </div>
+              <div class="col col-33" ng-if="otheruser.posts[$index + 1]">
+                  <div class="div1 image-box">
+                      <img ng-if="otheruser.posts[$index+1].videoThumb" src="{{otheruser.rootUrl}}/{{otheruser.posts[$index+1].videoThumb}}"/>
+                      <img ng-if="otheruser.posts[$index+1].imageId" src="{{otheruser.rootUrl}}/uploads/dishes/{{otheruser.posts[$index+1].imageId}}.jpeg"/>
+                      <div class="star-img star-wrap">
+                        <img ng-repeat="i in otheruser.getNumber(otheruser.posts[$index+1].rating) track by $index" src="/fill-star.png" alt=""/>
+                        <img ng-if="otheruser.checkHalfStar(otheruser.posts[$index+1].rating)" src="/half-star.png" alt=""/>
+                        <img ng-repeat="i in otheruser.printEmptyStar(otheruser.posts[$index+1].rating) track by $index" src="/empty-star.png" alt=""/>
+                      </div>
+                      <p class="resturant-name">{{otheruser.posts[$index+1].name}}</p>
+                      <p class="resturant-name">{{otheruser.posts[$index+1].restaurant.name}}</p>
+                  </div>
+              </div>
+              <div class="col col-33" ng-if="otheruser.posts[$index+ 2]">
+                <div class="div1 image-box">
+                      <img ng-if="otheruser.posts[$index+2].videoThumb" src="{{otheruser.rootUrl}}/{{otheruser.posts[$index+2].videoThumb}}"/>
+                      <img ng-if="otheruser.posts[$index+2].imageId" src="{{otheruser.rootUrl}}/uploads/dishes/{{otheruser.posts[$index+ 2].imageId}}.jpeg"/>
+                      <div class="star-img star-wrap">
+                        <img ng-repeat="i in otheruser.getNumber(otheruser.posts[$index+2].rating) track by $index" src="/fill-star.png" alt=""/>
+                        <img ng-if="otheruser.checkHalfStar(otheruser.posts[$index+2].rating)" src="/half-star.png" alt=""/>
+                        <img ng-repeat="i in otheruser.printEmptyStar(otheruser.posts[$index+2].rating) track by $index" src="/empty-star.png" alt=""/>
+                      </div>
+                      <p class="resturant-name">{{otheruser.posts[$index + 2].name}}</p>
+                      <p class="resturant-name">{{otheruser.posts[$index + 2].restaurant.name}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row no-record" ng-if="!otheruser.posts.length">No post found!</div>
+        </div>
+  </ion-content>
+</ion-view>
