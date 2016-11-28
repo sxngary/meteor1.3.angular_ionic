@@ -16,18 +16,23 @@ export default class FeedCtrl extends Controller {
 
     	this.limit = 5;
     	this.skip = 0;
+    	Session.set('feedLoading', false);
 		this.subscribe('users-feed', () => [this.limit, this.skip], {
 		    onStart: function () {
 		      	//console.log("New subscribtion has been started");
 		    },
 		    onReady: function () {
-		      	//console.log("onReady And the Items actually Arrive");
+		    	Session.set('feedLoading', true);
 		    }
 		});
 
 		this.helpers({
 			posts(){
-				return Dishes.find({},{ sort: { createdAt: -1 } }).fetch();
+				if(Session.get('feedLoading')){
+					return Dishes.find({},{ sort: { createdAt: -1 } }).fetch();
+				}else{
+					return 'Loading';
+				}
 			},
 	  		rootUrl(){
   				return Meteor.absoluteUrl();

@@ -5,23 +5,39 @@ export default class LocationCtrl extends Controller {
   	constructor() {
     	super(...arguments);
 
-    	http = this.$http;
+    	this.subscribe('dish-search');
+
+    	//Displayed selected values on back
+    	if(Session.get('dishData')){
+    		this.data = Session.get('dishData');
+    	}
+
     	//Calculate image dimension according to screen.
     	header = $('.bar-positive').outerHeight();
     	r1 = $('.r-one').outerHeight();
     	r2 = $('.r-two').outerHeight();
     	link = $('.r-button').outerHeight();
-    	//console.log(r1, r2, link, header)
+    	//initialize autocomplete for dish name input.
+    	AutoCompletion.init("#searchBox");
     	//clear sessions
     	Session.set('placeId', '');
-    	//Session.set('dishName', '');
     	//Set autocomplete option.
         this.autocompleteOptions = {
             types: ['establishment']
         };
         //On select event.
+        _this = this;
         this.$scope.$on('g-places-autocomplete:select', function (event, param) {
 			Session.set('placeId', param.place_id);
+			_this.$ionicLoading.show({ template: 'Loading associated dishes', noBackdrop: true});
+			_this.subscribe('dish-search', () => [param.place_id], {
+			    onStart: function () {
+			      	//console.log("New subscribtion has been started");
+			    },
+			    onReady: function () {
+			      	_this.$ionicLoading.hide();
+			    }
+			});
 		});
     	
     	this.helpers({
@@ -42,9 +58,7 @@ export default class LocationCtrl extends Controller {
 
   	dishData(){
   		if(this.data && this.rt){
-  			//Session.get('dishName')
   			if(this.data.name && this.data.rating && this.rt.restaurantdata){
-				//this.data['name'] = Session.get('dishName');
  				if(this.data.comment){
 	 				let tagslistarr = this.data.comment.split(' ');
 					let arr=[];
@@ -118,21 +132,17 @@ export default class LocationCtrl extends Controller {
       }
     }
 
-    dishSelected(selected) {
-      	if (selected) {
-      		if(typeof selected.originalObject === 'string'){
-      			//Session.set('dishName', selected.originalObject);
-      		}
-      	} else {
-        	//console.log('cleared');
-      	}
-    }
-
-    searchAPI(userInputString, timeoutPromise) {
-    	if(userInputString){
-	  		return http.post('/api/search?q='+ userInputString + '&place=' + Session.get('placeId'), { q: userInputString}, {timeout: timeoutPromise});
-		}
-	}
+ 	search(){
+ 		if(Session.get('placeId')){
+	 		AutoCompletion.autocomplete({
+			    element: '#searchBox',       		// DOM identifier for the element
+			    collection: Dishes,              	// MeteorJS collection object
+			    field: 'name',                    	// Document field name to search for
+			    limit: 6,                         	// Max number of elements to show
+				filter: { 'restaurant.placeId': Session.get('placeId') }
+			});             
+ 		}
+ 	}
 }
 
-LocationCtrl.$inject = ['$state', '$scope', '$ionicLoading', '$http'];
+LocationCtrl.$inject = ['$state', '$scope', '$ionicLoading'];
