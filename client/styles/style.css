@@ -446,7 +446,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .unfollow-text{display: block;text-align: center;}
 .popup-container .popup{background-color : #f9f9f9 !important;}
 .popup-container .popup-head{ border-bottom: none !important; } 
-/* autocomplete css*/
+/* autocomplete css
 .angucomplete-holder {
     position: relative;
 }
@@ -467,23 +467,22 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 }
 
 .angucomplete-searching {
-    color: #acacac;
-    font-size: 14px;
+  color: #acacac;
+  font-size: 14px;
+  padding: 8px;
 }
 
 .angucomplete-description {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .angucomplete-row {
-  padding: 6px;
+  padding: 8px;
   color: #000000;
-  margin-bottom: 0px;
+  margin-bottom: 0px; 
   clear: both;
-  border-bottom-color: rgba(0, 0, 0, 0.4);
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-}
+  border-top: 1px solid #e6e6e6;
+} 
 #ex1_dropdown{padding: 0px;box-shadow: -webkit-box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
 -moz-box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
 box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
@@ -492,7 +491,6 @@ max-height:150px;overflow-y: auto;
 
 .angucomplete-selected-row {
   background-color: #f9f9f9;
-  color: #ffffff;
 }
 
 .angucomplete-image-holder {
@@ -510,17 +508,29 @@ max-height:150px;overflow-y: auto;
   border-style: solid;
   border-width: 1px;
 }
+.angucomplete-title{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;  
+}
 
 .angucomplete-image-default {
-  /* Add your own default image here
-   background-image: url('/assets/default.png');
-  */
   background-position: center;
   background-size: contain;
   height: 34px;
   width: 34px;
 }
+*/
+.ui-menu{max-height:150px;overflow-y: auto;}
+.ui-menu .ui-menu-item {padding: 8px; font-size: 14px; border-top: 1px solid #e6e6e6;}
+.ui-menu .ui-menu-item a { padding: 0; }
 
+.ui-widget-content {padding: 0px;box-shadow: -webkit-box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
+-moz-box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
+box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
+max-height:150px;overflow-y: auto;
+border: none;
+}
 /*---------media-------*/
 @media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx){
   .bar{background-size:100% 0px}

@@ -6,7 +6,6 @@ export default class DishDetailCtrl extends Controller {
 
     	this.dishId = this.$stateParams.dishId;
     	this.miles = this.$stateParams.mile;
-    	console.log('fdfd')
     	this.callMethod('getDish', this.dishId, (err, data) => {
 	      	if (!err){
 	      		Session.set('dishData', data.dish);
@@ -80,6 +79,13 @@ export default class DishDetailCtrl extends Controller {
 
 	redirectTo(placeId){
 		this.$location.url('/restaurant/' + placeId);
+	}
+
+	redirectToUser(id){
+		if(this.currentUser._id == id)
+  			this.$location.url('/tab/profile');
+  		else
+  			this.$location.url('/user/' + id);
 	}
 
 	cardNumber(num) {

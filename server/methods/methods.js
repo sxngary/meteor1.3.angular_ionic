@@ -119,7 +119,7 @@ Meteor.methods({
   	getDish(dishId){
   		let dish = Dishes.findOne(dishId);
   		if(dish){
-  			reviews = Dishes.find({name: dish.name, 'restaurant.placeId': dish.restaurant.placeId}).fetch();
+  			reviews = Dishes.find({name: dish.name, 'restaurant.placeId': dish.restaurant.placeId},{ sort: { createdAt: -1 } }).fetch();
   			if(reviews.length > 0){
   				reviews.map(function(review, index){
   					userData = Meteor.users.findOne(review.uploadedBy);
@@ -281,7 +281,14 @@ Meteor.methods({
   		}
   	},
   	getLength(){
-  		return Dishes.find().count();
+  		var user = Meteor.user();
+       	if(user.profile.following){
+       		following = _.pluck(user.profile.following, 'userId');
+  			count = Dishes.find({uploadedBy: {$in: following}}).count();
+  		}else{
+  			count = 0
+  		}
+  		return count;
   	},
   	followUser(otherUserId){
 		if(!Meteor.user().profile.following){

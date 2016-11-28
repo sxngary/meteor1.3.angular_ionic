@@ -68,7 +68,7 @@
                     	<div class="col col-67">
                         	<div class="user-rate">
                                
-                               <span class="pull-right user-name">
+                               <span class="pull-right user-name" ng-click="dish.redirectToUser(post.uploadedBy)">
                                     <span class="user-img">
                                         <img ng-if="!post.avatar" src="/user_none.png" alt="" />
                                         <img ng-if="post.avatar" src="{{dish.rootUrl}}{{post.avatar}}" alt="" />

@@ -6,7 +6,6 @@ import 'angular-sanitize';
 import 'angular-ui-router';
 import 'ionic-scripts';
 import 'ng-infinite-scroll';
-import 'angucomplete-alt'
 import 'angular-validation/dist/angular-validation';
 import 'angular-validation/dist/angular-validation-rule';
 import './angular-validation-schema.min';
@@ -54,8 +53,7 @@ app = Angular.module(App, [
   'vintagejs',
   'ngRateIt',
   'google.places',
-  'infinite-scroll',
-  'angucomplete-alt'
+  'infinite-scroll'
 ]);
 
 // you might call this after your module initalization

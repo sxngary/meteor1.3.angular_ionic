@@ -29,16 +29,7 @@
               <label class="item-input item-floating-label display-list">
               	<span class="icon-top zip"><img src="./dish-name.png" alt="" class=""></span>
                 <span class="icon-wrap">
-                  <input type="text" ng-model="location.data.name" placeholder="Dish Name">
-                  <!-- <angucomplete-alt id="ex1"
-                    ng-model="name"
-                    placeholder="Dish Name"
-                    pause="100"
-                    selected-object="location.dishSelected"
-                    remote-api-handler="location.searchAPI" 
-                    search-fields="name"
-                    title-field="name"
-                    minlength="1" override-suggestions="true" text-no-results="false"></angucomplete-alt> -->
+                  <input id="searchBox" type="text" ng-model="location.data.name" placeholder="Dish Name" ng-keyup="location.search()">
                 </span>
               </label>
               <label class="item-input item-floating-label lst_lbl">
