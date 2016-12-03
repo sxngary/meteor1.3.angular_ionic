@@ -55,8 +55,8 @@ export default class SuggestionCtrl extends Controller {
 		return this.Rating.uptoDecimal(value);
 	}
 
-  	redirectToDish(dishId, mile){
-	  	this.$location.url('/dish_detail/' + dishId + '/' + mile);
+  	redirectToDish(dishId){
+	  	this.$location.url('/dish_detail/' + dishId);
   	}
 }
 

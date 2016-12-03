@@ -42,12 +42,13 @@ class RoutesConfig extends Config {
           }
         }
       })
-      .state('review', {
+      .state('tab.review', {
         url: '/review',
-        templateUrl: 'client/templates/review.html',
-        controller: 'ReviewCtrl as review',
-        resolve: {
-          user: this.isAuthorized
+        views: {
+          'review-tab': {
+            templateUrl: 'client/templates/review.html',
+            controller: 'ReviewCtrl as review'
+          }
         }
       })
       .state('tab.feed', {
@@ -85,7 +86,7 @@ class RoutesConfig extends Config {
         }
       })
       .state('dish_detail', {
-        url: '/dish_detail/:dishId/:mile',
+        url: '/dish_detail/:dishId',
         templateUrl: 'client/templates/dishdetail.html',
         controller: 'DishDetailCtrl as dish',
         resolve: {
@@ -102,6 +103,7 @@ class RoutesConfig extends Config {
       })
       .state('filter', {
         url: '/filter',
+        cache: false,
         templateUrl: 'client/templates/filter.html',
         controller: 'FilterCtrl as filter',
         resolve: {

@@ -17,14 +17,14 @@ export default class FeedCtrl extends Controller {
     	this.limit = 5;
     	this.skip = 0;
     	Session.set('feedLoading', false);
-		this.subscribe('users-feed', () => [this.limit, this.skip], {
-		    onStart: function () {
-		      	//console.log("New subscribtion has been started");
-		    },
-		    onReady: function () {
-		    	Session.set('feedLoading', true);
-		    }
-		});
+  		this.subscribe('users-feed', () => [this.limit, this.skip], {
+  		    onStart: function () {
+  		      	//console.log("New subscribtion has been started");
+  		    },
+  		    onReady: function () {
+  		    	Session.set('feedLoading', true);
+  		    }
+  		});
 
 		this.helpers({
 			posts(){
@@ -34,9 +34,9 @@ export default class FeedCtrl extends Controller {
 					return 'Loading';
 				}
 			},
-	  		rootUrl(){
-  				return Meteor.absoluteUrl();
-  			}
+  		rootUrl(){
+				return Meteor.absoluteUrl();
+			}
 		});
   	}
 
@@ -74,16 +74,23 @@ export default class FeedCtrl extends Controller {
   			this.$location.url('/user/' + id);
   	}
   	
+  	redirect(id, type){
+  		if(type == 'dish')
+  			this.$location.url('/dish_detail/' + id);
+  		else
+  			this.$location.url('/restaurant/' + id);
+  	}
+
   	loadMore(){
   		prevCount = Dishes.find().count();
   		if(this.$scope.total == prevCount){
             this.$scope.moredata=true;
         }
-        this.subscribe('users-feed', () => [this.limit, prevCount], {});
-        _this = this;
-        _this.$timeout(function() {
-        	_this.$scope.$broadcast('scroll.infiniteScrollComplete');
-		}, 1500);
+      this.subscribe('users-feed', () => [this.limit, prevCount], {});
+      _this = this;
+      _this.$timeout(function() {
+        _this.$scope.$broadcast('scroll.infiniteScrollComplete');
+  		}, 1500);
   	}
 }
 

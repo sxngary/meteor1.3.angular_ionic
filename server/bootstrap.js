@@ -13,11 +13,10 @@ Meteor.startup(function() {
 	    appId: '1699875387003760',
 	    secret: '86f1da6750162686eaff73f0831cd44b'
 	});
-
+	
 	//include node modules here.
 	fs = Npm.require('fs');
   	path = Npm.require('path');
-	fs = Npm.require('fs');
 	Fiber = Npm.require('fibers');
 	Future = Npm.require('fibers/future');
 	multer  = require('multer');
@@ -25,6 +24,10 @@ Meteor.startup(function() {
 	mime = Npm.require('mime');
 	base = path.resolve('.').split('.meteor')[0];
 
+	//Globally accessible
+	METERS_PER_MILE = 1609.34;
+	MILES = 20;
+	DISTANCEMULTIPLIER = 0.000621371;
 
 	WebApp.connectHandlers.use(function(req, res, next) {
 	    var re = /^\/uploads\/(.*)$/.exec(req.url);

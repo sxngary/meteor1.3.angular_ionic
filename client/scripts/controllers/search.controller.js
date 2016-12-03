@@ -67,8 +67,8 @@ export default class SearchCtrl extends Controller {
 		return this.Rating.printEmptyStar(num);
 	}
 
-	redirectToDish(dishId, mile){
-		this.$location.url('/dish_detail/' + dishId + '/' + mile);
+	redirectToDish(dishId){
+		this.$location.url('/dish_detail/' + dishId);
 	}
 }
 

@@ -2,22 +2,26 @@
 	<ion-header-bar align-title="left" class="bar-positive">
 		<div class="bar bar-header bar-light head_bar">
         	 <div class="back_arrrow">
-        		<span class="sp2"><a ui-sref="tab.suggestion"><img src="/left-arrow.png" alt=""/></a></span>	
+        		<span class="sp2"><a ng-click="restaurant.previousView()"><img src="/left-arrow.png" alt=""/></a></span>	
                	<h2>{{restaurant.restaurantDishes[0].restaurant.name}}</h2>
         	 </div>
 		</div>
 	</ion-header-bar>
 	<ion-content>
-		<div class="full_back suggest restro-detail">
+		<div class="full_back suggest restro-detail" ng-if="restaurant.restaurantDishes">
         	<div class="dish-image">
             	<!--<img ng-if="restaurant.restaurantDishes[0].restaurant.image" src="{{restaurant.restaurantDishes[0].restaurant.image}}" alt="">-->
                 <img ng-src="{{restaurant.restaurantDishes[0].restaurant.image}}" err-SRC="/no-picture.gif" />
             </div>
             <div class="resturant-detail">
             	<div class="row">
-                	<div class="col">
+                	<div class="col" ng-click="restaurant.openMap(restaurant.restaurantDishes[0].restaurant.location.coordinates)">
                     	<h3><span class="locatio-pin"><i class="icon ion-location"></i></span>{{restaurant.restaurantDishes[0].restaurant.address}}</h3>
                     </div>
+                </div>
+                <div>
+                    website : {{restaurant.results.website}}
+                    Phone : {{restaurant.results.phone}}
                 </div>
                 
             </div>
@@ -25,7 +29,7 @@
             	<div class="col div1">
                 	<div class="row">
                     	<div class="col col-33">
-                        	<div class="side-image-wrap">
+                        	<div class="side-image-wrap" ng-click="restaurant.redirectTo(dish._id)">
                             	<img ng-if="dish.videoThumb" src="{{restaurant.rootUrl}}/  {{dish.videoThumb}}"/>
                                 <img ng-if="dish.imageId" src="{{restaurant.rootUrl}}uploads/dishes/{{dish.imageId}}.jpeg"/>
                         	</div>
@@ -36,7 +40,7 @@
                            </span>
                     	</div>
                     	<div class="col col-67">
-                            <p class="dish-name">{{dish.name}}</p>
+                            <p class="dish-name" ng-click="restaurant.redirectTo(dish._id)">{{dish.name}}</p>
                             <p class="resturant-name">{{dish.comment}}</p>
                             <p class="post-date">Posted: {{restaurant.postedTime(dish.dateMillisecond)}}</p>
                     	</div>

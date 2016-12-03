@@ -57,11 +57,11 @@ Meteor.publish('nearest-locations-data', function (longitude, latitude, searchTe
 			            "type": "Point",
 			            "coordinates": [ Number(longitude), Number(latitude) ]
 			        }, 
-			        "maxDistance": 20 * 1609.34,
+			        "maxDistance": MILES * METERS_PER_MILE,
 			        "query": {name:{ $regex: exp, $options: 'i' }, name: 1},
 			        "spherical": true,
 			        "distanceField": "distance",
-			        "distanceMultiplier": 0.000621371
+			        "distanceMultiplier": DISTANCEMULTIPLIER
 				}
 			}
 		]);
@@ -73,11 +73,11 @@ Meteor.publish('nearest-locations-data', function (longitude, latitude, searchTe
 			            "type": "Point",
 			            "coordinates": [ Number(longitude), Number(latitude) ]
 			        }, 
-			        "maxDistance": 20 * 1609.34,
+			        "maxDistance": MILES * METERS_PER_MILE,
 			        "query": {'restaurant.name':{ $regex: exp, $options: 'i' }, 'restaurant.name': 1},
 			        "spherical": true,
 			        "distanceField": "distance",
-			        "distanceMultiplier": 0.000621371
+			        "distanceMultiplier": DISTANCEMULTIPLIER
 				}
 			}
 		]);

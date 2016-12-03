@@ -12,7 +12,7 @@
     <div ng-if="suggestion.suggestions.length">
       <div class="row" ng-repeat="dish in suggestion.suggestions" ng-if="$index % 3 == 0">
       	<div class="col col-33" ng-if="suggestion.suggestions[$index]">
-          <div class="div1" ng-click="suggestion.redirectToDish(suggestion.suggestions[$index]._id, suggestion.uptoDecimal(suggestion.suggestions[$index].distance))">
+          <div class="div1" ng-click="suggestion.redirectToDish(suggestion.suggestions[$index]._id)">
             <img ng-if="suggestion.suggestions[$index].videoThumb" src="{{suggestion.rootUrl}}/{{suggestion.suggestions[$index].videoThumb}}"/>
             <img ng-if="suggestion.suggestions[$index].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index].imageId}}.jpeg"/>
             <div class="rating-value">
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="col col-33" ng-if="suggestion.suggestions[$index +1]">
-          <div class="div1" ng-click="suggestion.redirectToDish(suggestion.suggestions[$index+1]._id, suggestion.uptoDecimal(suggestion.suggestions[$index+1].distance))">
+          <div class="div1" ng-click="suggestion.redirectToDish(suggestion.suggestions[$index+1]._id)">
             <img ng-if="suggestion.suggestions[$index+1].videoThumb" src="{{suggestion.rootUrl}}/{{suggestion.suggestions[$index+1].videoThumb}}"/>
             <img ng-if="suggestion.suggestions[$index+1].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+1].imageId}}.jpeg"/>
             <div class="rating-value">
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="col col-33" ng-if="suggestion.suggestions[$index+2]">
-        	<div class="div1" ng-click="suggestion.redirectToDish(suggestion.suggestions[$index+2]._id, suggestion.uptoDecimal(suggestion.suggestions[$index+2].distance))">
+        	<div class="div1" ng-click="suggestion.redirectToDish(suggestion.suggestions[$index+2]._id)">
             <img ng-if="suggestion.suggestions[$index+2].videoThumb" src="{{suggestion.rootUrl}}/{{suggestion.suggestions[$index+2].videoThumb}}"/>
             <img ng-if="suggestion.suggestions[$index+2].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+2].imageId}}.jpeg"/>
             <div class="rating-value">

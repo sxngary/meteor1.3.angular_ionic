@@ -96,7 +96,6 @@ Meteor.methods({
   		}
   	},
   	getSuggestions(lat, lng){
-  		var METERS_PER_MILE = 1609.34
 		// return Dishes.find({ 'restaurant.location': { $nearSphere: { $geometry: { type: "Point", coordinates: [ lng, lat ] }, $maxDistance: 10 * METERS_PER_MILE, distanceField: 'distance',  distanceMultiplier: 0.000621371} } }).fetch();
   		checKDishes = Dishes.find().count();
 	  	if(checKDishes){
@@ -106,19 +105,32 @@ Meteor.methods({
 			            "type": "Point",
 			            "coordinates": [ Number(lng), Number(lat) ]
 			        }, 
-			        "maxDistance": 20 * METERS_PER_MILE,
+			        "maxDistance": MILES * METERS_PER_MILE,
 			        "spherical": true,
 			        "distanceField": "distance",
-			        "distanceMultiplier": 0.000621371
+			        "distanceMultiplier": DISTANCEMULTIPLIER
 			    }}
 			]);
   		}else{
   			return [];
   		}
   	},
-  	getDish(dishId){
-  		let dish = Dishes.findOne(dishId);
-  		if(dish){
+  	getDish(dishId,lat,lng){
+  		//let dish = Dishes.findOne(dishId);
+  		let dishData = Dishes.aggregate([
+		    { "$geoNear": {
+		        "near": {
+		            "type": "Point",
+		            "coordinates": [ Number(lng), Number(lat) ]
+		        }, 
+		        "query": {_id: dishId},
+		        "spherical": true,
+		        "distanceField": "distance",
+		        "distanceMultiplier": DISTANCEMULTIPLIER
+		    }}
+		]);
+  		if(dishData.length){
+  			let dish = dishData[0];
   			reviews = Dishes.find({name: dish.name, 'restaurant.placeId': dish.restaurant.placeId},{ sort: { createdAt: -1 } }).fetch();
   			if(reviews.length > 0){
   				reviews.map(function(review, index){
@@ -129,7 +141,9 @@ Meteor.methods({
   				});
   			}
   			return { dish:dish, reviews: reviews};
-  		}
+	  	}else {
+	  		return { dish:[], reviews: []};
+	  	}
   	},
   	dishWithRestaurant(placeId){
   		return Dishes.find({'restaurant.placeId': placeId},{ sort: { createdAt: -1 } }).fetch();
