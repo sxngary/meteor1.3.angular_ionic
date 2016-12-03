@@ -37,10 +37,12 @@ export default class RatingService extends Service {
   }
 
   uptoDecimal(value){
-    if(value % 1 != 0){
-      return value.toFixed(1);
-    }else{
-      return value;
+    if(value){
+      if(value % 1 != 0){
+        return value.toFixed(1);
+      }else{
+        return value;
+      }
     }
   }
 

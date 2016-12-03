@@ -2,7 +2,7 @@
 	<ion-header-bar align-title="left" class="bar-positive">
 		<div class="bar bar-header bar-light head_bar">
         	 <div class="back_arrrow">
-        		<span class="sp2"><a ui-sref="tab.suggestion"><img src="/left-arrow.png" alt=""/></a></span>	
+        		<span class="sp2"><a ng-click="dish.previousView()"><img src="/left-arrow.png" alt=""/></a></span>	
                	<h2>{{dish.dishDetail.name}}</h2>
         	 </div>
 		</div>
@@ -36,7 +36,7 @@
                                 <img ng-if="dish.checkHalfStar(dish.dishDetail.restaurant.rating)" src="/half-star.png" alt=""/>
                                 <img ng-repeat="i in dish.printEmptyStar(dish.dishDetail.restaurant.rating) track by $index" src="/empty-star.png" alt=""/>
                             </span>
-                           <p class="marker-wrap"><span class="locatio-pin"><i class="icon ion-location"></i></span>{{dish.miles}}mi</p>
+                           <p class="marker-wrap"><span class="locatio-pin"><i class="icon ion-location"></i></span>{{dish.uptoDecimal(dish.dishDetail.distance)}}mi</p>
                         </div>
                     </div>
                 </div>

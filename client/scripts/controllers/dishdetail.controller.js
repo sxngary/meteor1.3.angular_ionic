@@ -4,22 +4,33 @@ export default class DishDetailCtrl extends Controller {
   	constructor() {
     	super(...arguments);
 
-    	this.dishId = this.$stateParams.dishId;
-    	this.miles = this.$stateParams.mile;
-    	this.callMethod('getDish', this.dishId, (err, data) => {
-	      	if (!err){
-	      		Session.set('dishData', data.dish);
-	      		Session.set('dishReviews', data.reviews);
-	      	}else{
-	      		console.log(err);
-	      	}
-	    });
+	    //To get user location
+	    this.$ionicLoading.show({ template: 'Loading...', noBackdrop: true});
+	    this.dishId = this.$stateParams.dishId;
+	    _this = this;
+	    navigator.geolocation.getCurrentPosition(
+	    	// success callback with current GPS coordinates 
+	    	function(position) {
+			    _this.callMethod('getDish', _this.dishId, position.coords.latitude, position.coords.longitude, (err, data) => {
+			      	if (!err){
+			      		Session.set('dishData', data.dish);
+			      		Session.set('dishReviews', data.reviews);
+			      		_this.$ionicLoading.hide();
+			      	}else{
+			      		console.log(err);
+			      	}
+			    });
+			}, 
+			// onError Callback receives a PositionError object
+			function onError(error) {
+				_this.$ionicLoading.hide();
+			    _this.$ionicLoading.show({ template: error.message, noBackdrop: true, duration:1000});
+				Session.set('dishData', []);
+			    Session.set('dishReviews', []);
+			});
   		this.helpers({
   			dishDetail(){
   				return Session.get('dishData');
-  			},
-  			miles(){
-  				return this.miles;
   			},
 	  		rootUrl(){
   				return Meteor.absoluteUrl();
@@ -77,6 +88,10 @@ export default class DishDetailCtrl extends Controller {
 		}
 	}*/
 
+	uptoDecimal(value){
+		return this.Rating.uptoDecimal(value);
+	}
+
 	redirectTo(placeId){
 		this.$location.url('/restaurant/' + placeId);
 	}
@@ -103,6 +118,13 @@ export default class DishDetailCtrl extends Controller {
 	postedTime(date){
     	return this.Rating.postedDate(date);
   	}
+
+  	previousView(){
+  		if(this.$ionicHistory.backView())
+  			this.$ionicHistory.goBack(-1);
+  		else
+  			this.$state.go('tab.suggestion');
+  	}
 }
 
-DishDetailCtrl.$inject = ['$state', 'OtherReview', 'Rating', '$stateParams', '$location'];
+DishDetailCtrl.$inject = ['$state', 'OtherReview', 'Rating', '$stateParams', '$location', '$ionicLoading', '$ionicHistory'];

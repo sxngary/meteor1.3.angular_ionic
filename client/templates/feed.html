@@ -12,7 +12,7 @@
                 <div class="col div1">
                     <div class="row">
                         <div class="col col-33">
-                            <div class="side-image-wrap">
+                            <div class="side-image-wrap" ng-click="feed.redirect(post._id,'dish')">
                                 <img ng-if="post.videoThumb" src="{{feed.rootUrl}}/  {{post.videoThumb}}"/>
                                 <img ng-if="post.imageId" src="{{feed.rootUrl}}uploads/dishes/{{post.imageId}}.jpeg"/>
                             </div>
@@ -34,8 +34,8 @@
                                     <span class="user-title">{{feed.userName(post.uploadedBy).fname}}. {{feed.userName(post.uploadedBy).lname}}</span>
                                </span>
                             </div>
-                            <p class="dish-name">{{post.name}}</p>
-                            <p class="res-nam">{{post.restaurant.name}}</p>
+                            <p class="dish-name" ng-click="feed.redirect(post._id,  'dish')">{{post.name}}</p>
+                            <p class="res-nam" ng-click="feed.redirect(post.restaurant.placeId, 'rest')">{{post.restaurant.name}}</p>
                             <p class="resturant-name">{{post.comment}}</p>
                             <p class="post-date">Posted: {{feed.postedTime(post.dateMillisecond)}}</p>
                         </div>

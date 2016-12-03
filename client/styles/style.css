@@ -531,6 +531,10 @@ box-shadow: 1px 3px 10px 1px rgba(207,201,207,1);
 max-height:150px;overflow-y: auto;
 border: none;
 }
+/*slick slider. */
+.slick-slider {
+  margin-bottom: 0px;
+}
 /*---------media-------*/
 @media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx){
   .bar{background-size:100% 0px}
