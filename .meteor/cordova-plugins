@@ -1,5 +1,6 @@
 cordova-plugin-file-transfer@1.6.0
 cordova-plugin-geolocation@2.1.0
+cordova-plugin-inappbrowser@1.5.0
 cordova-plugin-media-capture@1.4.0
 cordova-plugin-statusbar@2.2.0
 cordova-plugin-streaming-media@1.0.2

@@ -11,7 +11,8 @@
 		<div class="full_back suggest restro-detail" ng-if="restaurant.restaurantDishes">
         	<div class="dish-image">
             	<!--<img ng-if="restaurant.restaurantDishes[0].restaurant.image" src="{{restaurant.restaurantDishes[0].restaurant.image}}" alt="">-->
-                <img ng-src="{{restaurant.restaurantDishes[0].restaurant.image}}" err-SRC="/no-picture.gif" />
+                <!-- <img ng-src="{{restaurant.restaurantDishes[0].restaurant.image}}" err-SRC="/no-picture.gif" /> -->
+                <img ng-src="http://maps.googleapis.com/maps/api/streetview?location={{restaurant.restaurantDishes[0].restaurant.location.coordinates[1]}},{{restaurant.restaurantDishes[0].restaurant.location.coordinates[0]}}&size=600x300&heading=151.78&pitch=-0.76&key=AIzaSyAUJUzYmJ32tcslVbBX1j9HvKKKxnN7XJ8">
             </div>
             <div class="resturant-detail">
             	<div class="row">
@@ -19,11 +20,11 @@
                     	<h3><span class="locatio-pin"><i class="icon ion-location"></i></span>{{restaurant.restaurantDishes[0].restaurant.address}}</h3>
                     </div>
                 </div>
-                <div>
-                    website : {{restaurant.results.website}}
-                    Phone : {{restaurant.results.phone}}
+                <div class="other-details">
+                    <p><span>Website</span> : <a ng-click="restaurant.openLink(restaurant.results.website)">{{restaurant.results.website}}</a></p>
+                    <p><span>Phone</span> : <a href="tel:+1-1800-555-5555">{{restaurant.results.phone}}</a></p>
+                    <p><span>Opening hours</span> : {{restaurant.results.hours}}</p>
                 </div>
-                
             </div>
 			<div class="row" ng-repeat="dish in restaurant.restaurantDishes">
             	<div class="col div1">

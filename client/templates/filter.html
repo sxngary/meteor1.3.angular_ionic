@@ -2,8 +2,8 @@
     <ion-header-bar align-title="left" class="bar-positive">
 	    <div class="bar bar-header bar-light head_bar">
 		    <div class="back_arrrow next-bar">
-		    	<span class="sp2"><a ui-sref="tab.review"><img src="./left-arrow.png" alt=""/></a></span>	
-		    	<h2 class="logo-ig"><img src="./thedish.png"></h2>
+		    	<span class="sp2"><a ui-sref="tab.review"><img ng-src="/left-arrow.png" alt=""/></a></span>	
+		    	<h2 class="logo-ig"><img ng-src="/thedish.png"></h2>
 		    </div>
 	    </div>
     </ion-header-bar>
@@ -14,7 +14,7 @@
 	        </div>
 	        <div class="dish-image play-video" ng-if="filter.videoImage" ng-click="filter.playVideo()">
 	        	<img id="clickedImage" src="{{filter.videoImage}}" alt=""/>
-	        	<a href="javascript:void(0)"><img src="./play.png" alt=""/></a>
+	        	<a href="javascript:void(0)"><img ng-src="/play.png" alt=""/></a>
 	        </div>
         </div>
     	<div class="slide-wrap">
