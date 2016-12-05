@@ -5,6 +5,7 @@ export default class RestaurantCtrl extends Controller {
 	constructor() {
   	super(...arguments);
 
+    Session.set('restaurantData', '');
     this.placeId = this.$stateParams.id;
   	//Get restaurant information
     _this = this;
@@ -12,13 +13,15 @@ export default class RestaurantCtrl extends Controller {
     service.getDetails({
         placeId: this.placeId
       }, function(place, status) {
-        //console.log(place, "place");
+        console.log(place)
+        today = moment().weekday() - 1;
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          _this.results = {website: place.website, phone: place.international_phone_number};
+          _this.results = { website: place.website, phone: place.international_phone_number, hours: place.opening_hours.weekday_text[today]};
+        }else{
+          _this.results = { website: 'No information', phone: 'No information', hours: 'No information'};
         }
     });
-
-  	Session.set('restaurantData', '');
+    
   	//Get restaurant data with associated dishes.
   	this.callMethod('dishWithRestaurant', this.placeId, (err, data) => {
       	if (!err){
@@ -61,9 +64,13 @@ export default class RestaurantCtrl extends Controller {
   }
   openMap(coord){
     if(coord){
-      let addressLongLat = coord.reverse();
+      let clonedArray = JSON.parse(JSON.stringify(coord));
+      let addressLongLat = clonedArray.reverse();
       launchnavigator.navigate(addressLongLat);
     }
+  }
+  openLink(link){
+    window.open(link, "_system");
   }
 }
 
