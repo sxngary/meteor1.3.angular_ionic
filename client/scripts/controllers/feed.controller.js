@@ -96,10 +96,6 @@ export default class FeedCtrl extends Controller {
         _this.$scope.$broadcast('scroll.infiniteScrollComplete');
   		}, 1500);
   	}
-
-    call(){
-      alert(1);
-    }
 }
 
 FeedCtrl.$inject = ['$state', '$scope', 'Rating', '$timeout', '$reactive', '$location'];
