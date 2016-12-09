@@ -41,13 +41,13 @@ export default class LoginCtrl extends Controller {
         }
     });*/
     if(Meteor.isCordova) {
-      facebookConnectPlugin.login(['email'],
+      /*facebookConnectPlugin.login(['email'],
         function(){
         console.log('success');
       },
         function() {
         console.log('error');
-      });
+      });*/
     }
   }
 
