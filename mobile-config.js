@@ -28,3 +28,8 @@ App.launchScreens({
 	'android_xhdpi_portrait': 'splash/screen-xhdpi-720.png',
   'android_xxhdpi_portrait': 'splash/splash-xxhdpi.png'
 });
+
+/*App.configurePlugin('cordova-plugin-facebook4', {
+  APP_ID: '1699875387003760',
+  APP_NAME: 'thedish'
+});*/

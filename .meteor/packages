@@ -23,8 +23,8 @@ check
 reywood:publish-composite
 accounts-base
 accounts-password
-accounts-facebook
-service-configuration
+#accounts-facebook
+#service-configuration
 mdg:camera
 session
 fortawesome:fontawesome
@@ -37,3 +37,4 @@ jcbernack:reactive-aggregate
 okland:camera-ui
 momentjs:moment
 sebdah:autocompletion
+#jsep:facebook-native-login

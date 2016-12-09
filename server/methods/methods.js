@@ -81,9 +81,9 @@ Meteor.methods({
   		return myFuture.wait();
   	},
   	save(data){
-  		dish_id = Dishes.insert(data);
+  		let dish_id = Dishes.insert(data);
   		if(dish_id){
-  			checkExistsRe = Restaurants.findOne({placeId: data.restaurant.placeId});
+  			let checkExistsRe = Restaurants.findOne({placeId: data.restaurant.placeId});
   			if(checkExistsRe){
   				return Restaurants.update({_id:checkExistsRe._id}, { $push: { dishes: {dishId: dish_id} } });
   			}else{
@@ -95,11 +95,10 @@ Meteor.methods({
   			}
   		}
   	},
-  	getSuggestions(lat, lng){
-		// return Dishes.find({ 'restaurant.location': { $nearSphere: { $geometry: { type: "Point", coordinates: [ lng, lat ] }, $maxDistance: 10 * METERS_PER_MILE, distanceField: 'distance',  distanceMultiplier: 0.000621371} } }).fetch();
-  		checKDishes = Dishes.find().count();
+  	getSuggestions(lat, lng, limit, skip){
+  		let checKDishes = Dishes.find().count();
 	  	if(checKDishes){
-	  		return Dishes.aggregate([
+	  		let data = Dishes.aggregate([
 			    { "$geoNear": {
 			        "near": {
 			            "type": "Point",
@@ -108,11 +107,15 @@ Meteor.methods({
 			        "maxDistance": MILES * METERS_PER_MILE,
 			        "spherical": true,
 			        "distanceField": "distance",
+			        "num": limit,
 			        "distanceMultiplier": DISTANCEMULTIPLIER
-			    }}
+			    }}, {
+				    "$skip": skip
+				}
 			]);
+			return {res: data, count: checKDishes, limit: limit + 15 };
   		}else{
-  			return [];
+  			return {res: [], count: checKDishes};
   		}
   	},
   	getDish(dishId,lat,lng){
@@ -344,6 +347,19 @@ Meteor.methods({
 		  		}
 				return updateOther;
   			}
+  		}
+  	},
+  	userDish(dishId){
+  		let dish = Dishes.findOne(dishId);
+  		if(dish){
+  			let user = Meteor.users.findOne({_id: dish.uploadedBy}, { fields: { profile: 1} });
+  			if(user){
+	  			if(user.profile.firstname){
+		  			user.profile.firstname = user.profile.firstname.charAt(0).toUpperCase() + user.profile.firstname.slice(1).toLowerCase();
+		  			//user.profile.lastname = user.profile.lastname.charAt(0).toUpperCase() + user.profile.lastname.slice(1).toLowerCase();
+		  		}
+		  		return {dish: dish, user: user};
+		  	}
   		}
   	}
 });

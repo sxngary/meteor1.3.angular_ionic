@@ -34,14 +34,14 @@
               </label>
               <label class="item-input item-floating-label">
                 <span class="icon-wrap">
-                  <span class="icon-top"><img src="./user.png" alt="" /></span>
-                  <input name="username" ng-model="data.username" type="text" placeholder="USERNAME" validator="required, usernameValidate">
+                  <span class="icon-top user"><img src="./user.png" alt="" /></span>
+                  <input name="username" ng-model="signup.data.username" type="text" placeholder="USERNAME" validator="required, usernameValidate" ng-keyup="signup.lowerCase('username')">
                 </span>
               </label>
               <label class="item-input item-floating-label">
                 <span class="icon-wrap">
                   <span class="icon-top"><img src="./mail.png" alt="" /></span>
-                  <input name="email" ng-model="data.email" type="text" placeholder="EMAIL">
+                  <input name="email" ng-model="signup.data.email" type="text" placeholder="EMAIL" ng-keyup="signup.lowerCase('email')">
                 </span>
               </label>
               <label class="item-input item-floating-label">

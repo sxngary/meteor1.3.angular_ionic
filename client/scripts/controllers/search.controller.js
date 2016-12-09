@@ -12,6 +12,10 @@ export default class SearchCtrl extends Controller {
 			}, {
 				value: 'dish',
 				label: 'by dish'
+			},
+			{
+				value: 'tag',
+				label: 'by tag'
 			}
 		];
 		this.selectedBy = this.selectList[0];

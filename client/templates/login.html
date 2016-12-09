@@ -25,7 +25,7 @@
         <label class="item-input item-floating-label sign_lbl">
           <span class="icon-wrap">
             <span class="icon-top"><img src="./mail.png" alt="" /></span>
-            <input name="email" ng-model="login.data.email" type="text" placeholder="EMAIL">
+            <input name="email" ng-model="login.data.email" type="text" placeholder="EMAIL" ng-keyup="login.lowerCase()">
           </span>
         </label>
         <label class="item-input item-floating-label sign_lbl">
@@ -41,9 +41,9 @@
       </form>
       <span class="sp_or">or</span>
       <div class="social_fb">
-        <button class="button button-block button-light log_btn fb_btn">
-            <span><img src="./fb.png" alt=""/></span>Login With Facebook
-          </button>
+        <button class="button button-block button-light log_btn fb_btn" ng-click="login.loginWithFacebook()">
+          <span><img src="./fb.png" alt=""/></span>Login With Facebook
+        </button>
       </div>
     </div>
   </div>

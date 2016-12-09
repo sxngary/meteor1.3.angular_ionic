@@ -14,7 +14,7 @@ export default class FeedCtrl extends Controller {
     		}
     	});
 
-    	this.limit = 5;
+    	this.limit = 8;
     	this.skip = 0;
     	Session.set('feedLoading', false);
   		this.subscribe('users-feed', () => [this.limit, this.skip], {
@@ -81,6 +81,10 @@ export default class FeedCtrl extends Controller {
   			this.$location.url('/restaurant/' + id);
   	}
 
+    toUserReveiw(id){
+      this.$location.url('/user_review/' + id);
+    }
+
   	loadMore(){
   		prevCount = Dishes.find().count();
   		if(this.$scope.total == prevCount){
@@ -92,6 +96,10 @@ export default class FeedCtrl extends Controller {
         _this.$scope.$broadcast('scroll.infiniteScrollComplete');
   		}, 1500);
   	}
+
+    call(){
+      alert(1);
+    }
 }
 
 FeedCtrl.$inject = ['$state', '$scope', 'Rating', '$timeout', '$reactive', '$location'];

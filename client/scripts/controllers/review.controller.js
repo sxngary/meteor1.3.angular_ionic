@@ -80,11 +80,13 @@ export default class ReviewCtrl extends Controller {
 			Session.set('videoPath', '');
 			Session.set('videoImagePath', '');
 			dimension = getDimension();
+			let videoOptions = { quality: 0};
 	  		navigator.device.capture.captureVideo(
 	  			function(mediaFiles){
 	  				_this.$ionicLoading.show({ template: 'Uploading ...', noBackdrop: true});
 	  				var i, path, len;
 				    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+				    	c
 				        var fileURL = mediaFiles[i].fullPath;
 					    var uri = encodeURI(Meteor.absoluteUrl() + "upload");
 					    var options = new FileUploadOptions();

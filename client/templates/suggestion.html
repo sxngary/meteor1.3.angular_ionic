@@ -71,6 +71,11 @@
         </div>
   		</div>
  	  </div>
+    <ion-infinite-scroll
+      immediate-check="false"
+      on-infinite="suggestion.loadMore()"
+      ng-if="!moredata">
+    </ion-infinite-scroll>
     <div class="no-suggestion" ng-if="suggestion.suggestions.length == 0">
       <div class="no-content">
         <h4>No suggestions currently available</h4>

@@ -130,7 +130,8 @@ export default class SignupCtrl extends Controller {
   		_this = this;
   		_this.$validation.validate(form)
 	    .success(function(){
-            data.email = data.email.toLowerCase();
+            data.email = _this.data.email.toLowerCase();
+            data.username = _this.data.username.toLowerCase();
 	      	Accounts.createUser(data, (err) => {
 		    	if (err) return _this.handleError(err);
 
@@ -148,6 +149,24 @@ export default class SignupCtrl extends Controller {
         this.$ionicScrollDelegate.scrollTop();
         Session.set('registerErr', err.reason || 'Registration failed');
 	}
+
+    lowerCase(type){
+        if(type == 'email'){
+            if(this.data.email){
+                trimValue = this.data.email.trim();
+                if (trimValue.length === 1) {
+                    this.data.email = trimValue.toLowerCase();
+                }
+            }
+        }else{
+            if(this.data.username){
+                trimValue = this.data.username.trim();
+                if (trimValue.length === 1) {
+                    this.data.username = trimValue.toLowerCase();
+                }
+            }
+        }
+    }
 }
 
 SignupCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$state', "$validation", "$ionicLoading", '$ionicScrollDelegate'];

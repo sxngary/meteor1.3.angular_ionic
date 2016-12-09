@@ -1,10 +1,11 @@
 import { Meteor } from 'meteor/meteor';
-import { ServiceConfiguration } from 'meteor/service-configuration'
-import { Dishes, Restaurants } from '../lib/collections';
+import { Accounts } from 'meteor/accounts-base';
+//import { ServiceConfiguration } from 'meteor/service-configuration';
+import { Dishes, Restaurants, Setting } from '../lib/collections';
 
 Meteor.startup(function() {
 	//Configuration settings for facebook login
-	ServiceConfiguration.configurations.remove({
+/*	ServiceConfiguration.configurations.remove({
 	    service: 'facebook'
 	});
  
@@ -12,7 +13,7 @@ Meteor.startup(function() {
 	    service: 'facebook',
 	    appId: '1699875387003760',
 	    secret: '86f1da6750162686eaff73f0831cd44b'
-	});
+	});*/
 	
 	//include node modules here.
 	fs = Npm.require('fs');
@@ -24,10 +25,16 @@ Meteor.startup(function() {
 	mime = Npm.require('mime');
 	base = path.resolve('.').split('.meteor')[0];
 
-	//Globally accessible
+	//Globally accessible distance parameters.
 	METERS_PER_MILE = 1609.34;
-	MILES = 20;
 	DISTANCEMULTIPLIER = 0.000621371;
+	MILES = 20;
+	let setting = Setting.findOne();
+	if(setting){
+		if(setting.distance){
+			MILES = setting.distance;
+		}
+	}
 
 	WebApp.connectHandlers.use(function(req, res, next) {
 	    var re = /^\/uploads\/(.*)$/.exec(req.url);
@@ -129,4 +136,15 @@ Meteor.startup(function() {
 		}
 	});
 	
+	//-------check user--------//
+	Accounts.validateLoginAttempt(function (options) {
+	    if (options.user && options.allowed && options.user.isDeleted) {
+		    throw new Meteor.Error(403, "User not found.");
+		}
+	    if (options.user && options.allowed && options.user.active) {
+	        throw new Meteor.Error(403, "Login permission denied.");
+	    }
+	    return true;
+	});
+
 });
