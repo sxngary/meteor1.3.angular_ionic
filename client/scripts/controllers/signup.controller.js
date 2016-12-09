@@ -152,17 +152,21 @@ export default class SignupCtrl extends Controller {
 
     lowerCase(type){
         if(type == 'email'){
-            if(this.data.email){
-                trimValue = this.data.email.trim();
-                if (trimValue.length === 1) {
-                    this.data.email = trimValue.toLowerCase();
+            if(this.data){
+                if(this.data.email){
+                    trimValue = this.data.email.trim();
+                    if (trimValue.length === 1) {
+                        this.data.email = trimValue.toLowerCase();
+                    }
                 }
             }
         }else{
-            if(this.data.username){
-                trimValue = this.data.username.trim();
-                if (trimValue.length === 1) {
-                    this.data.username = trimValue.toLowerCase();
+            if(this.data){
+                if(this.data.username){
+                    trimValue = this.data.username.trim();
+                    if (trimValue.length === 1) {
+                        this.data.username = trimValue.toLowerCase();
+                    }
                 }
             }
         }
