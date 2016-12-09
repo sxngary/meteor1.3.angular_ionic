@@ -64,7 +64,8 @@ export default class LocationCtrl extends Controller {
 					let arr=[];
 					$.each(tagslistarr,function(i,val){
 					    if(tagslistarr[i].indexOf('#') == 0){
-					      arr.push(tagslistarr[i]);  
+					    	let tag = tagslistarr[i].substring(1, tagslistarr[i].length);
+					      	arr.push(tag);  
 					    }
 					});
 					if(arr.length){

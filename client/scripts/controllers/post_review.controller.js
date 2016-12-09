@@ -61,6 +61,7 @@ export default class PostReviewCtrl extends Controller {
 			);
 			Meteor.call('save', dishData, function(err, res){
 	  			if(!err){
+	  				Session.set('dishData', '');
 	  				_this.$ionicLoading.show({ template: 'Uploaded successfully!', noBackdrop: true, duration:1000});
 	  				_this.$state.go('tab.profile');
 	  			}
@@ -68,6 +69,7 @@ export default class PostReviewCtrl extends Controller {
 		}else{
 	  		Meteor.call('save', dishData, function(err, res){
 	  			if(!err){
+	  				Session.set('dishData', '');
 	  				_this.$ionicLoading.show({ template: 'Uploaded successfully!', noBackdrop: true, duration:1000});
 	  				_this.$state.go('tab.profile');
 	  			}

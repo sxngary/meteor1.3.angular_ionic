@@ -44,6 +44,10 @@ export default class ProfileCtrl extends Controller {
   printEmptyStar(num){
     return this.Rating.printEmptyStar(num);
   }
+
+  toUserReview(id){
+  	this.$location.url('/user_review/' + id);
+  }
 }
 
 ProfileCtrl.$inject = ['$state', 'Rating', '$location'];

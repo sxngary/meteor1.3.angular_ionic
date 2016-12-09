@@ -53,7 +53,7 @@
             </div>
           </div>
             <div class="row" ng-repeat="product in profile.posts" ng-if="$index % 3 == 0">
-              <div class="col col-33" ng-if="profile.posts[$index]">
+              <div class="col col-33" ng-if="profile.posts[$index]" ng-click="profile.toUserReview(profile.posts[$index]._id)">
                     <div class="div1 image-box">
                         <img ng-if="profile.posts[$index].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index].videoThumb}}"/>
                         <img ng-if="profile.posts[$index].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index].imageId}}.jpeg"/>
@@ -72,7 +72,7 @@
                         <p class="resturant-name">{{profile.posts[$index].restaurant.name}}</p>
                     </div>
               </div>
-              <div class="col col-33" ng-if="profile.posts[$index + 1]">
+              <div class="col col-33" ng-if="profile.posts[$index + 1]" ng-click="profile.toUserReview(profile.posts[$index + 1]._id)">
                   <div class="div1 image-box">
                       <img ng-if="profile.posts[$index+1].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index+1].videoThumb}}"/>
                       <img ng-if="profile.posts[$index+1].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+1].imageId}}.jpeg"/>
@@ -85,7 +85,7 @@
                       <p class="resturant-name">{{profile.posts[$index+1].restaurant.name}}</p>
                   </div>
               </div>
-              <div class="col col-33" ng-if="profile.posts[$index+ 2]">
+              <div class="col col-33" ng-if="profile.posts[$index+ 2]" ng-click="profile.toUserReview(profile.posts[$index+ 2]._id)">
                 <div class="div1 image-box">
                       <img ng-if="profile.posts[$index+2].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index+2].videoThumb}}"/>
                       <img ng-if="profile.posts[$index+2].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+ 2].imageId}}.jpeg"/>

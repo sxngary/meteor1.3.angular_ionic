@@ -13,7 +13,7 @@ export default class RestaurantCtrl extends Controller {
     service.getDetails({
         placeId: this.placeId
       }, function(place, status) {
-        console.log(place)
+        //console.log(place, status);
         today = moment().weekday() - 1;
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           _this.results = { website: place.website, phone: place.international_phone_number, hours: place.opening_hours.weekday_text[today]};

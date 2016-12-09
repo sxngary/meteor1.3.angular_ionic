@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Dishes } from '../lib/collections';
 
+Dishes._ensureIndex( { tags: 1 } );
 //Publish user posts.
 Meteor.publish("dishes", function(){
     Mongo.Collection._publishCursor( Dishes.find({uploadedBy: this.userId},{ sort: { createdAt: -1 } }), this, 'userDishes'); 
@@ -61,7 +62,25 @@ Meteor.publish('nearest-locations-data', function (longitude, latitude, searchTe
 			        "query": {name:{ $regex: exp, $options: 'i' }, name: 1},
 			        "spherical": true,
 			        "distanceField": "distance",
-			        "distanceMultiplier": DISTANCEMULTIPLIER
+			        "distanceMultiplier": DISTANCEMULTIPLIER,
+			        "num": 50
+				}
+			}
+		]);
+	}else if(searchFrom == 'restaurant'){
+		ReactiveAggregate(this, Dishes, [
+		    { 
+		    	"$geoNear": {
+				    "near": {
+			            "type": "Point",
+			            "coordinates": [ Number(longitude), Number(latitude) ]
+			        }, 
+			        "maxDistance": MILES * METERS_PER_MILE,
+			        "query": {'restaurant.name':{ $regex: exp, $options: 'i' }, 'restaurant.name': 1},
+			        "spherical": true,
+			        "distanceField": "distance",
+			        "distanceMultiplier": DISTANCEMULTIPLIER,
+			        "num": 50
 				}
 			}
 		]);
@@ -74,10 +93,11 @@ Meteor.publish('nearest-locations-data', function (longitude, latitude, searchTe
 			            "coordinates": [ Number(longitude), Number(latitude) ]
 			        }, 
 			        "maxDistance": MILES * METERS_PER_MILE,
-			        "query": {'restaurant.name':{ $regex: exp, $options: 'i' }, 'restaurant.name': 1},
+			        "query": {'tags':{ $regex: exp, $options: 'i' }},
 			        "spherical": true,
 			        "distanceField": "distance",
-			        "distanceMultiplier": DISTANCEMULTIPLIER
+			        "distanceMultiplier": DISTANCEMULTIPLIER,
+			        "num": 50
 				}
 			}
 		]);

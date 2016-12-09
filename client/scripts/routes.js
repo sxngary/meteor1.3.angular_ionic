@@ -134,6 +134,14 @@ class RoutesConfig extends Config {
           user: this.isAuthorized
         }
       })
+      .state('user_review', {
+        url: '/user_review/:id',
+        templateUrl: 'client/templates/user_review.html',
+        controller: 'UserReviewCtrl as userReview',
+        resolve: {
+          user: this.isAuthorized
+        }
+      })
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'client/templates/welcome.html',

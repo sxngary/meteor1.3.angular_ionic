@@ -1,4 +1,5 @@
 import { Accounts } from 'meteor/accounts-base';
+//import { facebookConnectPlugin } from "meteor/jsep:facebook-native-login"
 import { Controller } from 'angular-ecmascript/module-helpers';
 
 export default class LoginCtrl extends Controller {
@@ -29,7 +30,7 @@ export default class LoginCtrl extends Controller {
   }
 
   loginWithFacebook(form, data) {
-    _this = this;
+    /*_this = this;
     Meteor.loginWithFacebook({
       requestPermissions: ['user_friends', 'public_profile', 'email']
       }, (err) => {
@@ -38,7 +39,16 @@ export default class LoginCtrl extends Controller {
         }else {
           _this.$state.go('tab.suggestion');
         }
-    });
+    });*/
+    if(Meteor.isCordova) {
+      /*facebookConnectPlugin.login(['email'],
+        function(){
+        console.log('success');
+      },
+        function() {
+        console.log('error');
+      });*/
+    }
   }
 
   handleError(err) {
@@ -50,6 +60,15 @@ export default class LoginCtrl extends Controller {
     //   okType: 'button-positive button-clear'
     // });
   }
+  lowerCase(type){
+    if(this.data.email){
+      trimValue = this.data.email.trim();
+      if (trimValue.length === 1) {
+        this.data.email = trimValue.toLowerCase();
+      }
+    }
+  }
+
 }
 
 LoginCtrl.$inject = ['$state', '$ionicLoading', '$ionicPopup', '$log', '$validation', '$scope'];

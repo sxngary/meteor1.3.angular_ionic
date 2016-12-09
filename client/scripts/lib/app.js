@@ -35,6 +35,7 @@ import ChangePasswordCtrl from '../controllers/change_password.controller';
 import RestaurantCtrl from '../controllers/restaurant.controller';
 import OtherReviewCtrl from '../controllers/othereview.controller';
 import OtherUserCtrl from '../controllers/otheruser.controller';
+import UserReviewCtrl from '../controllers/user_review.controller';
 import ReviewService from '../services/review.service';
 import RatingService from '../services/rating.service';
 
@@ -81,6 +82,7 @@ new Loader(App)
   .load(OtherUserCtrl)
   .load(ReviewService)
   .load(RestaurantCtrl)
+  .load(UserReviewCtrl)
   .load(Routes);
 
   // Using config phase to add Schema's to schemaProvider

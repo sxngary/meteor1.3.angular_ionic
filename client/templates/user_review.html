@@ -1,0 +1,64 @@
+<ion-view view-title="User Review">
+    <ion-header-bar align-title="left" class="bar-positive">
+        <div class="bar bar-header bar-light head_bar">
+            <div class="back_arrrow">
+                <span class="sp2"><a ng-click="userReview.previousView()"><img src="/left-arrow.png" alt=""/></a></span>
+                <h2 ng-if="userReview.dish">{{userReview.dish.user.profile.firstname}}'s Review</h2> 
+            </div>
+        </div>
+    </ion-header-bar>
+	<ion-content>
+		<div class="full_back suggest reviews">
+        	<div ng-if="userReview.dish">
+            <div class="dsh-img">
+                <img ng-if="userReview.dish.dish.videoThumb" src="{{userReview.rootUrl}}/{{userReview.dish.dish.videoThumb}}"/>
+                <img ng-if="userReview.dish.dish.imageId" src="{{userReview.rootUrl}}uploads/dishes/{{userReview.dish.dish.imageId}}.jpeg"/>
+            </div>
+        	<div class="row">
+            	<div class="col col-33">
+                    <div class="usr-img" ng-click="userReview.redirectTo(userReview.dish.user._id)">
+                        <img ng-if="!userReview.dish.user.profile.avatar" src="/user_none.png" alt="" />
+                        <img ng-if="userReview.dish.user.profile.avatar" err-SRC="/user_none.png" src="{{userReview.rootUrl}}{{userReview.dish.user.profile.avatar}}" alt="" />
+                    </div>
+                </div>
+                <div class="col col-67">
+                	<div class="user-wrap">
+                    	<div class="user-detl">
+                        	<p class="usr-nam" ng-click="userReview.redirectTo(userReview.dish.user._id)">{{userReview.dish.user.profile.firstname}} {{userReview.dish.user.profile.lastname}}</p>
+                            <div class="rate-box">
+                                <!-- <a href="javascript:void(0)"><img src="/fill-star.png" alt=""/></a>
+                                <a href="javascript:void(0)"><img src="/fill-star.png" alt=""/></a>
+                                <a href="javascript:void(0)"><img src="/fill-star.png" alt=""/></a>
+                                <a href="javascript:void(0)"><img src="/half-star.png" alt=""/></a>
+                                <a href="javascript:void(0)"><img src="/empty-star.png" alt=""/></a> -->
+                                <a href="javascript:void(0)" ng-repeat="i in userReview.cardNumber(userReview.dish.dish.rating) track by $index"><img src="/fill-star.png" alt=""/></a>
+                                <a ng-if="userReview.cardCheckHalfStar(userReview.dish.dish.rating)" href="javascript:void(0)"><img src="/half-star.png" alt=""/></a>
+                                <a href="javascript:void(0)" ng-repeat="i in userReview.cardPrintEmptyStar(userReview.dish.dish.rating) track by $index" ><img src="/empty-star.png" alt=""/></a>
+                            </div>
+                        </div>
+                        <!-- <div class="like-share">
+                        	<a href="javascript:void(0)"><img src="/share.png" alt=""/></a>
+                            <a href="javascript:void(0)"><img src="/unlike.png" alt=""/><img src="/like.png" alt="" style="display:none"/></a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col">
+                    <p ng-if="userReview.dish.dish.comment" class="restu-details">
+                        {{userReview.dish.dish.comment}}
+                    </p>
+                    <p ng-if="!userReview.dish.dish.comment" class="restu-details">
+                        No content found!
+                    </p>
+                </div>
+            </div>
+            </div>
+            <div class="no-suggestion" ng-if="!userReview.dish">
+                <div class="no-content">
+                    <h4>Loading...</h4>
+                </div>
+            </div>
+   		</div>
+	</ion-content>
+</ion-view>
