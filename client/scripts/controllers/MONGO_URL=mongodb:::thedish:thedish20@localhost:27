@@ -1,1 +1,0 @@
-MONGO_URL=mongodb://thedish:thedish20@localhost:27017/thedish meteor run --port 4029
