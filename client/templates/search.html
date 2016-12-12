@@ -38,7 +38,7 @@
       		<div class="col col-33" ng-if="search.searchList[$index]" ng-click="search.redirectToDish(search.searchList[$index]._id)">
             <div class="div1">
               <img ng-if="search.searchList[$index].videoThumb" src="{{search.rootUrl}}/{{search.searchList[$index].videoThumb}}"/>
-              <img ng-if="search.searchList[$index].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index].imageId}}.jpeg"/>
+              <img ng-if="search.searchList[$index].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index].imageId}}.{{search.searchList[$index].extension}}"/>
               <div class="rating-value">
               	<span>
                   <img ng-repeat="i in search.getNumber(search.searchList[$index].averageReview) track by $index" src="/fill-star.png" alt=""/>
@@ -56,7 +56,7 @@
           <div class="col col-33" ng-if="search.searchList[$index +1]" ng-click="search.redirectToDish(search.searchList[$index+1]._id)">
             <div class="div1">
               <img ng-if="search.searchList[$index+1].videoThumb" src="{{search.rootUrl}}/{{search.searchList[$index+1].videoThumb}}"/>
-              <img ng-if="search.searchList[$index+1].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+1].imageId}}.jpeg"/>
+              <img ng-if="search.searchList[$index+1].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+1].imageId}}.{{search.searchList[$index+1].extension}}"/>
               <div class="rating-value">
               	<span>
                   <img ng-repeat="i in search.getNumber(search.searchList[$index+1].averageReview) track by $index" src="/fill-star.png" alt=""/>
@@ -74,7 +74,7 @@
           <div class="col col-33" ng-if="search.searchList[$index +2]" ng-click="search.redirectToDish(search.searchList[$index+2]._id)">
           	<div class="div1">
               <img ng-if="search.searchList[$index+2].videoThumb" src="{{search.rootUrl}}/{{search.searchList[$index+2].videoThumb}}"/>
-              <img ng-if="search.searchList[$index+2].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+2].imageId}}.jpeg"/>
+              <img ng-if="search.searchList[$index+2].imageId" src="{{search.rootUrl}}/uploads/dishes/{{search.searchList[$index+2].imageId}}.{{search.searchList[$index+2].extension}}"/>
               <div class="rating-value">
               	<span>
                   <img ng-repeat="i in search.getNumber(search.searchList[$index+2].averageReview) track by $index" src="/fill-star.png" alt=""/>

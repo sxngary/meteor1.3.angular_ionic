@@ -31,8 +31,8 @@
                 	<div class="row">
                     	<div class="col col-33">
                         	<div class="side-image-wrap" ng-click="restaurant.redirectTo(dish._id)">
-                            	<img ng-if="dish.videoThumb" src="{{restaurant.rootUrl}}/  {{dish.videoThumb}}"/>
-                                <img ng-if="dish.imageId" src="{{restaurant.rootUrl}}uploads/dishes/{{dish.imageId}}.jpeg"/>
+                            	<img ng-if="dish.videoThumb" src="{{restaurant.rootUrl}}/{{dish.videoThumb}}"/>
+                                <img ng-if="dish.imageId" src="{{restaurant.rootUrl}}uploads/dishes/{{dish.imageId}}.{{dish.extension}}"/>
                         	</div>
                             <span class="star-img">
                                 <img ng-repeat="i in restaurant.getNumber(dish.averageReview) track by $index" src="/fill-star.png" alt=""/>

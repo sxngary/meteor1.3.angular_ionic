@@ -56,7 +56,7 @@
               <div class="col col-33" ng-if="profile.posts[$index]" ng-click="profile.toUserReview(profile.posts[$index]._id)">
                     <div class="div1 image-box">
                         <img ng-if="profile.posts[$index].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index].videoThumb}}"/>
-                        <img ng-if="profile.posts[$index].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index].imageId}}.jpeg"/>
+                        <img ng-if="profile.posts[$index].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index].imageId}}.{{profile.posts[$index].extension}}"/>
                         <!--<img src="/no-image.png"> -->
                         <div class="star-img star-wrap">
                           <!-- <img src="/fill-star.png" alt=""/>
@@ -75,7 +75,7 @@
               <div class="col col-33" ng-if="profile.posts[$index + 1]" ng-click="profile.toUserReview(profile.posts[$index + 1]._id)">
                   <div class="div1 image-box">
                       <img ng-if="profile.posts[$index+1].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index+1].videoThumb}}"/>
-                      <img ng-if="profile.posts[$index+1].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+1].imageId}}.jpeg"/>
+                      <img ng-if="profile.posts[$index+1].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+1].imageId}}.{{profile.posts[$index+1].extension}}"/>
                       <div class="star-img star-wrap">
                         <img ng-repeat="i in profile.getNumber(profile.posts[$index+1].rating) track by $index" src="/fill-star.png" alt=""/>
                         <img ng-if="profile.checkHalfStar(profile.posts[$index+1].rating)" src="/half-star.png" alt=""/>
@@ -88,7 +88,7 @@
               <div class="col col-33" ng-if="profile.posts[$index+ 2]" ng-click="profile.toUserReview(profile.posts[$index+ 2]._id)">
                 <div class="div1 image-box">
                       <img ng-if="profile.posts[$index+2].videoThumb" src="{{profile.rootUrl}}/{{profile.posts[$index+2].videoThumb}}"/>
-                      <img ng-if="profile.posts[$index+2].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+ 2].imageId}}.jpeg"/>
+                      <img ng-if="profile.posts[$index+2].imageId" src="{{profile.rootUrl}}/uploads/dishes/{{profile.posts[$index+ 2].imageId}}.{{profile.posts[$index+2].extension}}"/>
                       <div class="star-img star-wrap">
                         <img ng-repeat="i in profile.getNumber(profile.posts[$index+2].rating) track by $index" src="/fill-star.png" alt=""/>
                         <img ng-if="profile.checkHalfStar(profile.posts[$index+2].rating)" src="/half-star.png" alt=""/>
