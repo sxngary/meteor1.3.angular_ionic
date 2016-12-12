@@ -13,8 +13,8 @@
                     <div class="row">
                         <div class="col col-33">
                             <div class="side-image-wrap" ng-click="feed.toUserReveiw(post._id)">
-                                <img ng-if="post.videoThumb" src="{{feed.rootUrl}}/  {{post.videoThumb}}"/>
-                                <img ng-if="post.imageId" src="{{feed.rootUrl}}uploads/dishes/{{post.imageId}}.jpeg"/>
+                                <img ng-if="post.videoThumb" src="{{feed.rootUrl}}/{{post.videoThumb}}"/>
+                                <img ng-if="post.imageId" src="{{feed.rootUrl}}uploads/dishes/{{post.imageId}}.{{post.extension}}"/>
                             </div>
                             <span class="star-img">
                                 <img ng-repeat="i in feed.getNumber(post.averageReview) track by $index" src="/fill-star.png" alt=""/>

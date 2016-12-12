@@ -8,10 +8,10 @@
 		</div>
 	</ion-header-bar>
 	<ion-content>
-		<div class="full_back suggest feed">
+		<div ng-if="dish.dishDetail" class="full_back suggest feed">
         	<div class="dish-image">
             	<img ng-if="dish.dishDetail.videoThumb" src="{{dish.rootUrl}}/{{dish.dishDetail.videoThumb}}"/>
-                <img ng-if="dish.dishDetail.imageId" src="{{dish.rootUrl}}/uploads/dishes/{{dish.dishDetail.imageId}}.jpeg"/>
+                <img ng-if="dish.dishDetail.imageId" src="{{dish.rootUrl}}/uploads/dishes/{{dish.dishDetail.imageId}}.{{dish.dishDetail.extension}}"/>
             </div>
             <div class="resturant-detail">
                 <div class="row">
@@ -57,7 +57,7 @@
                     	<div class="col col-33">
                         	<div class="side-image-wrap">
                             	<img ng-if="post.videoThumb" src="{{dish.rootUrl}}/  {{post.videoThumb}}"/>
-                                <img ng-if="post.imageId" src="{{dish.rootUrl}}uploads/dishes/{{post.imageId}}.jpeg"/>
+                                <img ng-if="post.imageId" src="{{dish.rootUrl}}uploads/dishes/{{post.imageId}}.{{post.extension}}"/>
                         	</div>
                              <span class="star-img">
                                 <img ng-repeat="i in dish.cardNumber(post.averageReview) track by $index" src="/fill-star.png" alt=""/>

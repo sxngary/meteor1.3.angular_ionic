@@ -5,6 +5,8 @@ export default class DishDetailCtrl extends Controller {
     	super(...arguments);
 
 	    //To get user location
+	    Session.set('dishData', '');
+		Session.set('dishReviews', '');
 	    this.$ionicLoading.show({ template: 'Loading...', noBackdrop: true});
 	    this.dishId = this.$stateParams.dishId;
 	    _this = this;

@@ -12,7 +12,7 @@
         	<div ng-if="userReview.dish">
             <div class="dsh-img">
                 <img ng-if="userReview.dish.dish.videoThumb" src="{{userReview.rootUrl}}/{{userReview.dish.dish.videoThumb}}"/>
-                <img ng-if="userReview.dish.dish.imageId" src="{{userReview.rootUrl}}uploads/dishes/{{userReview.dish.dish.imageId}}.jpeg"/>
+                <img ng-if="userReview.dish.dish.imageId" src="{{userReview.rootUrl}}uploads/dishes/{{userReview.dish.dish.imageId}}.{{userReview.dish.dish.extension}}"/>
             </div>
         	<div class="row">
             	<div class="col col-33">

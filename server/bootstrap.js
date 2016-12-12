@@ -72,6 +72,7 @@ Meteor.startup(function() {
 	  	exec("ffmpeg  -itsoffset -1  -i " + videoPath + " -vcodec mjpeg -vframes 1 -an -f rawvideo -s " + req.body.width + "x" + req.body.height + " " + base + "/media/uploads/video_thumb/"+ name[0] +".jpg", function(err, resp){
 	  		if(!err) {
 	  			req.file['image'] = 'uploads/video_thumb/' + name[0] + '.jpg';
+	  			req.file['extension'] = 'jpg';
 	  			res.end(JSON.stringify(req.file));
 	  		}else{
 	  			console.log(err);

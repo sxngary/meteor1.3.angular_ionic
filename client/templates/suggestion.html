@@ -14,7 +14,7 @@
       	<div class="col col-33" ng-if="suggestion.suggestions[$index]">
           <div class="div1" ng-click="suggestion.redirectToDish(suggestion.suggestions[$index]._id)">
             <img ng-if="suggestion.suggestions[$index].videoThumb" src="{{suggestion.rootUrl}}/{{suggestion.suggestions[$index].videoThumb}}"/>
-            <img ng-if="suggestion.suggestions[$index].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index].imageId}}.jpeg"/>
+            <img ng-if="suggestion.suggestions[$index].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index].imageId}}.{{suggestion.suggestions[$index].extension}}"/>
             <div class="rating-value">
             	<span >
                 <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index].averageReview) track by $index" src="/fill-star.png" alt=""/>
@@ -32,7 +32,7 @@
         <div class="col col-33" ng-if="suggestion.suggestions[$index +1]">
           <div class="div1" ng-click="suggestion.redirectToDish(suggestion.suggestions[$index+1]._id)">
             <img ng-if="suggestion.suggestions[$index+1].videoThumb" src="{{suggestion.rootUrl}}/{{suggestion.suggestions[$index+1].videoThumb}}"/>
-            <img ng-if="suggestion.suggestions[$index+1].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+1].imageId}}.jpeg"/>
+            <img ng-if="suggestion.suggestions[$index+1].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+1].imageId}}.{{suggestion.suggestions[$index+1].extension}}"/>
             <div class="rating-value">
             	<span>
                 <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index+1].averageReview) track by $index" src="/fill-star.png" alt=""/>
@@ -50,7 +50,7 @@
         <div class="col col-33" ng-if="suggestion.suggestions[$index+2]">
         	<div class="div1" ng-click="suggestion.redirectToDish(suggestion.suggestions[$index+2]._id)">
             <img ng-if="suggestion.suggestions[$index+2].videoThumb" src="{{suggestion.rootUrl}}/{{suggestion.suggestions[$index+2].videoThumb}}"/>
-            <img ng-if="suggestion.suggestions[$index+2].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+2].imageId}}.jpeg"/>
+            <img ng-if="suggestion.suggestions[$index+2].imageId" src="{{suggestion.rootUrl}}/uploads/dishes/{{suggestion.suggestions[$index+2].imageId}}.{{suggestion.suggestions[$index+2].extension}}"/>
             <div class="rating-value">
             	<span>
                 <img ng-repeat="i in suggestion.getNumber(suggestion.suggestions[$index+2].averageReview) track by $index" src="/fill-star.png" alt=""/>

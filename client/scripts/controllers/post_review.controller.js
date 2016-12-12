@@ -33,9 +33,11 @@ export default class PostReviewCtrl extends Controller {
   		dishData['restaurant'] = Session.get('restaurant');
 	  	if(Session.get('clickedImage')){
 	  		dishData['imageId'] = Session.get('clickedImage').imageId;
+	  		dishData['extension'] = 'jpeg';
 	  	}else{
 	  		dishData['videoThumb'] = Session.get('videoImagePath');
 	  		dishData['video'] = Session.get('videoPath').server;
+	  		dishData['extension'] = 'jpg';
 	  	}
 	  	dishData['uploadedBy'] = this.currentUser._id;
 	  	dishData['averageReview'] = Session.get('dishData').rating;
