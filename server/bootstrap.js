@@ -5,7 +5,7 @@ import { Dishes, Restaurants, Setting } from '../lib/collections';
 
 Meteor.startup(function() {
 	//Configuration settings for facebook login
-/*	ServiceConfiguration.configurations.remove({
+	/*	ServiceConfiguration.configurations.remove({
 	    service: 'facebook'
 	});
  
@@ -148,4 +148,21 @@ Meteor.startup(function() {
 	    return true;
 	});
 
+	// const distinct = Meteor.wrapAsync(Dishes.rawCollection().distinct, Dishes.rawCollection());
+	// const result = distinct('name');
+	// console.log(result);
+	/*data = Dishes.aggregate([
+		{ 
+			$match: { 
+				'restaurant.placeId': 'ChIJ5_UtoJzuDzkR-nJmgjurETc'
+			} 
+		},
+		{
+			$group : {
+				'_id': { '_id': '$_id', name: "$name",
+				'placeId': '$restaurant.placeId'}
+			}
+		}
+	]);
+	console.log(data, "data")*/
 });

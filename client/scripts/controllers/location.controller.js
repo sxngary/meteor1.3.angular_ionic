@@ -94,7 +94,7 @@ export default class LocationCtrl extends Controller {
 		                  	}          
 		                }
 	  				}
-	  				console.log(restaurant.photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}));
+	  				//console.log(restaurant.photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}));
 	  				photo = (restaurant.photos ? restaurant.photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000}) : '');
 					var restauData = 
 						{

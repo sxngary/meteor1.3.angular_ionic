@@ -96,7 +96,7 @@ Meteor.methods({
   		}
   	},
   	getSuggestions(lat, lng, limit, skip){
-  		let checKDishes = Dishes.find().count();
+  		let checKDishes = Dishes.find({ active:{ $ne: 1 }, isDeleted:{ $ne: 1 } }).count();
 	  	if(checKDishes){
 	  		let data = Dishes.aggregate([
 			    { "$geoNear": {
@@ -105,6 +105,7 @@ Meteor.methods({
 			            "coordinates": [ Number(lng), Number(lat) ]
 			        }, 
 			        "maxDistance": MILES * METERS_PER_MILE,
+			        "query": { active:{ $ne: 1 }, isDeleted:{ $ne: 1 } },
 			        "spherical": true,
 			        "distanceField": "distance",
 			        "num": limit,
@@ -134,7 +135,7 @@ Meteor.methods({
 		]);
   		if(dishData.length){
   			let dish = dishData[0];
-  			reviews = Dishes.find({name: dish.name, 'restaurant.placeId': dish.restaurant.placeId},{ sort: { createdAt: -1 } }).fetch();
+  			reviews = Dishes.find({name: dish.name, 'restaurant.placeId': dish.restaurant.placeId, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},{ sort: { createdAt: -1 } }).fetch();
   			if(reviews.length > 0){
   				reviews.map(function(review, index){
   					userData = Meteor.users.findOne(review.uploadedBy);
@@ -149,7 +150,7 @@ Meteor.methods({
 	  	}
   	},
   	dishWithRestaurant(placeId){
-  		return Dishes.find({'restaurant.placeId': placeId},{ sort: { createdAt: -1 } }).fetch();
+  		return Dishes.find({'restaurant.placeId': placeId, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},{ sort: { createdAt: -1 } }).fetch();
   	},
   	saveOtherUserReview(id, data){
   		checkDish = Dishes.findOne(id);

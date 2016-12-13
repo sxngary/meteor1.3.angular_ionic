@@ -4,7 +4,7 @@ import { Dishes } from '../lib/collections';
 Dishes._ensureIndex( { tags: 1 } );
 //Publish user posts.
 Meteor.publish("dishes", function(){
-    Mongo.Collection._publishCursor( Dishes.find({uploadedBy: this.userId},{ sort: { createdAt: -1 } }), this, 'userDishes'); 
+    Mongo.Collection._publishCursor( Dishes.find({uploadedBy: this.userId, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},{ sort: { createdAt: -1 } }), this, 'userDishes'); 
     this.ready();
 });
 
@@ -20,7 +20,7 @@ Meteor.publishComposite('users-feed', function (limit, skip) {
     		var user = Meteor.users.findOne(this.userId);
        		if(user.profile.following){
        			following = _.pluck(user.profile.following, 'userId');
-       			return Dishes.find({uploadedBy: {$in: following}},{ skip: skip, limit: limit, sort: { createdAt: -1 } });
+       			return Dishes.find({uploadedBy: {$in: following}, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},{ skip: skip, limit: limit, sort: { createdAt: -1 } });
        		}
     	},
     	children: [{
@@ -35,7 +35,7 @@ Meteor.publishComposite('users-feed', function (limit, skip) {
 Meteor.publishComposite('other-user', function (userId) {
   return {
     find: function () {
-      return Dishes.find({uploadedBy: userId},{ sort: { createdAt: -1 } });
+      return Dishes.find({uploadedBy: userId, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},{ sort: { createdAt: -1 } });
     },
     children: [{
       	find: function (dish) {
@@ -59,7 +59,7 @@ Meteor.publish('nearest-locations-data', function (longitude, latitude, searchTe
 			            "coordinates": [ Number(longitude), Number(latitude) ]
 			        }, 
 			        "maxDistance": MILES * METERS_PER_MILE,
-			        "query": {name:{ $regex: exp, $options: 'i' }, name: 1},
+			        "query": {name:{ $regex: exp, $options: 'i' }, name: 1, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},
 			        "spherical": true,
 			        "distanceField": "distance",
 			        "distanceMultiplier": DISTANCEMULTIPLIER,
@@ -76,7 +76,7 @@ Meteor.publish('nearest-locations-data', function (longitude, latitude, searchTe
 			            "coordinates": [ Number(longitude), Number(latitude) ]
 			        }, 
 			        "maxDistance": MILES * METERS_PER_MILE,
-			        "query": {'restaurant.name':{ $regex: exp, $options: 'i' }, 'restaurant.name': 1},
+			        "query": {'restaurant.name':{ $regex: exp, $options: 'i' }, 'restaurant.name': 1, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},
 			        "spherical": true,
 			        "distanceField": "distance",
 			        "distanceMultiplier": DISTANCEMULTIPLIER,
@@ -93,7 +93,7 @@ Meteor.publish('nearest-locations-data', function (longitude, latitude, searchTe
 			            "coordinates": [ Number(longitude), Number(latitude) ]
 			        }, 
 			        "maxDistance": MILES * METERS_PER_MILE,
-			        "query": {'tags':{ $regex: exp, $options: 'i' }},
+			        "query": {'tags':{ $regex: exp, $options: 'i' }, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},
 			        "spherical": true,
 			        "distanceField": "distance",
 			        "distanceMultiplier": DISTANCEMULTIPLIER,

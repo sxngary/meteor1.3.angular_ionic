@@ -15,7 +15,7 @@ export default class ProfileCtrl extends Controller {
     this.email = (profile.bio ? profile.bio : '');
 		this.helpers({
 			reviews(){
-				data =  userDishes.find({uploadedBy: this.currentUser._id}).fetch();
+				data =  userDishes.find({uploadedBy: this.currentUser._id, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }}).fetch();
 				return data.length;
 			},
 			followers(){
@@ -25,7 +25,7 @@ export default class ProfileCtrl extends Controller {
 				return (this.currentUser.profile.following ? this.currentUser.profile.following.length : 0);
 			},
 			posts(){
-				return userDishes.find({uploadedBy: this.currentUser._id},{ sort: { createdAt: -1 } }).fetch();
+				return userDishes.find({uploadedBy: this.currentUser._id , active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},{ sort: { createdAt: -1 } }).fetch();
 			},
 			rootUrl(){
 				return Meteor.absoluteUrl();

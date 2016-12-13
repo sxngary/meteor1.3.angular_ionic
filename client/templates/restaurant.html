@@ -12,7 +12,8 @@
         	<div class="dish-image">
             	<!--<img ng-if="restaurant.restaurantDishes[0].restaurant.image" src="{{restaurant.restaurantDishes[0].restaurant.image}}" alt="">-->
                 <!-- <img ng-src="{{restaurant.restaurantDishes[0].restaurant.image}}" err-SRC="/no-picture.gif" /> -->
-                <img ng-src="http://maps.googleapis.com/maps/api/streetview?location={{restaurant.restaurantDishes[0].restaurant.location.coordinates[1]}},{{restaurant.restaurantDishes[0].restaurant.location.coordinates[0]}}&size=600x300&heading=151.78&pitch=-0.76&key=AIzaSyAUJUzYmJ32tcslVbBX1j9HvKKKxnN7XJ8">
+                <img ng-if="!restaurant.restaurantDishes[0].restaurant.imageId" ng-src="http://maps.googleapis.com/maps/api/streetview?location={{restaurant.restaurantDishes[0].restaurant.location.coordinates[1]}},{{restaurant.restaurantDishes[0].restaurant.location.coordinates[0]}}&size=600x300&heading=151.78&pitch=-0.76&key=AIzaSyAUJUzYmJ32tcslVbBX1j9HvKKKxnN7XJ8">
+                <img ng-if="restaurant.restaurantDishes[0].restaurant.imageId" ng-src="/uploads/restaurant/{{restaurant.restaurantDishes[0].restaurant.imageId}}.{{restaurant.restaurantDishes[0].restaurant.extension}}">
             </div>
             <div class="resturant-detail">
             	<div class="row">
