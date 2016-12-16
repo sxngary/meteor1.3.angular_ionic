@@ -46,40 +46,6 @@
                     </div>
                 </div> -->
             </div>
-            <div class="row" ng-if="dish.dishDetail">
-                <div class="col div1">
-                    <div class="row">
-                        <div class="col col-33">
-                            <div class="side-image-wrap">
-                                <img ng-if="dish.dishDetail.videoThumb" src="{{dish.rootUrl}}/{{dish.dishDetail.videoThumb}}"/>
-                                <img ng-if="dish.dishDetail.imageId" src="{{dish.rootUrl}}uploads/dishes/{{dish.dishDetail.imageId}}.{{dish.dishDetail.extension}}"/>
-                            </div>
-                            <span class="star-img">
-                                <img ng-repeat="i in dish.cardNumber(dish.dishDetail.rating) track by $index" src="/fill-star.png" alt=""/>
-                                <img ng-if="dish.cardCheckHalfStar(dish.dishDetail.rating)" src="/half-star.png" alt=""/>
-                                <img ng-repeat="i in dish.cardPrintEmptyStar(dish.dishDetail.rating) track by $index" src="/empty-star.png" alt=""/>
-                           </span>
-                        </div>
-                        <div class="col col-67">
-                            <div class="user-rate">
-                               
-                               <span class="pull-right user-name" ng-click="dish.redirectToUser(post.uploadedBy)">
-                                    <span class="user-img">
-                                        <img ng-if="!dish.dishDetail.avatar" src="/user_none.png" alt="" />
-                                        <img ng-if="dish.dishDetail.avatar" src="{{dish.rootUrl}}{{dish.dishDetail.avatar}}" alt="" />
-                                    </span>
-                                    <span class="user-title">{{dish.dishDetail.username}}</span>
-                                    
-                               </span>
-                            </div>
-                            <p class="dish-name">{{dish.dishDetail.name}}</p>
-                            <p class="res-nam"> {{dish.dishDetail.restaurant.name}}</p>
-                            <p class="resturant-name">{{dish.dishDetail.comment}}</p>
-                            <p class="post-date">Posted: {{dish.postedTime(dish.dishDetail.dateMillisecond)}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 			<div class="row" ng-repeat="post in dish.dishDetail.reviews">
             	<div class="col div1">
                 	<div class="row">
@@ -114,6 +80,40 @@
                     </div>
                 </div>
 			</div>
+            <div class="row" ng-if="dish.dishDetail">
+                <div class="col div1">
+                    <div class="row">
+                        <div class="col col-33">
+                            <div class="side-image-wrap">
+                                <img ng-if="dish.dishDetail.videoThumb" src="{{dish.rootUrl}}/{{dish.dishDetail.videoThumb}}"/>
+                                <img ng-if="dish.dishDetail.imageId" src="{{dish.rootUrl}}uploads/dishes/{{dish.dishDetail.imageId}}.{{dish.dishDetail.extension}}"/>
+                            </div>
+                            <span class="star-img">
+                                <img ng-repeat="i in dish.cardNumber(dish.dishDetail.rating) track by $index" src="/fill-star.png" alt=""/>
+                                <img ng-if="dish.cardCheckHalfStar(dish.dishDetail.rating)" src="/half-star.png" alt=""/>
+                                <img ng-repeat="i in dish.cardPrintEmptyStar(dish.dishDetail.rating) track by $index" src="/empty-star.png" alt=""/>
+                           </span>
+                        </div>
+                        <div class="col col-67">
+                            <div class="user-rate">
+                               
+                               <span class="pull-right user-name" ng-click="dish.redirectToUser(post.uploadedBy)">
+                                    <span class="user-img">
+                                        <img ng-if="!dish.dishDetail.avatar" src="/user_none.png" alt="" />
+                                        <img ng-if="dish.dishDetail.avatar" src="{{dish.rootUrl}}{{dish.dishDetail.avatar}}" alt="" />
+                                    </span>
+                                    <span class="user-title">{{dish.dishDetail.username}}</span>
+                                    
+                               </span>
+                            </div>
+                            <p class="dish-name">{{dish.dishDetail.name}}</p>
+                            <p class="res-nam"> {{dish.dishDetail.restaurant.name}}</p>
+                            <p class="resturant-name">{{dish.dishDetail.comment}}</p>
+                            <p class="post-date">Posted: {{dish.postedTime(dish.dishDetail.dateMillisecond)}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
    		</div>
 	</ion-content>
 </ion-view>

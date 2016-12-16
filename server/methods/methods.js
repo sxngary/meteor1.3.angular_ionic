@@ -203,11 +203,13 @@ Meteor.methods({
 			dish['avatar'] = (owner.profile.avatar ? owner.profile.avatar : '');
   			
   			if(dish.reviews){
-  				dish.reviews.map(function(review, index){
-  					userData = Meteor.users.findOne(review.uploadedBy);
-  					dish.reviews[index]['username'] = userData.username;
-  					dish.reviews[index]['avatar'] = (userData.profile.avatar ? userData.profile.avatar : '');
+  				let sortedRv = _.sortBy( dish.reviews, function( item ) { 
+  					userData = Meteor.users.findOne(item.uploadedBy);
+  					item['username'] = userData.username;
+  					item['avatar'] = (userData.profile.avatar ? userData.profile.avatar : '');
+  					return -item.createdAt; 
   				});
+  				dish['reviews'] = sortedRv;
   			}
   			return dish;
 	  	}else {
