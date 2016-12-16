@@ -6,7 +6,6 @@ export default class DishDetailCtrl extends Controller {
 
 	    //To get user location
 	    Session.set('dishData', '');
-		Session.set('dishReviews', '');
 	    this.$ionicLoading.show({ template: 'Loading...', noBackdrop: true});
 	    this.dishId = this.$stateParams.dishId;
 	    _this = this;
@@ -15,8 +14,7 @@ export default class DishDetailCtrl extends Controller {
 	    	function(position) {
 			    _this.callMethod('getDish', _this.dishId, position.coords.latitude, position.coords.longitude, (err, data) => {
 			      	if (!err){
-			      		Session.set('dishData', data.dish);
-			      		Session.set('dishReviews', data.reviews);
+			      		Session.set('dishData', data);
 			      		_this.$ionicLoading.hide();
 			      	}else{
 			      		console.log(err);
@@ -28,7 +26,6 @@ export default class DishDetailCtrl extends Controller {
 				_this.$ionicLoading.hide();
 			    _this.$ionicLoading.show({ template: error.message, noBackdrop: true, duration:1000});
 				Session.set('dishData', []);
-			    Session.set('dishReviews', []);
 			});
   		this.helpers({
   			dishDetail(){
@@ -36,9 +33,6 @@ export default class DishDetailCtrl extends Controller {
   			},
 	  		rootUrl(){
   				return Meteor.absoluteUrl();
-  			},
-  			reviews(){
-  				return Session.get('dishReviews');
   			}
   		});
   	}

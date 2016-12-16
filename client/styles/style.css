@@ -225,7 +225,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .user-detail p{color:#9c9998;font-weight:500;font-size:18px}
 .user-name h5{color:#777170;font-size:14px;margin:0;font-weight:500}
 .user-del p{color:#9c9998;font-size:14px;margin:0}
-.your-post{margin:0;color:#777170;font-size:16px;text-transform:uppercase}
+.your-post{margin:0;color:#777170;font-size:16px;}
 
 .edit-btn img{height:20px;width:20px;}
 .edit-btn{background-color:#fff}
@@ -291,7 +291,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 /*****25-10-2016*****/
 .slide-wrap{float:left;width:100%;clear:both;text-align:center;}
 .slide-wrap h3{color:#e23814;font-size: 17px;margin:5px 0 0}
-.next-btn{background-color:#e23814;border-radius: 25px;text-align:center;float:none;clear: both;color: #fff;display:block;font-size:18px; margin:3px auto 10px;padding: 10px 0;text-decoration: none;text-transform: uppercase; width: 130px;}
+.next-btn{background-color:#e23814;border-radius: 25px;text-align:center;float:none;clear: both;color: #fff;display:block;font-size:18px; margin:3px auto 10px;padding: 10px 0;text-decoration: none;width: 130px;}
 .next-btn:hover{background-color:#ddd;color:#e23814}
 
 .dsh-img{height: 210px;}
@@ -338,7 +338,7 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .user-wrap{float:left;width:100%}
 .user-detl{float:left;width:70%}
 .like-share{float:left;width:30%}
-.user-wrap p {color: #333;font-size: 15px;font-weight: 500;margin: 0 0 5px;text-transform: uppercase;}
+.user-wrap p {color: #333;font-size: 15px;font-weight: 500;margin: 0 0 5px;}
 .like-share img{height:auto;width:20px}
 .user-wrap .rate-box {text-align:left;margin:0}
 .user-wrap .rate-box a{width:22px;}

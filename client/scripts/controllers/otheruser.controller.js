@@ -24,9 +24,7 @@ export default class OtherUserCtrl extends Controller {
 						}
 					}
 					return 	{
-								halfFirstname:  user.profile.firstname.charAt(0).toUpperCase(),
-								firstname: user.profile.firstname.charAt(0).toUpperCase() + user.profile.firstname.slice(1).toLowerCase(),
-								lastname: user.profile.lastname.charAt(0).toUpperCase() + user.profile.lastname.slice(1).toLowerCase(),
+								username: user.username,
 								followers: (user.profile.followers ? user.profile.followers.length : 0),
 								following: (user.profile.following ? user.profile.following.length : 0),
 								bio: (user.profile.bio ? user.profile.bio : ''),

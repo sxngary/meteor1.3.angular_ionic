@@ -19,7 +19,7 @@ Meteor.methods({
 		var imageBuffer = new Buffer(base64Data, "base64");
 		uniqueStr = new Meteor.Collection.ObjectID()._str;
 		if(!fs.existsSync(_dirPath)){	
-			fs.mkdir(_dirPath, 0766, function(error){
+			fs.mkdir(_dirPath, 0777, function(error){
 				if(!error){
 					fs.writeFile(_dirPath + '/' + uniqueStr + '_original.jpeg', imageBuffer, function(err) {
 					    if (!err) {
@@ -81,19 +81,81 @@ Meteor.methods({
   		return myFuture.wait();
   	},
   	save(data){
-  		let dish_id = Dishes.insert(data);
-  		if(dish_id){
-  			let checkExistsRe = Restaurants.findOne({placeId: data.restaurant.placeId});
-  			if(checkExistsRe){
-  				return Restaurants.update({_id:checkExistsRe._id}, { $push: { dishes: {dishId: dish_id} } });
+  		let checkDish = Dishes.findOne({ name: { '$regex':'^'+ data.name +'$', $options: 'i' }, 'restaurant.placeId': data.restaurant.placeId , active:{ $ne: 1 }, isDeleted:{ $ne: 1 }});
+  		if(checkDish){
+  			reviewData = {
+  				comment: data.comment,
+  				rating: data.rating,
+  				uploadedBy: data.uploadedBy,
+  				dateMillisecond: data.dateMillisecond,
+  				offset: data.offset,
+  				createdAt: data.createdAt
+  			};
+  			if(data.imageId){
+  				reviewData['imageId'] = data.imageId;
+	  			reviewData['extension'] = data.extension;
   			}else{
-	  			data.restaurant['dishes'] = [{dishId: dish_id}];
-	  			data.restaurant['uploadedBy'] = data.uploadedBy;
-	  			data.restaurant['offset'] = data.offset;
-	  			data.restaurant['createdAt'] = data.createdAt;
-	  			return Restaurants.insert(data.restaurant);
+		  		reviewData['videoThumb'] = data.videoThumb;
+		  		reviewData['video'] = data.video;
+		  		reviewData['extension'] = data.extension;
+		  	}
+		  	
+  			if(checkDish.reviews){
+  				let revSum = Dishes.aggregate([
+  					{ $match: { _id: checkDish._id } },
+				    { $unwind: "$reviews" },
+				    { $group: {
+				        _id: '$_id', 
+				        sum: { $sum: '$reviews.rating' }
+				    } } 
+				]);
+
+				if(revSum.length){
+					totalRv = Number(revSum[0].sum) + Number(checkDish.rating) + Number(data.rating);
+					totalusr = Number(checkDish.reviews.length)  + 2 ;
+					average = totalRv/totalusr;
+					if(average % 1 != 0){
+						toFix = average.toFixed(1);
+						NumberIs = roundAbout(toFix);
+					}else{
+						NumberIs = average;
+					}
+				}
+				
+  				updateDish = Dishes.update({ _id: checkDish._id }, { $push: { 'reviews': reviewData }, $set: { 'averageReview': Number(NumberIs) }});
+  			}else{
+  				totalRv = Number(checkDish.rating) + Number(data.rating);
+  				average = totalRv/2;
+  				if(average % 1 != 0){
+					toFix = average.toFixed(1);
+					NumberIs = roundAbout(toFix);
+				}else{
+					NumberIs = average;
+				}
+  				updateDish = Dishes.update({ _id: checkDish._id }, { $set: { 'reviews': [ reviewData ], 'averageReview': Number(NumberIs) }});
   			}
-  		}
+  			return checkDish._id;
+  		}else{
+	  		let dish_id = Dishes.insert(data);
+	  		if(dish_id){
+	  			let checkExistsRe = Restaurants.findOne({placeId: data.restaurant.placeId});
+	  			if(checkExistsRe){
+	  				let updated = Restaurants.update({_id:checkExistsRe._id}, { $push: { dishes: {dishId: dish_id} } });
+	  				if(updated){
+	  					return dish_id;
+	  				}
+	  			}else{
+		  			data.restaurant['dishes'] = [{dishId: dish_id}];
+		  			data.restaurant['uploadedBy'] = data.uploadedBy;
+		  			data.restaurant['offset'] = data.offset;
+		  			data.restaurant['createdAt'] = data.createdAt;
+		  			let inserted = Restaurants.insert(data.restaurant);
+	  				if(inserted){
+	  					return dish_id;
+	  				}
+	  			}
+	  		}
+	  	}
   	},
   	getSuggestions(lat, lng, limit, skip){
   		let checKDishes = Dishes.find({ active:{ $ne: 1 }, isDeleted:{ $ne: 1 } }).count();
@@ -133,20 +195,23 @@ Meteor.methods({
 		        "distanceMultiplier": DISTANCEMULTIPLIER
 		    }}
 		]);
+
   		if(dishData.length){
   			let dish = dishData[0];
-  			reviews = Dishes.find({name: dish.name, 'restaurant.placeId': dish.restaurant.placeId, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }},{ sort: { createdAt: -1 } }).fetch();
-  			if(reviews.length > 0){
-  				reviews.map(function(review, index){
+  			let owner = Meteor.users.findOne(dish.uploadedBy);
+			dish['username'] = owner.username;
+			dish['avatar'] = (owner.profile.avatar ? owner.profile.avatar : '');
+  			
+  			if(dish.reviews){
+  				dish.reviews.map(function(review, index){
   					userData = Meteor.users.findOne(review.uploadedBy);
-  					reviews[index]['firstname'] = userData.profile.firstname.charAt(0).toUpperCase();
-  					reviews[index]['lastname'] = userData.profile.lastname.charAt(0).toUpperCase() + userData.profile.lastname.slice(1).toLowerCase();
-  					reviews[index]['avatar'] = (userData.profile.avatar ? userData.profile.avatar : '');
+  					dish.reviews[index]['username'] = userData.username;
+  					dish.reviews[index]['avatar'] = (userData.profile.avatar ? userData.profile.avatar : '');
   				});
   			}
-  			return { dish:dish, reviews: reviews};
+  			return dish;
 	  	}else {
-	  		return { dish:[], reviews: []};
+	  		return [];
 	  	}
   	},
   	dishWithRestaurant(placeId){
@@ -210,7 +275,7 @@ Meteor.methods({
 		userId = new Meteor.Collection.ObjectID()._str;
 		uId = Meteor.userId();
 		if(!fs.existsSync(_dirPath)){	
-			fs.mkdir(_dirPath, 0766, function(error){
+			fs.mkdir(_dirPath, 0777, function(error){
 				if(!error){
 					fs.writeFile(_dirPath + '/' + userId + '.jpeg', imageBuffer, function(err) {
 					    if (!err) {
@@ -353,12 +418,8 @@ Meteor.methods({
   	userDish(dishId){
   		let dish = Dishes.findOne(dishId);
   		if(dish){
-  			let user = Meteor.users.findOne({_id: dish.uploadedBy}, { fields: { profile: 1} });
+  			let user = Meteor.users.findOne({_id: dish.uploadedBy}, { fields: { username: 1, profile: 1} });
   			if(user){
-	  			if(user.profile.firstname){
-		  			user.profile.firstname = user.profile.firstname.charAt(0).toUpperCase() + user.profile.firstname.slice(1).toLowerCase();
-		  			//user.profile.lastname = user.profile.lastname.charAt(0).toUpperCase() + user.profile.lastname.slice(1).toLowerCase();
-		  		}
 		  		return {dish: dish, user: user};
 		  	}
   		}

@@ -92,8 +92,11 @@
   		  </div>
       </div>
       <div class="no-suggestion" ng-if="search.searchList.length == 0">
-        <div class="no-content">
-          <h4>No results found!</h4>
+        <div class="no-content" ng-if="search.searchLoading">
+          <h4>No results found</h4>
+        </div>
+        <div class="no-content" ng-if="!search.searchLoading">
+          <h4>Loading...</h4>
         </div>
       </div>
    	</div>

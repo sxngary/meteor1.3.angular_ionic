@@ -25,7 +25,7 @@ Meteor.publishComposite('users-feed', function (limit, skip) {
     	},
     	children: [{
       		find: function (dish) {
-        		return Meteor.users.find({_id: dish.uploadedBy}, { fields: { profile: 1} });
+        		return Meteor.users.find({_id: dish.uploadedBy}, { fields: { username: 1, profile: 1} });
       		}
     	}]
   	}
@@ -39,7 +39,7 @@ Meteor.publishComposite('other-user', function (userId) {
     },
     children: [{
       	find: function (dish) {
-        	return Meteor.users.find({_id: userId}, { fields: { profile: 1} });
+        	return Meteor.users.find({_id: userId}, { fields: { username: 1, profile: 1} });
       	}
     }]
   }

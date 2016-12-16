@@ -37,12 +37,20 @@ export default class SearchCtrl extends Controller {
 	  	this.helpers({
 	  		searchList(){
 	  			if(Session.get("searchValue") && Session.get('latlng')){
-		  			Meteor.subscribe('nearest-locations-data', Session.get('latlng').lng, Session.get('latlng').lat, Session.get("searchValue"), Session.get('searchFrom'));
+		  			Session.set('searchLoading', false);
+		  			Meteor.subscribe('nearest-locations-data', Session.get('latlng').lng, Session.get('latlng').lat, Session.get("searchValue"), Session.get('searchFrom'), function(){
+
+				  	}, function() {
+					    Session.set('searchLoading', true);
+					});
 				  	return Dishes.find({}).fetch();
 			  	}
 	  		},
 	  		rootUrl(){
   				return Meteor.absoluteUrl();
+  			},
+  			searchLoading(){
+  				return Session.get('searchLoading');
   			}
 	  	});
   	}

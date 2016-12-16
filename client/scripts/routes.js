@@ -246,6 +246,11 @@ class RoutesRunner extends Runner {
       if(_this.$state.current.name == 'tab.profile'){
         _this.$state.go('tab.suggestion');
       }
+      if(_this.$ionicHistory.backView().stateName == 'post_review'){
+        _this.$state.go('tab.profile');
+      }else{
+        _this.$ionicHistory.goBack(-1);
+      }
     });
 
     _this.$rootScope.$on("$ionicView.afterLeave", function () {

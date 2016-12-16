@@ -151,6 +151,17 @@ export default class SettingsCtrl extends Controller {
 	      	}
 	    });
 	}
+
+	lowerCase(){
+		if(this.formData){
+            if(this.formData.username){
+                trimValue = this.formData.username.trim();
+                if (trimValue.length === 1) {
+                    this.formData.username = trimValue.toLowerCase();
+                }
+            }
+        }
+	}
 }
 
 SettingsCtrl.$inject = ['$state', '$ionicLoading', '$validation'];
