@@ -48,9 +48,6 @@ export default class LocationCtrl extends Controller {
 	   		videoImage(){
 	          if(Session.get('videoImagePath'))
 	            return Meteor.absoluteUrl() + Session.get('videoImagePath');
-	        },
-	        suggestion(){
-	        	
 	        }
 	   	});
 
@@ -60,6 +57,7 @@ export default class LocationCtrl extends Controller {
   		if(this.data && this.rt){
   			if(this.data.name && this.data.rating && this.rt.restaurantdata){
  				if(this.data.comment){
+ 					this.data.name = $("#searchBox").val();
 	 				let tagslistarr = this.data.comment.split(' ');
 					let arr=[];
 					$.each(tagslistarr,function(i,val){

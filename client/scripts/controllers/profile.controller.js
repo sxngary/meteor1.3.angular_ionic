@@ -4,15 +4,22 @@ import { Dishes, userDishes } from '../../../lib/collections';
 
 export default class ProfileCtrl extends Controller {
 	constructor() {
-    super(...arguments);
+	    super(...arguments);
 
-    this.subscribe('dishes');
-    const profile = this.currentUser && this.currentUser.profile;
-    this.profile = profile;
-    this.halfFirstname = profile.firstname.charAt(0).toUpperCase();
-    this.firstname = profile.firstname.charAt(0).toUpperCase() + profile.firstname.slice(1).toLowerCase();
-    this.lastname = profile.lastname.charAt(0).toUpperCase() + profile.lastname.slice(1).toLowerCase();
-    this.email = (profile.bio ? profile.bio : '');
+	    Session.set('postLoading', false);
+	    this.subscribe('dishes', () => [] , {
+	    	onStart: function () {
+  		      	
+  		    },
+  		    onReady: function () {
+  		    	Session.set('postLoading', true);
+  		    }
+	   	});
+	    const profile = this.currentUser && this.currentUser.profile;
+	    this.profile = profile;
+	    //this.halfFirstname = profile.firstname.charAt(0).toUpperCase();
+	    //this.firstname = profile.firstname.charAt(0).toUpperCase() + profile.firstname.slice(1).toLowerCase();
+	    //this.lastname = profile.lastname.charAt(0).toUpperCase() + profile.lastname.slice(1).toLowerCase();
 		this.helpers({
 			reviews(){
 				data =  userDishes.find({uploadedBy: this.currentUser._id, active:{ $ne: 1 }, isDeleted:{ $ne: 1 }}).fetch();
@@ -29,6 +36,9 @@ export default class ProfileCtrl extends Controller {
 			},
 			rootUrl(){
 				return Meteor.absoluteUrl();
+			},
+			postLoading(){
+				return Session.get('postLoading');
 			}
 		});
 	}

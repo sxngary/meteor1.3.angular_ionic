@@ -27,11 +27,6 @@
                     <div class="mobi-50-rates">
                     	<div class="resturant-rate text-right">
                             <span class="star-img">
-                                <!-- <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/fill-star.png" alt=""/>
-                                <img src="/half-star.png" alt=""/>
-                                <img src="/empty-star.png" alt=""/> -->
                                 <img ng-repeat="i in dish.getNumber(dish.dishDetail.restaurant.rating) track by $index" src="/fill-star.png" alt=""/>
                                 <img ng-if="dish.checkHalfStar(dish.dishDetail.restaurant.rating)" src="/half-star.png" alt=""/>
                                 <img ng-repeat="i in dish.printEmptyStar(dish.dishDetail.restaurant.rating) track by $index" src="/empty-star.png" alt=""/>
@@ -51,7 +46,41 @@
                     </div>
                 </div> -->
             </div>
-			<div class="row" ng-repeat="post in dish.reviews">
+            <div class="row" ng-if="dish.dishDetail">
+                <div class="col div1">
+                    <div class="row">
+                        <div class="col col-33">
+                            <div class="side-image-wrap">
+                                <img ng-if="dish.dishDetail.videoThumb" src="{{dish.rootUrl}}/{{dish.dishDetail.videoThumb}}"/>
+                                <img ng-if="dish.dishDetail.imageId" src="{{dish.rootUrl}}uploads/dishes/{{dish.dishDetail.imageId}}.{{dish.dishDetail.extension}}"/>
+                            </div>
+                            <span class="star-img">
+                                <img ng-repeat="i in dish.cardNumber(dish.dishDetail.rating) track by $index" src="/fill-star.png" alt=""/>
+                                <img ng-if="dish.cardCheckHalfStar(dish.dishDetail.rating)" src="/half-star.png" alt=""/>
+                                <img ng-repeat="i in dish.cardPrintEmptyStar(dish.dishDetail.rating) track by $index" src="/empty-star.png" alt=""/>
+                           </span>
+                        </div>
+                        <div class="col col-67">
+                            <div class="user-rate">
+                               
+                               <span class="pull-right user-name" ng-click="dish.redirectToUser(post.uploadedBy)">
+                                    <span class="user-img">
+                                        <img ng-if="!dish.dishDetail.avatar" src="/user_none.png" alt="" />
+                                        <img ng-if="dish.dishDetail.avatar" src="{{dish.rootUrl}}{{dish.dishDetail.avatar}}" alt="" />
+                                    </span>
+                                    <span class="user-title">{{dish.dishDetail.username}}</span>
+                                    
+                               </span>
+                            </div>
+                            <p class="dish-name">{{dish.dishDetail.name}}</p>
+                            <p class="res-nam"> {{dish.dishDetail.restaurant.name}}</p>
+                            <p class="resturant-name">{{dish.dishDetail.comment}}</p>
+                            <p class="post-date">Posted: {{dish.postedTime(dish.dishDetail.dateMillisecond)}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row" ng-repeat="post in dish.dishDetail.reviews">
             	<div class="col div1">
                 	<div class="row">
                     	<div class="col col-33">
@@ -59,10 +88,10 @@
                             	<img ng-if="post.videoThumb" src="{{dish.rootUrl}}/  {{post.videoThumb}}"/>
                                 <img ng-if="post.imageId" src="{{dish.rootUrl}}uploads/dishes/{{post.imageId}}.{{post.extension}}"/>
                         	</div>
-                             <span class="star-img">
-                                <img ng-repeat="i in dish.cardNumber(post.averageReview) track by $index" src="/fill-star.png" alt=""/>
-                                <img ng-if="dish.cardCheckHalfStar(post.averageReview)" src="/half-star.png" alt=""/>
-                                <img ng-repeat="i in dish.cardPrintEmptyStar(post.averageReview) track by $index" src="/empty-star.png" alt=""/>
+                            <span class="star-img">
+                                <img ng-repeat="i in dish.cardNumber(post.rating) track by $index" src="/fill-star.png" alt=""/>
+                                <img ng-if="dish.cardCheckHalfStar(post.rating)" src="/half-star.png" alt=""/>
+                                <img ng-repeat="i in dish.cardPrintEmptyStar(post.rating) track by $index" src="/empty-star.png" alt=""/>
                            </span>
                     	</div>
                     	<div class="col col-67">
@@ -73,12 +102,12 @@
                                         <img ng-if="!post.avatar" src="/user_none.png" alt="" />
                                         <img ng-if="post.avatar" src="{{dish.rootUrl}}{{post.avatar}}" alt="" />
                                     </span>
-                                    <span class="user-title">{{post.firstname}}. {{post.lastname}}</span>
+                                    <span class="user-title">{{post.username}}</span>
                                     
                                </span>
                         	</div>
-                            <p class="dish-name">{{post.name}}</p>
-                            <p class="res-nam"> {{post.restaurant.name}}</p>
+                            <p class="dish-name">{{dish.dishDetail.name}}</p>
+                            <p class="res-nam"> {{dish.dishDetail.restaurant.name}}</p>
                             <p class="resturant-name">{{post.comment}}</p>
                             <p class="post-date">Posted: {{dish.postedTime(post.dateMillisecond)}}</p>
                     	</div>

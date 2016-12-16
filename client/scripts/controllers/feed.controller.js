@@ -34,18 +34,17 @@ export default class FeedCtrl extends Controller {
 					return 'Loading';
 				}
 			},
-  		rootUrl(){
+  			rootUrl(){
 				return Meteor.absoluteUrl();
 			}
 		});
   	}
 
 	userName(uploadedBy){
-		user = Meteor.users.findOne({_id: uploadedBy});
+		let user = Meteor.users.findOne({_id: uploadedBy});
 		if(user){
 			return { 
-				fname: user.profile.firstname.charAt(0).toUpperCase(), 
-				lname: user.profile.lastname.charAt(0).toUpperCase() + user.profile.lastname.slice(1).toLowerCase(),
+				username: user.username,
 				avatar: (user.profile.avatar ? user.profile.avatar : '')
 			};
 		}
@@ -64,38 +63,42 @@ export default class FeedCtrl extends Controller {
 	}
 
 	postedTime(date){
-    	return this.Rating.postedDate(date);
-  	}
+  	return this.Rating.postedDate(date);
+	}
 
-  	redirectTo(id){
-  		if(this.currentUser._id == id)
-  			this.$location.url('/tab/profile');
-  		else
-  			this.$location.url('/user/' + id);
-  	}
+	redirectTo(id){
+		if(this.currentUser._id == id)
+			this.$location.url('/tab/profile');
+		else
+			this.$location.url('/user/' + id);
+	}
   	
-  	redirect(id, type){
-  		if(type == 'dish')
-  			this.$location.url('/dish_detail/' + id);
-  		else
-  			this.$location.url('/restaurant/' + id);
-  	}
+	redirect(id, type){
+		if(type == 'dish')
+			this.$location.url('/dish_detail/' + id);
+		else
+			this.$location.url('/restaurant/' + id);
+	}
 
-    toUserReveiw(id){
-      this.$location.url('/user_review/' + id);
-    }
+  toUserReveiw(id){
+    this.$location.url('/user_review/' + id);
+  }
 
-  	loadMore(){
-  		prevCount = Dishes.find().count();
-  		if(this.$scope.total == prevCount){
-            this.$scope.moredata=true;
-        }
-      this.subscribe('users-feed', () => [this.limit, prevCount], {});
-      _this = this;
-      _this.$timeout(function() {
-        _this.$scope.$broadcast('scroll.infiniteScrollComplete');
-  		}, 1500);
-  	}
+	loadMore(){
+		prevCount = Dishes.find().count();
+		if(this.$scope.total == prevCount){
+          this.$scope.moredata=true;
+      }
+    this.subscribe('users-feed', () => [this.limit, prevCount], {});
+    _this = this;
+    _this.$timeout(function() {
+      _this.$scope.$broadcast('scroll.infiniteScrollComplete');
+		}, 1500);
+	}
+
+  redirectToSearch(){
+    this.$location.url('/tab/search');
+  }
 }
 
 FeedCtrl.$inject = ['$state', '$scope', 'Rating', '$timeout', '$reactive', '$location'];

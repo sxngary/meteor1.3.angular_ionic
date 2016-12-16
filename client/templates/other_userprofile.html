@@ -3,7 +3,7 @@
     <div class="bar bar-header bar-light head_bar">
            <div class="back_arrrow">
            		<span class="sp2"><a ng-click="otheruser.previousView()"><img src="/left-arrow.png" alt=""/></a></span>
-                <h2>{{otheruser.userData.halfFirstname}}.  {{otheruser.userData.lastname}}</h2>
+                <h2>{{otheruser.userData.username}}</h2>
            </div>
     </div>
   </ion-header-bar>
@@ -40,7 +40,7 @@
             <div class="row">
               <div class="col user-del">
                   <div class="user-name">
-                    <h5>{{otheruser.userData.firstname}} {{otheruser.userData.lastname}}</h5>
+                    <h5>{{otheruser.userData.username}}</h5>
                   </div>
                     <p ng-if="otheruser.userData.bio">{{otheruser.userData.bio}}</p>
                 </div>
@@ -49,7 +49,7 @@
         <div class="full_back profile-posts suggest" ng-class="otheruser.posts.length==0 ? 'no-cnt' : ''"> <!-- Add no-cnt class when there is no record in posts -->
           <div class="row">
             <div class="col">
-              <h4 class="your-post">Post</h4>
+              <h4 class="your-post">Reviews by {{otheruser.userData.username}}</h4>
             </div>
           </div>
             <div class="row" ng-repeat="post in otheruser.posts" ng-if="$index % 3 == 0">

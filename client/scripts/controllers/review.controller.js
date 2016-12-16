@@ -5,6 +5,7 @@ export default class ReviewCtrl extends Controller {
   	constructor() {
     	super(...arguments);
 
+    	Session.set('dishData', '');
   	}
 
   	previousView(){

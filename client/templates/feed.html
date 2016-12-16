@@ -31,7 +31,7 @@
                                         <img ng-if="feed.userName(post.uploadedBy).avatar" src="{{feed.rootUrl}}{{feed.userName(post.uploadedBy).avatar}}" alt="" />
                                     </span>
 
-                                    <span class="user-title">{{feed.userName(post.uploadedBy).fname}}. {{feed.userName(post.uploadedBy).lname}}</span>
+                                    <span class="user-title">{{feed.userName(post.uploadedBy).username}}</span>
                                </span>
                             </div>
                             <p class="dish-name" ng-click="feed.redirect(post._id,  'dish')">{{post.name}}</p>
@@ -48,7 +48,8 @@
             </ion-infinite-scroll>
             <div class="no-suggestion" ng-if="feed.posts.length == 0">
                 <div class="no-content">
-                    <h4>No posts currently available</h4>
+                    <h4>No reviews available</h4>
+                    <p ng-click="feed.redirectToSearch()">Find some friends to follow!</p>
                 </div>
             </div>
             <div class="no-suggestion" ng-if="feed.posts === 'Loading'">

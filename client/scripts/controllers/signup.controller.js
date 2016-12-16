@@ -74,7 +74,7 @@ export default class SignupCtrl extends Controller {
                     success: ''
                 }
             });
-                //Add custom validation function for confirm password.
+        //Add custom validation function for confirm password.
         this.$validation
             .setExpression({
                 isconfirm: function (value, scope, element, attrs, param) {

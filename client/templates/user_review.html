@@ -3,7 +3,7 @@
         <div class="bar bar-header bar-light head_bar">
             <div class="back_arrrow">
                 <span class="sp2"><a ng-click="userReview.previousView()"><img src="/left-arrow.png" alt=""/></a></span>
-                <h2 ng-if="userReview.dish">{{userReview.dish.user.profile.firstname}}'s Review</h2> 
+                <h2 ng-if="userReview.dish">{{userReview.dish.user.username}}'s Review</h2> 
             </div>
         </div>
     </ion-header-bar>
@@ -16,7 +16,7 @@
             </div>
         	<div class="row">
             	<div class="col col-33">
-                    <div class="usr-img" ng-click="userReview.redirectTo(userReview.dish.user._id)">
+                    <div class="user-image" ng-click="userReview.redirectTo(userReview.dish.user._id)">
                         <img ng-if="!userReview.dish.user.profile.avatar" src="/user_none.png" alt="" />
                         <img ng-if="userReview.dish.user.profile.avatar" err-SRC="/user_none.png" src="{{userReview.rootUrl}}{{userReview.dish.user.profile.avatar}}" alt="" />
                     </div>
@@ -24,13 +24,8 @@
                 <div class="col col-67">
                 	<div class="user-wrap">
                     	<div class="user-detl">
-                        	<p class="usr-nam" ng-click="userReview.redirectTo(userReview.dish.user._id)">{{userReview.dish.user.profile.firstname}} {{userReview.dish.user.profile.lastname}}</p>
+                        	<p class="usr-nam" ng-click="userReview.redirectTo(userReview.dish.user._id)">{{userReview.dish.user.username}}</p>
                             <div class="rate-box">
-                                <!-- <a href="javascript:void(0)"><img src="/fill-star.png" alt=""/></a>
-                                <a href="javascript:void(0)"><img src="/fill-star.png" alt=""/></a>
-                                <a href="javascript:void(0)"><img src="/fill-star.png" alt=""/></a>
-                                <a href="javascript:void(0)"><img src="/half-star.png" alt=""/></a>
-                                <a href="javascript:void(0)"><img src="/empty-star.png" alt=""/></a> -->
                                 <a href="javascript:void(0)" ng-repeat="i in userReview.cardNumber(userReview.dish.dish.rating) track by $index"><img src="/fill-star.png" alt=""/></a>
                                 <a ng-if="userReview.cardCheckHalfStar(userReview.dish.dish.rating)" href="javascript:void(0)"><img src="/half-star.png" alt=""/></a>
                                 <a href="javascript:void(0)" ng-repeat="i in userReview.cardPrintEmptyStar(userReview.dish.dish.rating) track by $index" ><img src="/empty-star.png" alt=""/></a>

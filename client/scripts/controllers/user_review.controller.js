@@ -45,10 +45,16 @@ export default class UserReviewCtrl extends Controller {
 	}
 
   	previousView(){
-  		if(this.$ionicHistory.backView())
-  			this.$ionicHistory.goBack(-1);
-  		else
+  		if(this.$ionicHistory.backView()){
+  			if(this.$ionicHistory.backView().stateName == 'post_review'){
+  				this.$state.go('tab.profile');
+  			}else{
+  				this.$ionicHistory.goBack(-1);
+  			}
+  		}
+  		else{
   			this.$state.go('tab.suggestion');
+  		}
   	}
 
   	redirectTo(id){

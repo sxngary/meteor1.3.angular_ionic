@@ -38,7 +38,7 @@
                 <label class="item-input item-floating-label">
                   <span class="icon-top user"><img src="./user.png" alt="" ></span>
                   <span class="icon-wrap">
-                    <input name="username" type="text" placeholder="Username" ng-model="settings.formData.username" required-error-message="This field is required!" validator="required,usernameValidate">
+                    <input name="username" type="text" placeholder="Username" ng-model="settings.formData.username" required-error-message="This field is required!" validator="required,usernameValidate" ng-keyup="settings.lowerCase()">
                   </span>
                 </label>
                 <label class="item-input item-floating-label">
