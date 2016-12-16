@@ -121,8 +121,8 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .pad_8{padding:8px;}
 .profile_h2 { padding-left: 8px;text-align: left !important;}
 .brdr_rad5{border-radius:5px;}
-.back_arrrow .sp2{float:left;padding-top:12px;}
-.back_arrrow h2 {color: #ffffff;font-size: 24px;margin: 0 auto;padding-top: 9px;text-align: center;}
+.back_arrrow .sp2{left:15px;position: absolute; top:13px;}
+.back_arrrow h2 {color: #ffffff;font-size: 24px;margin: 0 auto;padding-top: 10px;text-align: center;width:100%;}
 .search_tb {background: rgba(0, 0, 0, 0) none repeat scroll 0 0;border: medium none;padding:0px;}
 .action_btn{text-align:right;}
 .slider-pager .slider-pager-page{margin:0px;}
@@ -280,8 +280,13 @@ box-shadow:         0px 1px 3px 0px rgba(0, 0, 0, 0.29);}
 .edit-btn span{margin-right: 15px;vertical-align: middle;}
 .edit-btn .edit-text{vertical-align: top;margin:5px 0 0 ;}
 .validation-invalid {
-    color: #3a0900;
-    font-size: 14px;
+  color: #3a0900;
+  font-size: 14px;
+}
+.edit-profile .validation-invalid {
+  color: #ff0000;
+  font-size: 14px;
+  margin-left: 10px;
 }
 .tabs .tab-item.active{background:#e23814;}
 .bttn-wrap{clear:both;padding-left:3px;text-align: center;}
