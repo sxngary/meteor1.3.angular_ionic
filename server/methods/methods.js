@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Accounts } from 'meteor/accounts-base';
-import { Dishes, Restaurants } from '../../lib/collections';
+import { Dishes, Restaurants, Inappropriate } from '../../lib/collections';
 
 Dishes._ensureIndex({'restaurant.location':'2dsphere'});
 Restaurants._ensureIndex({'location':'2dsphere'});
@@ -425,6 +425,49 @@ Meteor.methods({
 		  		return {dish: dish, user: user};
 		  	}
   		}
+  	},
+  	checkInappropriate(data){
+  		let words = Inappropriate.find({}).fetch();
+  		if(words.length){
+  			let name = data.name.split(' ');
+			existsName = [];
+			name.map(function(word, index){
+				let existed = _.where(words, {key: word.toLowerCase()});
+				if(existed.length){
+					existsName.push(word);
+				}
+			});
+			if(existsName.length){
+				return false
+			}
+			if(data.comment){
+				let tags = data.comment.split(' ');
+				existsTags = [];
+				tags.map(function(word){
+					if(word.indexOf('#') == 0){
+				    	let tag = word.substring(1, word.length);
+				    	let existed = _.where(words, {key: tag.toLowerCase()});
+						if(existed.length){
+							existsTags.push(tag);
+						}
+				    }else{
+				    	let existed = _.where(words, {key: word.toLowerCase()});
+						if(existed.length){
+							existsTags.push(word);
+						}
+				    }
+				});
+				if(existsTags.length){
+					return false
+				}else{
+					return true;
+				}
+			}else{
+				return true;
+			}
+  		}else{
+  			return true;
+  		}	
   	}
 });
 
