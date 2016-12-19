@@ -108,7 +108,16 @@ export default class LocationCtrl extends Controller {
 				  		};
 			  		Session.set('restaurant', restauData);
 	  				Session.set('dishData', this.data);
-	  				this.$state.go('post_review');
+	  				let _this = this;
+	  				Meteor.call('checkInappropriate', this.data, function(err, res){
+	  					if(!err){
+	  						if(res){
+	  							_this.$state.go('post_review');
+	  						}else{
+	  							_this.$ionicLoading.show({ template: 'Please enter appropriate words.', noBackdrop: true, duration:1500});	
+	  						}
+	  					}
+	  				});
   				}else{
   					this.$ionicLoading.show({ template: 'Add restaurant only', noBackdrop: true, duration:1500});
   					delete this.rt.restaurantdata;
